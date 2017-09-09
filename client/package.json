@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd-init": "^2.0.4",
+    "antd": "^2.13.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-materialize": "^1.0.10",
