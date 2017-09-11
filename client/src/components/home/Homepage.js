@@ -5,7 +5,9 @@ class Homepage extends Component{
     render(){
         return(
             <div>
-                Homepage
+                <h1>
+                    Homepage - to be designed
+                </h1>
             </div>
         )
     }
