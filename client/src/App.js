@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { Button } from 'antd';
+import React, {Component} from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
+import Home from './components/home/Homepage'
+import Alljobs from './components/alljobs/'
+import Navpills from './components/shared/navpills'
 
 class App extends Component {
 
-  render() {
-    return (
-      <div className="App">
-        <div>
-          <Button type="primary">Primary</Button>
-          <Button>Default</Button>
-          <Button type="dashed">Dashed</Button>
-          <Button type="danger">Danger</Button>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Navpills/>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/alljobs" component={Alljobs}/>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
