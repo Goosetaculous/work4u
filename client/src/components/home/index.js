@@ -1,20 +1,22 @@
-import React , { Component } from 'react'
+// import react
+import React , { Component } from 'react';
 
-import {Navbar, NavItem, Row, Col, Input, Carousel} from "react-materialize"
+// import private components
+import TopNavbar from "../shared/topnavbar/";
+import HomePageJobList from "./HomePageJobList.js";
+import Footer from "../shared/footer/";
+
+// import private css
+import "./style.css";
 
 class Homepage extends Component{
     render(){
         return(
-            <div>
-                <Navbar brand='logo' left>
-                    <NavItem href='get-started.html'>Explore Jobs</NavItem>
-                    <NavItem href='get-started.html'>Post a Job</NavItem>
-                    <h1>
-                        Homepage - to be designed
-                    </h1>
-                    <NavItem href='components.html'>Components</NavItem>
-                </Navbar>
-                
+            <div className="home-container">
+                <TopNavbar />
+                <div className="hook-line"></div>
+                <HomePageJobList />
+                <Footer />
             </div>
         )
     }

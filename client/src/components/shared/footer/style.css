@@ -1,4 +1,13 @@
-footer {
+.footer {
     text-align: center;
-    color: red;
+    color: grey;
+}
+
+.footer-link {
+    font-size: 15px;
+    margin: 5px;
+}
+
+.copyright-statement {
+    font-size: 12px;
 }
