@@ -1,5 +1,4 @@
 import React , { Component } from 'react'
-import
 
 
 class Profile extends Component{
