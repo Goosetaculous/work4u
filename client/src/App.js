@@ -12,6 +12,7 @@ class App extends Component {
                 <div>
                     <Navpills/>
                     <Route exact path="/" component={Home}/>
+
                 </div>
             </Router>
         </MuiThemeProvider>
