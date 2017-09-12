@@ -1,0 +1,9 @@
+.home-container {
+}
+
+.hook-line {
+    background: url("http://youngworkers.org/wp-content/uploads/2010/02/teen-banner.png") no-repeat center center;
+    margin: 10px 50px 10px 50px;
+    background-size: contain;
+    height: 200px;
+}
