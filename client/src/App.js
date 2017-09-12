@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
-import Home from './components/home/Homepage'
+import Home from './components/home/'
 import Alljobs from './components/alljobs/'
 import Navpills from './components/shared/navpills'
 
