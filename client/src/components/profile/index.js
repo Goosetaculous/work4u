@@ -13,6 +13,7 @@ class Profile extends Component{
                     <div>
                         <ProfileTabs/>
                     </div>
+
                 </Wrapper>
             </div>
 
