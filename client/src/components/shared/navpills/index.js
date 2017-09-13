@@ -8,5 +8,8 @@ const Navpills = () =>
     <li className={window.location.pathname === "/about" ? "active" : ""}>
       <Link to="/alljobs">All Jobs</Link>
     </li>
+      <li className={window.location.pathname === "/profile" ? "active" : ""}>
+          <Link to="/profile">Profile</Link>
+      </li>
   </ul>;
 export default Navpills;

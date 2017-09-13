@@ -1,14 +1,20 @@
 import React , { Component } from 'react'
-import
+import SideBar from '../../components/shared/sidebar'
+import Wrapper from '../../components/shared/content'
+import ProfileTabs from './tabs/'
 
 
 class Profile extends Component{
     render(){
         return(
-            <div>
-              <h1>PROFILE</h1>
-
-        	</div>
+            <div className="container">
+                <SideBar/>
+                <Wrapper>
+                    <div>
+                        <ProfileTabs/>
+                    </div>
+                </Wrapper>
+            </div>
 
         )
     }

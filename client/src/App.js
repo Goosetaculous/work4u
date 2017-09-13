@@ -1,22 +1,27 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Profile from './components/profile/'
 import Home from './components/home/';
+import Footer from './components/shared/footer'
 import Navpills from './components/shared/navpills';
 import "./App.css";
 
 class App extends Component {
     render() {
         return (
-            <MuiThemeProvider>
-            <Router>
-                <div>
-                    <Navpills/>
-                    <Route exact path="/" component={Home}/>
-
-                </div>
-            </Router>
-        </MuiThemeProvider>
+            <div>
+                <MuiThemeProvider>
+                    <Router>
+                        <div>
+                            <Navpills/>
+                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/Profile" component={Profile}/>
+                        </div>
+                    </Router>
+                </MuiThemeProvider>
+                <Footer/>
+            </div>
         );
     }
 }
