@@ -1,9 +1,21 @@
-.home-container {
+.hook-line {
+    background: url("http://www.logiudicecustomknives.com/knifeshop/images/IMG_5625-1800.jpg") no-repeat center center;
+    margin: 20px 0px 20px 0px;
+    background-size: contain;
+    height: 500px;
+    text-align: center;
+    font-size: 100px;
+    padding: 200px 0px 0px 0px;
+    color: red;
+    font-family: 'Abel', sans-serif;
+    font-weight: bold;
 }
 
-.hook-line {
-    background: url("http://youngworkers.org/wp-content/uploads/2010/02/teen-banner.png") no-repeat center center;
-    margin: 10px 50px 10px 50px;
-    background-size: contain;
-    height: 200px;
+.job-list {
+    margin: 10px 20px 10px 20px;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Abel', sans-serif;
+    font-weight: bold;
+    
 }

@@ -5,7 +5,6 @@ class Bottom extends Component {
     render(){
         return(
             <div>
-                <hr />
                 <div className="footer">
                     <div>
                         <span className="footer-link"><a href="https://www.google.com">About Us</a></span>
