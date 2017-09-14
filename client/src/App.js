@@ -40,7 +40,8 @@ class App extends Component {
                             <Route path="/jobs" render={(props) => <Profile auth={auth} {...props} />} />
                             <Route path="/callback" render={(props) => {
                             handleAuthentication(props);
-                            return <Callback {...props} /> 
+                            return <Callback {...props} />  
+                              }}/>
 
                         </div>
                     </Router>
