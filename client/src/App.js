@@ -3,6 +3,8 @@ import React, {Component} from "react";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Profile from './components/profile/'
 import Home from './components/home/';
+import Jobs from './components/jobs/'
+
 import Footer from './components/shared/footer'
 import Navpills from './components/shared/navpills';
 import "./App.css";
@@ -32,12 +34,14 @@ class App extends Component {
                     <Router history={history} component={App}>
                         <div>
                             <Navpills/>
+
                             <Route path="/" render={(props) => <Home auth={auth} {...props} />} />
                             <Route path="/Profile" render={(props) => <Profile auth={auth} {...props} />} />
+                            <Route path="/jobs" render={(props) => <Profile auth={auth} {...props} />} />
                             <Route path="/callback" render={(props) => {
                             handleAuthentication(props);
                             return <Callback {...props} /> 
-                            }}/>
+
                         </div>
                     </Router>
                 </MuiThemeProvider>

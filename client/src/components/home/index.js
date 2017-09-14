@@ -2,8 +2,14 @@
 import React , { Component } from 'react';
 
 
-// import private css
-import "./style.css";
+import "./style.css"
+
+/*const styles = {
+    background: "url(http://youngworkers.org/wp-content/uploads/2010/02/teen-banner.png) no-repeat center center",
+    margin: "10px 20px 10px 20px",
+    backgroundSize: "contain",
+    height: "200px",
+}*/
 
 // import private components
 // import TopNavbar from "../shared/topnavbar/";
@@ -25,10 +31,16 @@ const auth = new Auth();
 class Homepage extends Component{
     render(){
         return(
-            <div className="home-container">
+
+            <div>
                 <Navtest />
-                <div className="hook-line"></div>
-                <HomePageJobList />
+                <div className="hook-line">
+                    More Doing, More Saving!
+                </div>
+                <div className="job-list">
+                    Most Popular Jobs
+                    <HomePageJobList />
+                </div>
 
             </div>
         )
