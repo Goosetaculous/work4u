@@ -1,9 +1,6 @@
 // import react
 import React , { Component } from 'react';
 
-// import private components
-import TopNavbar from "../shared/topnavbar/";
-import HomePageJobList from "./HomePageJobList.js";
 
 import "./style.css"
 
@@ -14,11 +11,29 @@ import "./style.css"
     height: "200px",
 }*/
 
+// import private components
+// import TopNavbar from "../shared/topnavbar/";
+import HomePageJobList from "./HomePageJobList.js";
+
+// import NavBar Login TESTING
+import Navtest from "../shared/Navtest/";
+
+
+// Import of auth
+import Auth from '../../Auth/Auth';
+
+//Auth Constant
+const auth = new Auth();
+
+
+
+
 class Homepage extends Component{
     render(){
         return(
+
             <div>
-                <TopNavbar />
+                <Navtest />
                 <div className="hook-line">
                     More Doing, More Saving!
                 </div>
