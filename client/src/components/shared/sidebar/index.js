@@ -28,7 +28,7 @@ class SideBar extends Component{
     render(){
         return (
             <div style={{paddingRight:"10px", marginTop:"1px"}}>
-                {console.log(this.state.profile)}
+                {console.log(this.state.profile.picture)}
                 <Card>
                     <CardHeader
                         title="Goose"
