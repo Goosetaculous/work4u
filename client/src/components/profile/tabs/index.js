@@ -1,5 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
+
+import AppliedJobs from './AppliedJobs.js';
+import RecommendedJobs from './RecommendedJobs.js';
+import JobsPostedByMe from './JobsPostedByMe.js';
+import ActiveJobs from './ActiveJobs.js';
+import Reviews from './Reviews.js'
 
 const styles = {
     headline: {
@@ -31,41 +37,31 @@ class ProfileTabs extends Component{
                 <Tab label="Applied Jobs" >
                     <div>
                         <h2 style={styles.headline}>Applied Jobs</h2>
-                        <p>
-                            This is another example tab.
-                        </p>
+                        <AppliedJobs />
                     </div>
                 </Tab>
                 <Tab label="Recommended Jobs" >
                     <div>
                         <h2 style={styles.headline}>Recommended jobs</h2>
-                        <p>
-                            This is another example tab.
-                        </p>
+                        <RecommendedJobs />
                     </div>
                 </Tab>
-                <Tab label="My Posts" >
+                <Tab label="Jobs Posted By Me" >
                     <div>
-                        <h2 style={styles.headline}>My Post</h2>
-                        <p>
-                            This is another example tab.
-                        </p>
+                        <h2 style={styles.headline}>Jobs Posted By Me</h2>
+                        <JobsPostedByMe />
                     </div>
                 </Tab>
                 <Tab label="Active Jobs" >
                     <div>
                         <h2 style={styles.headline}>Active Jobs</h2>
-                        <p>
-                            This is another example tab.
-                        </p>
+                        <ActiveJobs />
                     </div>
                 </Tab>
                 <Tab label="Reviews" >
                     <div>
                         <h2 style={styles.headline}>Reviews</h2>
-                        <p>
-                            This is another example tab.
-                        </p>
+                        <Reviews />
                     </div>
                 </Tab>
             </Tabs>
