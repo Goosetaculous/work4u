@@ -8,7 +8,7 @@ class Profile extends Component{
     render(){
         return(
             <div className="container">
-                <SideBar/>
+                <SideBar auth={this.props.auth}/>
                 <Wrapper>
                     <div>
                         <ProfileTabs/>
