@@ -1,6 +1,9 @@
 import React , { Component } from 'react'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import Auth from '../../../Auth/Auth';
+//Auth Constant
+const auth = new Auth();
 
 
 class SideBar extends Component{
@@ -20,6 +23,7 @@ class SideBar extends Component{
                     <CardActions>
                         <FlatButton label="Post a Job" />
                         <FlatButton label="All Jobs" />
+                        <FlatButton label="Log Out" onClick={()=>auth.logout()} />
                     </CardActions>
                 </Card>
             </div>
