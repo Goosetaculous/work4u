@@ -35,9 +35,9 @@ class App extends Component {
                         <div>
                             <Navpills/>
 
-                            <Route path="/" render={(props) => <Home auth={auth} {...props} />} />
-                            <Route path="/Profile" render={(props) => <Profile auth={auth} {...props} />} />
-                            <Route path="/jobs" render={(props) => <Profile auth={auth} {...props} />} />
+                            <Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />
+                            <Route exact path="/Profile" render={(props) => <Profile auth={auth} {...props} />} />
+                            <Route exact path="/jobs" render={(props) => <Jobs auth={auth} {...props} />} />
                             <Route path="/callback" render={(props) => {
                             handleAuthentication(props);
                             return <Callback {...props} />  
