@@ -44,6 +44,7 @@ class App extends Component {
                         <div>
                             <Navpills/>
 
+
                             {/*<Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />*/}
                             <Route exact path="/" render={(props) => (
                                 auth.isAuthenticated()) ? (
@@ -53,8 +54,9 @@ class App extends Component {
                                     <Home auth={auth} {...props} />
                                 ) } />
                             <Route exact path="/Profile" render={(props) => <Profile auth={auth} {...props} />} />
-                            <Route exact path="/jobs" render={(props) => <Jobs auth={auth} {...props} />} />
+                            <Route exact path="/Jobs" render={(props) => <Jobs auth={auth} {...props} />} />
                             <Route exact path="/applicant" render={(props) => <Applicant auth={auth} {...props} />} />
+
                             <Route exact path="/callback" render={(props) => {
 
                             handleAuthentication(props);
