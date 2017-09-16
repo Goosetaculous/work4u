@@ -1,17 +1,39 @@
 import React , { Component } from 'react'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import Auth from '../../../Auth/Auth';
+//Auth Constant
+const auth = new Auth();
 
 
 class SideBar extends Component{
+    constructor(){
+        super()
+    }
+    componentWillMount(){
+        this.setState({ profile: {} });
+        const { userProfile, getProfile } = this.props.auth;
+        if (!userProfile) {
+
+            getProfile((err, profile) => {
+                this.setState({ profile });
+            });
+        } else {
+            this.setState({ profile: userProfile });
+        }
+
+
+    }
+
     render(){
         return (
             <div style={{paddingRight:"10px", marginTop:"1px"}}>
+                {console.log(this.state.profile)}
                 <Card>
                     <CardHeader
                         title="Goose"
                         subtitle="Aranez"
-                        avatar="https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-1/c27.0.160.160/p160x160/18622112_10158707024565453_346568630785298166_n.jpg?oh=4852f78ec885bf0653776a6092371503&oe=5A4929C4"
+                        avatar={this.state.profile.picture}
                     />
                     <CardTitle title="Expert in:" />
                     <CardText>
@@ -20,6 +42,7 @@ class SideBar extends Component{
                     <CardActions>
                         <FlatButton label="Post a Job" />
                         <FlatButton label="All Jobs" />
+                        <FlatButton label="Log Out" onClick={()=>auth.logout()} />
                     </CardActions>
                 </Card>
             </div>

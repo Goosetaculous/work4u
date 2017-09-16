@@ -2,8 +2,6 @@ import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
 
-
-
 const styles = {
     root: {
         display: 'flex',
@@ -12,6 +10,7 @@ const styles = {
     },
     gridList: {
         width: 1000,
+
         overflowY: 'auto',
     },
 };
@@ -64,7 +63,7 @@ const tilesData = [
 
 
 
-class PopulateCards extends Component {
+class Reviews extends Component {
     constructor(){
         super()
     }
@@ -95,4 +94,4 @@ class PopulateCards extends Component {
 
 }
 
-export default PopulateCards
+export default Reviews;

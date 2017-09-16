@@ -2,8 +2,6 @@ import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
 
-
-
 const styles = {
     root: {
         display: 'flex',
@@ -12,6 +10,7 @@ const styles = {
     },
     gridList: {
         width: 1000,
+
         overflowY: 'auto',
     },
 };
@@ -64,7 +63,7 @@ const tilesData = [
 
 
 
-class PopulateCards extends Component {
+class ActiveJobs extends Component {
     constructor(){
         super()
     }
@@ -83,7 +82,7 @@ class PopulateCards extends Component {
                             title={tile.title}
                             titlePosition="top"
                             subtitle={tile.author}
-                            actionIcon={ <FlatButton label="Apply" backgroundColor="#a4c639" primary={true} />}
+                            actionIcon={ <FlatButton label="Review It" backgroundColor="#F5A730" primary={true} />}
                         >
                         </GridTile>
                     ))}
@@ -95,4 +94,4 @@ class PopulateCards extends Component {
 
 }
 
-export default PopulateCards
+export default ActiveJobs;
