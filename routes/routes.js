@@ -1,31 +1,22 @@
 var express = require("express");
-var router = express.Router();
 var path = require("path");
-var models = require("../models/models.js");
 
-/* GET users listing. */
-router.get("/123", function(req, res) {
-	console.log("/123 called");
-	models.removeAll(function(data) {
-		models.add("Andy", function(data) {
-			models.all(function(data) {
-				console.log(data);
-				res.json(data);
-			});
-		});
-	});
+var userRoutes = require("./userRoutes");
+var jobRoutes = requeire("./jobRoutes");
 
-	/*res.json([{
-		id: 1,
-		username: "samsepi0l"
-	}, {
-		id: 2,
-		username: "D0loresH4ze"
-	}]);*/
-});
+var router = new express.Router();
 
+// Use the userRoutes module for any routes starting with "/user"
+router.use("/user", userRoutes);
+
+// Use the jobRoutes module for any routes starting with "/job"
+router.use("/job"), jobRoutes);
+
+
+// Otherwise send all other requests the index.html page
+// React router will handle routing withing the app
 router.get("*", function(req, res) {
-	res.sendFile(path.join(__dirname+'/../client/build/index.html'));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = router;
