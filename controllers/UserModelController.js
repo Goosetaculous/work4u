@@ -1,5 +1,5 @@
-var JobModel = require("./JobModel.js");
-var UserModel = require("./UserModel.js");
+var JobModel = require("../models/JobModel.js");
+var UserModel = require("../models/UserModel.js");
 
 // ORM API
 var UserModelController = {
@@ -13,8 +13,20 @@ var UserModelController = {
     		}
     	});
     },
-    add: function(name, callback) {
-        var newUser = new UserModel({name: name});
+    add: function(userObject, callback) {
+
+        console.log(userObject);
+        var newUser = new UserModel({
+            firstName: userObject.firstName,
+            lastName: userObject.lastName,
+            accountName: userObject.accountName });
+
+        console.log("Creating a new user:")
+        console.log(newUser)
+
+        console.log("===============================")
+        console.log("===============================")
+
         newUser.save(function(err, data) {
             if (err) {
                 console.log(err);
