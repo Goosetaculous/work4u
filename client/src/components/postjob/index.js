@@ -54,7 +54,7 @@ render() {
 	            rowsMax={2}
 	            onChange = {(event,newValue) => this.setState({details:newValue})}
 	          /><br />
-	          <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+	          <RaisedButton label="Post Your Job" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
 	    </Wrapper>        
       </div>
     );
