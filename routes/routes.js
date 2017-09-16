@@ -1,8 +1,8 @@
 var express = require("express");
 var path = require("path");
 
-var userRoutes = require("./userRoutes");
-var jobRoutes = requeire("./jobRoutes");
+var userRoutes = require("./userRoutes.js");
+var jobRoutes = require("./jobRoutes.js");
 
 var router = new express.Router();
 
@@ -10,7 +10,7 @@ var router = new express.Router();
 router.use("/user", userRoutes);
 
 // Use the jobRoutes module for any routes starting with "/job"
-router.use("/job"), jobRoutes);
+router.use("/job", jobRoutes);
 
 
 // Otherwise send all other requests the index.html page
