@@ -30,6 +30,7 @@ const auth = new Auth();
 
 class Homepage extends Component{
     render(){
+
         return(
 
             <div>

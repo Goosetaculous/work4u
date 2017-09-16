@@ -21,7 +21,6 @@ class Profile extends Component{
         const { profile } = this.state;
         return(
             <div className="container">
-                {console.log(profile)}
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
