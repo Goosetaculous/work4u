@@ -10,30 +10,14 @@ class SideBar extends Component{
     constructor(){
         super()
     }
-    componentWillMount(){
-        this.setState({ profile: {} });
-        const { userProfile, getProfile } = this.props.auth;
-        if (!userProfile) {
-
-            getProfile((err, profile) => {
-                this.setState({ profile });
-            });
-        } else {
-            this.setState({ profile: userProfile });
-        }
-
-
-    }
-
     render(){
         return (
             <div style={{paddingRight:"10px", marginTop:"1px"}}>
-                {console.log(this.state.profile.picture)}
                 <Card>
                     <CardHeader
-                        title="Goose"
-                        subtitle="Aranez"
-                        avatar={this.state.profile.picture}
+                        title={this.props.given_name}
+                        subtitle={this.props.family_name}
+                        avatar={this.props.picture}
                     />
                     <CardTitle title="Expert in:" />
                     <CardText>
@@ -43,7 +27,7 @@ class SideBar extends Component{
                         <FlatButton label="Post a Job" />
                         <FlatButton label="All Jobs" />
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />
-                    </CardActions>
+                    </CardActions>s
                 </Card>
             </div>
         )

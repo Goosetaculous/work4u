@@ -43,17 +43,29 @@ class App extends Component {
                     <Router history={history} component={App}>
                         <div>
                             <Navpills/>
+                            <Route path="/profile" render={(props) => (
+                                !auth.isAuthenticated() ? (
+                                    <Redirect to="/"/>
+                                ) : (
+                                    <Profile auth={auth} {...props} />
+                                )
+                            )} />
 
 
                             {/*<Route exact path="/" render={(props) => <Home auth={auth} {...props} />} />*/}
                             <Route exact path="/" render={(props) => (
                                 auth.isAuthenticated()) ? (
-                                    this.handleAuthenticated(props),
-                                    <Redirect to="/profile"/>
+                                    <Profile auth={auth} {...props} />
                                 ):(
-                                    <Home auth={auth} {...props} />
+                                    <Home/>
                                 ) } />
-                            <Route exact path="/Profile" render={(props) => <Profile auth={auth} {...props} />} />
+                            {/*<Route exact path="/Profile" render={(props) => (*/}
+                                {/*!auth.isAuthenticated() ? (*/}
+                                    {/*<Redirect to="/"/>*/}
+                                {/*) : (*/}
+                                    {/*<Profile auth={auth} {...props} />*/}
+                                {/*)*/}
+                            {/*)} />*/}
                             <Route exact path="/Jobs" render={(props) => <Jobs auth={auth} {...props} />} />
                             <Route exact path="/applicant" render={(props) => <Applicant auth={auth} {...props} />} />
 
