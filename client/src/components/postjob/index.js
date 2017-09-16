@@ -22,6 +22,7 @@ render() {
       <div className="container">
       	<SideBar/>
       	<Wrapper>
+			<div style={{width:"100%"}}>
       		<h5>Post A Job</h5>
 	         <DatePicker 
 	           hintText="Date of the Job"
@@ -55,6 +56,7 @@ render() {
 	            onChange = {(event,newValue) => this.setState({details:newValue})}
 	          /><br />
 	          <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+			</div>
 	    </Wrapper>        
       </div>
     );

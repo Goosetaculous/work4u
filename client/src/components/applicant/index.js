@@ -17,6 +17,7 @@ class Applicant extends Component{
             <div className="container">
                 <SideBar/>
                 <Wrapper>
+                    <div>
                     <Card>
                         <CardHeader
                             title="Some name"
@@ -33,6 +34,7 @@ class Applicant extends Component{
                             <FlatButton label="Cancel" />
                         </CardActions>
                     </Card>
+                    </div>
                 </Wrapper>
             </div>
         )
