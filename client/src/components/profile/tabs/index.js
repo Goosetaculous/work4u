@@ -25,11 +25,11 @@ class ProfileTabs extends Component{
                 <Tab label="Profile" >
                     <div>
                         <h2 style={styles.headline}>Profile</h2>
-                        <p>
+                        <h5 style={styles.headline}>Your Jobs</h5>
                             This is an example tab.
-                        </p>
+                        
                         <p>
-                            You can put any sort of HTML or react component in here. It even keeps the component state!
+                            //You can put any sort of HTML or react component in here. It even keeps the component state!
                         </p>
 
                     </div>
