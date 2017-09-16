@@ -32,7 +32,7 @@ if (process.env.MONGODB_URI) {
   });
 }
 else {
-  var mongoose_db_name = "UserDB";
+  var mongoose_db_name = "work4youDB";
   mongoose.connect("mongodb://localhost/" + mongoose_db_name, {
     useMongoClient: true
   });

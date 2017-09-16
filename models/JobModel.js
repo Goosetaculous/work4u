@@ -1,20 +1,20 @@
 var mongoose = require("mongoose");
 
 // Create Schema class
-var JobSchema = mongoose.Schema;
+var Schema = mongoose.Schema;
 var JobSchema = new Schema({
     postedBy: {
-        type: Integer,
+        type: Number,
         required: true,
     },
     appliedBy: {
-        type: Integer
+        type: Number
     },
     status: {
         type: String
     },
     reviewFromJobPoster: {
-        type: Integer
+        type: Number
     }
 });
 

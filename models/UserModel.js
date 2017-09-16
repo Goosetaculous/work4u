@@ -1,17 +1,17 @@
 var mongoose = require("mongoose");
 
 // Create Schema class
-var UserSchema = mongoose.Schema;
+var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     firstName: {
         type: String,
         required: true,
     },
-    LastName: {
+    lastName: {
         type: String,
         required: true,
     },
-    acountName: {
+    accountName: {
         type: String,
         required: true,
     },
