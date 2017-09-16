@@ -4,6 +4,7 @@ import Profile from './components/profile/'
 import Home from './components/home/';
 import Jobs from './components/jobs/'
 import Applicant from './components/applicant';
+import PostJob from './components/postjob';
 
 import Footer from './components/shared/footer'
 import Navpills from './components/shared/navpills';
@@ -68,7 +69,7 @@ class App extends Component {
                             {/*)} />*/}
                             <Route exact path="/Jobs" render={(props) => <Jobs auth={auth} {...props} />} />
                             <Route exact path="/applicant" render={(props) => <Applicant auth={auth} {...props} />} />
-
+                            <Route exact path="/PostJob" render={(props) => <PostJob auth={auth} {...props} />} />
                             <Route exact path="/callback" render={(props) => {
 
                             handleAuthentication(props);
