@@ -12,10 +12,22 @@ class Applicant extends Component{
     constructor(){
         super()
     }
+    componentWillMount() {
+        this.setState({ profile: {} });
+        const { userProfile, getProfile } = this.props.auth;
+        if (!userProfile) {
+            getProfile((err, profile) => {
+                this.setState({ profile });
+            });
+        } else {
+            this.setState({ profile: userProfile });
+        }
+    }
     render(){
+        const { profile } = this.state;
         return(
             <div className="container">
-                <SideBar/>
+                <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
                     <Card>
