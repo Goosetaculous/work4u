@@ -2,6 +2,7 @@ import React , { Component } from 'react'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Auth from '../../../Auth/Auth';
+import PostJob from '../../../components/postjob';
 //Auth Constant
 const auth = new Auth();
 
@@ -40,7 +41,7 @@ class SideBar extends Component{
                        Moving,sleeping
                     </CardText>
                     <CardActions>
-                        <FlatButton label="Post a Job" />
+                        <FlatButton label="Post a Job"/>
                         <FlatButton label="All Jobs" />
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />
                     </CardActions>
