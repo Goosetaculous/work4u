@@ -1,5 +1,5 @@
-var JobModel = require("./JobModel.js");
-var UserModel = require("./UserModel.js");
+var JobModel = require("../model/JobModel.js");
+var UserModel = require("../model/UserModel.js");
 
 // ORM API
 var JobModelController = {
