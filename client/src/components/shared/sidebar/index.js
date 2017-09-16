@@ -11,7 +11,7 @@ class SideBar extends Component{
     constructor(){
         super()
     }
-    // componentWillMount(){
+   // componentWillMount(){
     //     this.setState({ profile: {} });
     //     const { userProfile, getProfile } = this.props.auth;
     //     if (!userProfile) {
@@ -28,7 +28,7 @@ class SideBar extends Component{
 
     render(){
         return (
-            <div style={{paddingRight:"10px", marginTop:"1px"}}>
+            <div style={{paddingRight:"10px", marginTop:"1px",width:"20%"}}>
 
                 <Card>
                     <CardHeader
@@ -44,7 +44,7 @@ class SideBar extends Component{
                         <FlatButton label="Post a Job"/>
                         <FlatButton label="All Jobs" />
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />
-                    </CardActions>
+                    </CardActions>s
                 </Card>
             </div>
         )
