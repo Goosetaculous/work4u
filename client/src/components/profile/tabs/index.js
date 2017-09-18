@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
+
+import Profile from './Profile'
 import AppliedJobs from './AppliedJobs.js';
 import RecommendedJobs from './RecommendedJobs.js';
 import JobsPostedByMe from './JobsPostedByMe.js';
@@ -24,13 +26,7 @@ class ProfileTabs extends Component{
             <Tabs>
                 <Tab label="Profile" >
                     <div>
-                        <h2 style={styles.headline}>Profile</h2>
-                        <h5 style={styles.headline}>Your Jobs</h5>
-                            This is an example tab.
-                        
-                        <p>
-                            //You can put any sort of HTML or react component in here. It even keeps the component state!
-                        </p>
+                       <Profile/>
 
                     </div>
                 </Tab>
