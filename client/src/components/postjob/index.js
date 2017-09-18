@@ -59,7 +59,7 @@ render() {
 						hintText="Price - $30.00"
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
-					/><br/>
+					/>
 					<TextField
 						hintText="Full Description of Job"
 						errorText="Required"
