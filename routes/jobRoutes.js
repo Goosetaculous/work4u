@@ -3,6 +3,7 @@ var router = express.Router();
 var path = require("path");
 var Job = require("../controllers/JobModelController.js");
 
+
 // collect all job data
 router.get("/all", function(req, res) {
 	Job.findAll(function(err, data) {
@@ -43,6 +44,7 @@ router.post("/review", function(req, res) {
 		res.json(data); // actually frontend does not nned this returned obj
 	});
 });
+
 
 // (job poster) cancel a job
 route.post("/cancel_job", function(req, res) {

@@ -13,7 +13,7 @@ var UserSchema = new Schema({
     },
     skills: {
         type: [String]
-    }
+    },
     jobsPostedByThisUser: {
         type: [String]
     },
@@ -21,7 +21,7 @@ var UserSchema = new Schema({
         type: [String]
     },
     auth0Id: {
-        type: Strong,
+        type: String,
         required: true
     }
 });
