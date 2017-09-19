@@ -3,41 +3,61 @@ var router = express.Router();
 var path = require("path");
 var Job = require("../controllers/JobModelController.js");
 
-
-
-// // collect all job data
+// collect all job data
 router.get("/all", function(req, res) {
 	Job.findAll(function(err, data) {
 		res.json(data);
 	});
 }));
 
-
-// Add new job
+// add new job
 router.post("/post_one", function(req, res) {
-	let job = req.body.job;
+	var job = req.body.job;
 	Job.addOne(job, function(err,data){
 		res.json(data); // actually frontend does not nned this returned obj
 	});
-}));
+});
 
-//add review
-route.post("/review", Job.review(req.body.jobId, function(err,data){
-	// Front end needs to give Job ID to review job
-	res.json(data)
-}))
+// apply for a job
+router.post("/apply", function(req, res) {
+	var jobId = req.body.jobId;
+	var applicantId = req.body.applicantId;
+	Job.applyForAJob(jobId, applicantId, function(err, data) {
+		res.json(data); // actually frontend does not nned this returned obj
+	});
+});
 
+// confirm a job
+router.post("/confirm", function(req, res) {
+	var jobId = req.body.jobId;
+	Job.confirmAJob(jobId, function(err, data) {
+		res.json(data); // actually frontend does not nned this returned obj
+	});
+});
 
+// review a job
+router.post("/review", function(req, res) {
+	var jobId = req.body.jobId;
+	var reviewFromJobPoster = req.body.reviewFromJobPoster;
+	Job.confirmAJob(jobId, reviewFromJobPoster, function(err, data) {
+		res.json(data); // actually frontend does not nned this returned obj
+	});
+});
 
-// // Update an existing user with a speicified id param, using data in req.body
-// router.patch("/user/:id", User.<>);
+// (job poster) cancel a job
+route.post("/cancel_job", function(req, res) {
+	var jobId = req.body.jobId;
+	Job.cancelAJob(req.body.jobId, function(err,data){
+		res.json(data)
+	});
+});
 
-// // Delete a specific user using the id in req.params.id
-// router.delete("/quotes/:id", User.<>);
-
-// collect user info per ID
-// router.get("/job/:account_id?", Job.);
-
-
+// (applicant) withdraw an offer
+route.post("/withdraw_offer", function(req, res) {
+	var jobId = req.body.jobId;
+	Job.withdrawOffer(req.body.jobId, function(err,data){
+		res.json(data)
+	});
+});
 
 module.exports = router;
