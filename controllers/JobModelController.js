@@ -15,11 +15,13 @@ var JobModelController = {
     },
     addOne: function(job, callback) {
 
-        var postedBy = job.postedBy; // a string
-        var skillRequired = job.skillRequired; // a string
+        console.log("addOne called")
 
-        postedBy = "12323132142143";
-        skillRequired = "mechanic";
+        //var postedBy = job.postedBy; // a string
+        //var skillRequired = job.skillRequired; // a string
+
+        var postedBy = "12323132142143";
+        var skillRequired = "mechanic";
 
         var newJob = new JobModel({
             postedBy: postedBy,
@@ -30,10 +32,13 @@ var JobModelController = {
         });
         console.log("New Job" + newJob);
         newJob.save(function(err, data) {
+            
             if (err) {
                 console.log(err);
             }
             else {
+                console.log("Callback called...");
+
                 callback(data);
             }
         });
