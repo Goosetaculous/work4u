@@ -27,3 +27,5 @@ var JobModelController = {
 }
 
 module.exports = JobModelController;
+
+//  display all jobs, add 1 job,  display 1 unique job, 
