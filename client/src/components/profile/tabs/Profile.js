@@ -1,49 +1,78 @@
 import React, { Component } from 'react'
 import Wrapper from '../../shared/content'
 
-import ChipInput from 'material-ui-chip-input'
+//import ChipInput from 'material-ui-chip-input'
 
+import Checkbox from 'material-ui/Checkbox';
+
+const AUTO = ['Mechanical','Electrical','Body Work','Installation']
+const HOUSE = ['Construction','Plumping','Electrical','Maintenance']
+const GENERAL = ['Moving','Nanny','Modeling','Event','Adult']
+
+const styles = {
+    block: {
+        width: "40%",
+    },
+    checkbox: {
+        marginBottom: 16,
+    },
+};
 
 class Profile extends Component {
     constructor(){
         super()
         this.state = {
-            chips: []
+            checkedValues: []
         }
 
     }
 
-    handleRequestAdd (...chips) {
-        this.setState({
-            chips: [...this.state.chips, ...chips]
-        })
+    handleCheck(skill,TYPE) {
+        let checkedSkill =  `${skill}-${TYPE}`
+        this.setState(state => ({
+            checkedValues: state.checkedValues.includes(checkedSkill)
+                ? state.checkedValues.filter(c => c !== checkedSkill)
+                : [...state.checkedValues, checkedSkill]
+        }));
     }
 
-    handleRequestDelete (deletedChip) {
-        this.setState({
-            chips: this.state.chips.filter((c) => c !== deletedChip)
-        })
+    renderCheckbox(skill,TYPE){
+
+        return(
+
+            <Checkbox
+                label={skill}
+                key={`${TYPE}${skill}`}
+                onCheck={() => this.handleCheck(skill,TYPE)}
+                style={styles.checkbox}
+            />
+            )
+
     }
-
-
-
 
     render(){
         return(
-            <div className="container">
-                <div style={{width:"80%", textAlign:"center"}}>
-                    <h5>Add your skills</h5>
-                    <ChipInput
-
-                        fullWidth={false}
-                        fullWidthInput={false}
-                        onRequestAdd={(chip) => this.handleRequestAdd(chip)}
-                        onRequestDelete={(deletedChip) => this.handleRequestDelete(deletedChip)}
-                    />
+            <div className="container" style={{width:"80%"}}>
+                {console.log(this.state.checkedValues)}
+                <div style={styles.block}>
+                    <h5>Auto</h5>
+                    {
+                        AUTO.map((data,index)=>this.renderCheckbox(data,"AUTO"))
+                    }
                 </div>
-
+                <div style={styles.block}>
+                    <h5>HOUSE</h5>
+                    {
+                        HOUSE.map((data,index)=>this.renderCheckbox(data,"HOUSE"))
+                    }
+                </div>
+                <div style={styles.block}>
+                    <h5>GENERAL</h5>
+                    {
+                        GENERAL.map((data,index)=>this.renderCheckbox(data,"GENERAL"))
+                    }
+                </div>
             </div>
-
         )
     }
 }
