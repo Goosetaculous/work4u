@@ -5,21 +5,24 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     firstName: {
         type: String,
-        required: true,
+        required: true
     },
     lastName: {
         type: String,
-        required: true,
+        required: true
     },
-    accountName: {
-        type: String,
-        required: true,
-    },
+    skills: {
+        type: [String]
+    }
     jobsPostedByThisUser: {
-        type: String
+        type: [String]
     },
     jobsThisUserApplied: {
-        type: String
+        type: [String]
+    },
+    auth0Id: {
+        type: Strong,
+        required: true
     }
 });
 
