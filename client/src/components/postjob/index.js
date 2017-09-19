@@ -4,6 +4,8 @@ import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 class PostJob extends Component {
 	constructor(props){
@@ -13,9 +15,13 @@ class PostJob extends Component {
 		  description:'',
 		  location: '',
 		  price: '', 
-		  details:''
+		  details:'',
+		  value: 1
 	  }
 	 }
+	
+	handleChange = (event, index, value) => this.setState({value});
+
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -28,9 +34,9 @@ class PostJob extends Component {
         }
     }
 
-render() {
-    const { profile } = this.state;
-    return (
+	render() {
+	    const { profile } = this.state;
+	    return (
 		<div className="container">
 			<SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
 			<Wrapper>
@@ -60,6 +66,19 @@ render() {
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
+					<DropDownMenu
+			          value={this.state.value}
+			          onChange={this.handleChange}
+			          style={styles.customWidth}
+			          autoWidth={false}
+			        >
+			          <MenuItem value={1} primaryText="Custom width" />
+			          <MenuItem value={2} primaryText="Every Night" />
+			          <MenuItem value={3} primaryText="Weeknights" />
+			          <MenuItem value={4} primaryText="Weekends" />
+			          <MenuItem value={5} primaryText="Weekly" />
+			        </DropDownMenu>
+					
 					<TextField
 						hintText="Full Description of Job"
 						errorText="Required"
@@ -68,6 +87,7 @@ render() {
 						rowsMax={5}
 						onChange={(event, newValue) => this.setState({details: newValue})}
 					/><br/>
+					<RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
 				</div>
 
 			</Wrapper>

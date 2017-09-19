@@ -5,6 +5,9 @@ import Home from './components/home/';
 import Jobs from './components/jobs/'
 import Applicant from './components/applicant';
 import PostJob from './components/postjob';
+import AcceptJob from './components/acceptjob';
+import ReviewApplicant from './components/reviewapplicant';
+
 
 import Footer from './components/shared/footer'
 import Navpills from './components/shared/navpills';
@@ -63,6 +66,11 @@ class App extends Component {
                                 auth.isAuthenticated()) ? (
                                 <PostJob auth={auth} {...props} />
                             ):(<Redirect to="/home"/>) } />
+                            <Route exact path="/ReviewApplicant" render={(props) => (
+                                auth.isAuthenticated()) ? (
+                                <ReviewApplicant auth={auth} {...props} />
+                            ):(<Redirect to="/home"/>) } />
+
                             <Route exact path="/callback" render={(props) => {
 
                             handleAuthentication(props);
