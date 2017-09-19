@@ -7,6 +7,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+const jobSkills = [
+	{
+		img:'',
+		title: Home Repair
+	},
+	
+	}]
 class PostJob extends Component {
 	constructor(props){
 	  super(props);
@@ -16,7 +23,7 @@ class PostJob extends Component {
 		  location: '',
 		  price: '', 
 		  details:'',
-		  value: 1
+		  value: 2
 	  }
 	 }
 	
@@ -66,17 +73,12 @@ class PostJob extends Component {
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
-					<DropDownMenu
-			          value={this.state.value}
-			          onChange={this.handleChange}
-			          style={styles.customWidth}
-			          autoWidth={false}
-			        >
-			          <MenuItem value={1} primaryText="Custom width" />
-			          <MenuItem value={2} primaryText="Every Night" />
-			          <MenuItem value={3} primaryText="Weeknights" />
-			          <MenuItem value={4} primaryText="Weekends" />
-			          <MenuItem value={5} primaryText="Weekly" />
+					<DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={true}>
+			          <MenuItem value={1} primaryText="Home Repair" />
+			          <MenuItem value={2} primaryText="Auto Repair" />
+			          <MenuItem value={3} primaryText="Yard Work" />
+			          <MenuItem value={4} primaryText="Moving Help" />
+			          <MenuItem value={5} primaryText="Cleaning" />
 			        </DropDownMenu>
 					
 					<TextField

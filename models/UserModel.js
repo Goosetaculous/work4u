@@ -13,7 +13,7 @@ var UserSchema = new Schema({
     },
     skills: {
         type: [String]
-    }
+    },
     jobsPostedByThisUser: {
         type: [String]
     },

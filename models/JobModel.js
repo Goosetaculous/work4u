@@ -15,7 +15,7 @@ var JobSchema = new Schema({
     },
     skillRequired: {
         type: String
-    }
+    },
     reviewFromJobPoster: {
         type: Number
     }
