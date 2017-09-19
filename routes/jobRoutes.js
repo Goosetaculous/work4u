@@ -8,7 +8,7 @@ router.get("/all", function(req, res) {
 	Job.findAll(function(err, data) {
 		res.json(data);
 	});
-}));
+});
 
 // add new job
 router.post("/post_one", function(req, res) {

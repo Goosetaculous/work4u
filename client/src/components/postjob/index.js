@@ -40,12 +40,21 @@ class PostJob extends Component {
 		  location: '',
 		  price: '', 
 		  details:'',
-		  value: ''
-	  }
+		  data: [], 
+		  value: 0
+	  	}
 	 }
 	
 	handleChange = (event, index, value) => this.setState({value});
 
+	renderDropdownList(skill){
+		return(
+			<MenuItem
+				value={skill.value}
+				primaryText={skill.title}
+			/>
+			)
+	}
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -90,13 +99,11 @@ class PostJob extends Component {
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
+					
 					<DropDownMenu value={this.state.value} onChange={this.handleChange}>
-			          {jobSkills.map((skills) =>(
-			          	<MenuItem 
-			          		value={skills.value} 
-			          		primaryText={skills.title}
-			          	/>
-			          ))}
+			          {
+			          	jobSkills.map((data)=>this.renderDropdownList(data))
+			          }
 			        </DropDownMenu>
 					
 					<TextField

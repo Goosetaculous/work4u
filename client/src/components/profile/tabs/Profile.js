@@ -28,7 +28,7 @@ class Profile extends Component {
     }
 
     handleCheck(skill) {
-        console.log(skills)
+        console.log(skill)
 
         // this.setState(state => ({
         //     checkedValues: state.checkedValues.includes(x)
