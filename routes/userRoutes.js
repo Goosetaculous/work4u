@@ -17,9 +17,9 @@ var UserModelController = require("../controllers/UserModelController.js");
 // Add new User
 router.post("/add", function(req,res){
 
-	console.log("========================")
+	/*console.log("========================")
 	console.log("User post route triggered")
-	var test = { firstName: "jon" ,lastName:"doe", accountName: "123"};
+	var test = { firstName: "jon" ,lastName:"doe", auth0Id: "123"};
 	console.log("test user data ")
 	console.log(test)
 
@@ -27,7 +27,7 @@ router.post("/add", function(req,res){
 
 	UserModelController.add(test, function(data) {
 		res.json(data);
-	});
+	});*/
 });
 
 

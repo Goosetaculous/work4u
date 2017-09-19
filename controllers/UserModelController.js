@@ -19,7 +19,7 @@ var UserModelController = {
         var newUser = new UserModel({
             firstName: userObject.firstName,
             lastName: userObject.lastName,
-            accountName: userObject.accountName });
+            auth0Id: userObject.accountName });
 
         console.log("Creating a new user:")
         console.log(newUser)

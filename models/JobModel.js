@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var JobSchema = new Schema({
     postedBy: {
         type: Number,
-        required: true,
+        required: true
     },
     appliedBy: {
         type: Number
@@ -13,6 +13,9 @@ var JobSchema = new Schema({
     status: {
         type: String
     },
+    skillRequired: {
+        type: String
+    }
     reviewFromJobPoster: {
         type: Number
     }
