@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "auth0-js": "^8.9.3",
     "material-ui": "^0.19.1",
+    "material-ui-chip-input": "^0.17.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2",
