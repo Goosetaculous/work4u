@@ -13,7 +13,19 @@ var UserModelController = {
 
 
     add: function(req, res) {
-        UserModel.create(req.body).then(function(doc) {
+        var userObj = {
+            firstName: "jon" ,
+            lastName: "doe",
+            skills: [],
+            jobsPostedByThisUser: [] ,
+            jobsThisUserApplied:[],
+            auth0Id: "google123"
+        };
+        console.log(req.body)
+
+        //create custom user object - to be added//
+
+        UserModel.create(userObj).then(function(doc) {
             res.json(doc);
         }).catch(function(err) {
             res.json(err);
@@ -22,17 +34,36 @@ var UserModelController = {
 
     // adding post to user Post Array
     addpost: function(req,res){
+        var newPost = req.body.post; 
+        var user = req.body.user_id;
+
         UserModel.update(
-            {auth0Id: req.params.id},
-            {$push: {jobsPostedByThisUser: newPost}
-        },
+            {auth0Id: user},
+            {$push: {jobsPostedByThisUser: newPost}},
             req.body
         ).then(function(doc) {
             res.json(doc);
         }).catch(function(err) {
             res.json(err);
         });
-    }
+    },
+
+    // adding post to user Post Array
+    appliedpost: function(req,res){
+        var newPost = req.body.post;
+        var user = req.body.user_id;
+
+        UserModel.update(
+            {auth0Id: user},
+            {$push: {jobsThisUserApplied: newPost}},
+            req.body
+        ).then(function(doc) {
+            res.json(doc);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    },
+
 }
 
 module.exports = UserModelController;

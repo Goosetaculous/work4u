@@ -9,11 +9,13 @@ router.get("/all", function(req, res) {
 	Job.findAll(function(err, data) {
 		res.json(data);
 	});
-}));
+});
 
 // add new job
-router.post("/post_one", function(req, res) {
+router.post("/add_one", function(req, res) {
 	var job = req.body.job;
+
+
 	Job.addOne(job, function(err,data){
 		res.json(data); // actually frontend does not nned this returned obj
 	});
@@ -47,7 +49,7 @@ router.post("/review", function(req, res) {
 
 
 // (job poster) cancel a job
-route.post("/cancel_job", function(req, res) {
+router.post("/cancel_job", function(req, res) {
 	var jobId = req.body.jobId;
 	Job.cancelAJob(req.body.jobId, function(err,data){
 		res.json(data)
@@ -55,7 +57,7 @@ route.post("/cancel_job", function(req, res) {
 });
 
 // (applicant) withdraw an offer
-route.post("/withdraw_offer", function(req, res) {
+router.post("/withdraw_offer", function(req, res) {
 	var jobId = req.body.jobId;
 	Job.withdrawOffer(req.body.jobId, function(err,data){
 		res.json(data)
