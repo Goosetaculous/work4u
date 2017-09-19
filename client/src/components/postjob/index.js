@@ -3,7 +3,6 @@ import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 
 class PostJob extends Component {
 	constructor(props){
@@ -76,8 +75,6 @@ render() {
   }
 }
 
-const style = {
- margin: 15,
-};
+
 
 export default PostJob;

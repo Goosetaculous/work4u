@@ -1,8 +1,8 @@
 import React , { Component } from 'react'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader,  CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Auth from '../../../Auth/Auth';
-import PostJob from '../../../components/postjob';
+
 //Auth Constant
 const auth = new Auth();
 
