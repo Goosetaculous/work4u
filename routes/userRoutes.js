@@ -3,17 +3,15 @@ var router = express.Router();
 var path = require("path");
 var UserModelController = require("../controllers/UserModelController.js");
 
-// NOTES:  fill in User actions
-//
-//
-//
 
 //User Routes
 
-// // collect all user data
+// // collect and display all user data
 // route.get("/user", User.all);
+
 // // collect user info per user account name (unique acount id found in id_token)
 // router.get("/user/:account_id?", User.test);
+
 // Add new User
 router.post("/add", function(req,res){
 
@@ -31,8 +29,9 @@ router.post("/add", function(req,res){
 });
 
 
-// // Update an existing user with a speicified id param, using data in req.body
-// router.patch("/user/:accout_id", User.);
+// // Update an existing user with added post with a speicified id param, using data in req.body 
+// router.patch("/user/:accout_id/addpost", User.);
+
 // // Delete a specific user using the id in req.params.id
 // router.delete("/user/:account_id", User.<>);
 
