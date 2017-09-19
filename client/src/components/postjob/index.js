@@ -9,11 +9,28 @@ import MenuItem from 'material-ui/MenuItem';
 
 const jobSkills = [
 	{
-		img:'',
-		title: Home Repair
+		img:'https://dummyimage.com/250/ffffff/000000',
+		title: 'Home Repair',
+		value: 1
 	},
-	
-	}]
+	{
+		img:'https://dummyimage.com/250/ffffff/000000',
+		title: 'Auto Repair',
+		value: 2
+	},
+	{
+		img:'https://dummyimage.com/250/ffffff/000000',
+		title:'Other things',
+		value: 3
+	},
+	{
+		img:'https://dummyimage.com/250/ffffff/000000',
+		title: 'More things',
+		value: 4
+	},
+
+];
+
 class PostJob extends Component {
 	constructor(props){
 	  super(props);
@@ -23,7 +40,7 @@ class PostJob extends Component {
 		  location: '',
 		  price: '', 
 		  details:'',
-		  value: 2
+		  value: ''
 	  }
 	 }
 	
@@ -73,12 +90,13 @@ class PostJob extends Component {
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
-					<DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={true}>
-			          <MenuItem value={1} primaryText="Home Repair" />
-			          <MenuItem value={2} primaryText="Auto Repair" />
-			          <MenuItem value={3} primaryText="Yard Work" />
-			          <MenuItem value={4} primaryText="Moving Help" />
-			          <MenuItem value={5} primaryText="Cleaning" />
+					<DropDownMenu value={this.state.value} onChange={this.handleChange}>
+			          {jobSkills.map((skills) =>(
+			          	<MenuItem 
+			          		value={skills.value} 
+			          		primaryText={skills.title}
+			          	/>
+			          ))}
 			        </DropDownMenu>
 					
 					<TextField
@@ -89,7 +107,7 @@ class PostJob extends Component {
 						rowsMax={5}
 						onChange={(event, newValue) => this.setState({details: newValue})}
 					/><br/>
-					<RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>
 				</div>
 
 			</Wrapper>

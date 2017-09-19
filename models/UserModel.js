@@ -21,7 +21,7 @@ var UserSchema = new Schema({
         type: [String]
     },
     auth0Id: {
-        type: Strong,
+        type: String,
         required: true
     }
 });
