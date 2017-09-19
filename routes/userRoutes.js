@@ -16,7 +16,7 @@ router.get("/all", UserModelController.all);
 router.post("/add", UserModelController.add);
 
 // Update an existing user with added post with a speicified id param, using data in req.body 
-router.patch("/user/:accout_id/addpost", UserModelController.addpost);
+router.patch("/user/addpost", UserModelController.addpost);
 
 // // Delete a specific user using the id in req.params.id
 // router.delete("/user/:account_id", User.<>);
