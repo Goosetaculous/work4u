@@ -24,10 +24,9 @@ class ProfileTabs extends Component{
     render(){
         return(
             <Tabs>
-                <Tab label="Profile" >
+                <Tab label="My Skills" >
                     <div>
                        <Profile/>
-
                     </div>
                 </Tab>
                 <Tab label="Applied Jobs" >

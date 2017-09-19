@@ -5,6 +5,9 @@ import Wrapper from '../../shared/content'
 
 import Checkbox from 'material-ui/Checkbox';
 
+const AUTO = ['Mechanical','Electrical','Body Work','Installation']
+const HOUSE = ['Construction','Plumping','Electrical','Maintenance']
+const GENERAL = ['Moving','Nanny','Modeling','Event','Adult']
 
 const styles = {
     block: {
@@ -19,132 +22,53 @@ class Profile extends Component {
     constructor(){
         super()
         this.state = {
-            checked: false
+            checkedValues: []
         }
 
     }
 
-    updateCheck() {
-        this.setState((oldState) => {
-            return {
-                checked: !oldState.checked,
-            };
-        });
+    handleCheck(skill) {
+        console.log(skills)
+
+        // this.setState(state => ({
+        //     checkedValues: state.checkedValues.includes(x)
+        //         ? state.checkedValues.filter(c => c !== x)
+        //         : [...state.checkedValues, x]
+        // }));
     }
 
+    renderCheckbox(skill){
+        return(
+            <Checkbox
+                label={skill}
+                onCheck={() => this.handleCheck(skill)}
+                style={styles.checkbox}
+            />
+            )
 
+    }
 
     render(){
         return(
-            <div className="container">
-                <div style={{width: "30%"}}>
-                    <h5>Jobs I can do</h5>
-                </div>
-
-
+            <div className="container" style={{width:"80%"}}>
                 <div style={styles.block}>
                     <h5>Auto</h5>
-                    <Checkbox
-                        label="Mechanical"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Electrical"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Body Work"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Change a tire"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Installation"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                </div>
-
-                <div style={styles.block}>
-                    <h5>House</h5>
-                    <Checkbox
-                        label="Cleaning"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Plumbing"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Installation"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Maintenance"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-
+                    {
+                        AUTO.map((data)=>this.renderCheckbox(data))
+                    }
                 </div>
                 <div style={styles.block}>
-                    <h5>General</h5>
-                    <Checkbox
-                        label="Moving"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Nanny"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Modeling"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Construction"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Event"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
-                    <Checkbox
-                        label="Adult stuff"
-                        checked={this.state.checked}
-                        onCheck={this.updateCheck.bind(this)}
-                        style={styles.checkbox}
-                    />
+                    <h5>HOUSE</h5>
+                    {
+                        HOUSE.map((data)=>this.renderCheckbox(data))
+                    }
                 </div>
-
-
+                <div style={styles.block}>
+                    <h5>GENERAL</h5>
+                    {
+                        GENERAL.map((data)=>this.renderCheckbox(data))
+                    }
+                </div>
             </div>
         )
     }
