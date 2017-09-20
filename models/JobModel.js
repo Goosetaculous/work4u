@@ -4,11 +4,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var JobSchema = new Schema({
     postedBy: {
-        type: Number,
+        type: String,
         required: true
     },
     appliedBy: {
-        type: Number
+        type: String
     },
     status: {
         type: String
@@ -17,7 +17,7 @@ var JobSchema = new Schema({
         type: String
     },
     reviewFromJobPoster: {
-        type: Number
+        type: String
     }
 });
 

@@ -27,6 +27,7 @@ class Profile extends Component {
 
     }
 
+<<<<<<< HEAD
     handleCheck(skill) {
         console.log(skill)
 
@@ -35,13 +36,25 @@ class Profile extends Component {
         //         ? state.checkedValues.filter(c => c !== x)
         //         : [...state.checkedValues, x]
         // }));
+=======
+    handleCheck(skill,TYPE) {
+        let checkedSkill =  `${skill}-${TYPE}`
+        this.setState(state => ({
+            checkedValues: state.checkedValues.includes(checkedSkill)
+                ? state.checkedValues.filter(c => c !== checkedSkill)
+                : [...state.checkedValues, checkedSkill]
+        }));
+>>>>>>> e9c38a39634cc61941e4bc86ab2c580b9f89b2d0
     }
 
-    renderCheckbox(skill){
+    renderCheckbox(skill,TYPE){
+
         return(
+
             <Checkbox
                 label={skill}
-                onCheck={() => this.handleCheck(skill)}
+                key={`${TYPE}${skill}`}
+                onCheck={() => this.handleCheck(skill,TYPE)}
                 style={styles.checkbox}
             />
             )
@@ -51,22 +64,23 @@ class Profile extends Component {
     render(){
         return(
             <div className="container" style={{width:"80%"}}>
+                {console.log(this.state.checkedValues)}
                 <div style={styles.block}>
                     <h5>Auto</h5>
                     {
-                        AUTO.map((data)=>this.renderCheckbox(data))
+                        AUTO.map((data,index)=>this.renderCheckbox(data,"AUTO"))
                     }
                 </div>
                 <div style={styles.block}>
                     <h5>HOUSE</h5>
                     {
-                        HOUSE.map((data)=>this.renderCheckbox(data))
+                        HOUSE.map((data,index)=>this.renderCheckbox(data,"HOUSE"))
                     }
                 </div>
                 <div style={styles.block}>
                     <h5>GENERAL</h5>
                     {
-                        GENERAL.map((data)=>this.renderCheckbox(data))
+                        GENERAL.map((data,index)=>this.renderCheckbox(data,"GENERAL"))
                     }
                 </div>
             </div>

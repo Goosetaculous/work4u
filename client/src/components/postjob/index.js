@@ -3,6 +3,7 @@ import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
+<<<<<<< HEAD
 import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -30,6 +31,8 @@ const jobSkills = [
 	},
 
 ];
+=======
+>>>>>>> e9c38a39634cc61941e4bc86ab2c580b9f89b2d0
 
 class PostJob extends Component {
 	constructor(props){

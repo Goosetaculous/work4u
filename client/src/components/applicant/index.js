@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader,  CardTitle, CardText} from 'material-ui/Card';
 
 
-import Avatar from 'material-ui/Avatar';
+
 
 class Applicant extends Component{
     constructor(){
