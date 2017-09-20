@@ -25,23 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "client/build")));
 
-
-// mongoose configuration
-// if (process.env.MONGODB_URI) {
-//   mongoose.connect("mongodb://heroku_dvvfddmk:dl13pf5q1rrinhhia5n6jr734p@ds121674.mlab.com:21674/heroku_dvvfddmk", {
-//     useMongoClient: true
-//   });
-// }
-// else {
-//   var mongoose_db_name = "work4youDB";
-//   mongoose.connect("mongodb://localhost/" + mongoose_db_name, {
-//     useMongoClient: true
-//   });
-// }
-
 console.log(process.env.NODE_ENV)
-
-
 
 if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "development"){
     console.log(process.env.MONGODB_URI)
@@ -55,9 +39,6 @@ if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "developme
     });
 
 }
-
-
-
 
 
 app.use("/", routes);
