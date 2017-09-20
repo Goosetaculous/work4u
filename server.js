@@ -44,7 +44,7 @@ console.log(process.env.NODE_ENV)
 
 
 if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "development"){
-    console.log(process.env.NODE_ENV)
+    console.log(process.env.MONGODB_URI)
     mongoose.connect( process.env.MONGODB_URI, {
         useMongoClient: true
     });
