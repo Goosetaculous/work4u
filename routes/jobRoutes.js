@@ -13,10 +13,10 @@ router.get("/all", function(req, res) {
 
 // add new job
 router.post("/add_one", function(req, res) {
+
 	var job = req.body.job;
 
-
-	Job.addOne(job, function(err,data){
+	Job.addOne(job, function(err, data){
 		res.json(data); // actually frontend does not nned this returned obj
 	});
 });

@@ -23,4 +23,4 @@ var JobSchema = new Schema({
 
 // Create the model with the Schema
 var JobModel = mongoose.model("JobModel", JobSchema);
-module.export = JobModel;
+module.exports = JobModel;
