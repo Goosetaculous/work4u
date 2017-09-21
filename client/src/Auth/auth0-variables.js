@@ -1,4 +1,5 @@
 var cbURL
+console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === "production"){
     cbURL='https://work4u.herokuapp.com/callback'
 
@@ -8,6 +9,7 @@ if (process.env.NODE_ENV === "production"){
 }else {
     cbURL='http://localhost:3000/callback'
 }
+console.log(cbURL)
 export const AUTH_CONFIG = {
   domain: 'jonathanthinh.auth0.com',
   clientId: 'Y1J7wHC7JktSj70xG0opZEi4rN7F24tg',
