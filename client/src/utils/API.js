@@ -2,16 +2,23 @@ import axios from "axios";
 
 const API = {
   // add new user
-  addUser: function() {
+  addUser: function(user) {
     return axios.post("/user/add");
   },
   // add post to user array 
   // Object must be req.body.post  and  req.body.user_id
   addUserPost: function(obj) {
-    return axios.post("/user/addpost", { text });
+    return axios.post("/user/addpost", { obj });
   }
-
+}
 export default API;
+
+
+
+//firstName: "jon" ,
+//lastName: "doe",
+//auth0Id: "google123"
+
 
 
 //NOTES
