@@ -33,11 +33,15 @@ var UserModelController = {
 
             console.log("123321");
             console.log(data);
+
+            console.log("=============body==================")
+            console.log(req.body)
+            console.log("=============body==================")
             
             if (!data) {
-                console.log(userObj);
+                // console.log(userObj);
                 console.log("User has not been created before. Now storing it to DB.");
-                UserModel.create(userObj).then(function(doc) {
+                UserModel.create(req.body).then(function(doc) {
                     console.log("creating finished");
                     res.json(doc);
                 }).catch(function(err) {
