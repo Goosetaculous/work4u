@@ -13,22 +13,33 @@ var UserModelController = {
 
 
     add: function(req, res) {
-        var userObj = {
-            firstName: "jon" ,
-            lastName: "doe",
-            skills: [],
-            jobsPostedByThisUser: [] ,
-            jobsThisUserApplied:[],
-            auth0Id: "google123"
-        };
-        console.log(req.body)
 
-        //create custom user object - to be added//
+        // first, check if the user has already been added
+        //UserModel.findOne({user_id: userObj.user_id}, function(err, data) {
+        UserModel.findOne({user_id: req.body.user_id}, function(err, data) {
 
-        UserModel.create(userObj).then(function(doc) {
-            res.json(doc);
+            console.log("123321");
+            console.log(data);
+
+            console.log("=============body==================")
+            console.log(req.body)
+            console.log("=============body==================")
+            
+            if (!data) {
+                // console.log(userObj);
+                console.log("User has not been created before. Now storing it to DB.");
+                UserModel.create(req.body).then(function(doc) {
+                    console.log("creating finished");
+                    res.json(doc);
+                }).catch(function(err) {
+                    res.json(err);
+                });
+            }
+            else {
+                console.log("User has already been created before.")
+            }
         }).catch(function(err) {
-            res.json(err);
+            res.json(err)
         });
     },
 
@@ -38,7 +49,7 @@ var UserModelController = {
         var user = req.body.user_id;
 
         UserModel.update(
-            {auth0Id: user},
+            {user_id: user},
             {$push: {jobsPostedByThisUser: newPost}},
             req.body
         ).then(function(doc) {
@@ -54,7 +65,7 @@ var UserModelController = {
         var user = req.body.user_id;
 
         UserModel.update(
-            {auth0Id: user},
+            {user_id: user},
             {$push: {jobsThisUserApplied: newPost}},
             req.body
         ).then(function(doc) {

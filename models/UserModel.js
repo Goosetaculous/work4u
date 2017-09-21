@@ -3,11 +3,19 @@ var mongoose = require("mongoose");
 // Create Schema class
 var Schema = mongoose.Schema;
 var UserSchema = new Schema({
-    firstName: {
+    given_name: {
         type: String,
         required: true
     },
-    lastName: {
+    family_name: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    user_id: {
         type: String,
         required: true
     },
@@ -20,10 +28,6 @@ var UserSchema = new Schema({
     jobsThisUserApplied: {
         type: [String]
     },
-    auth0Id: {
-        type: String,
-        required: true
-    }
 });
 
 // Create the model with the Schema
