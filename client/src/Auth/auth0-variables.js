@@ -1,5 +1,5 @@
 
-
+console.log(process.env.AUTHO_CB_URL)
 console.log(process.env.AUTHO_CB_URL || 'http://localhost:3000/callback')
 export const AUTH_CONFIG = {
   domain: 'jonathanthinh.auth0.com',
