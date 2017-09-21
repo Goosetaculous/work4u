@@ -19,6 +19,9 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 // Import of auth
 import Auth from '../../../Auth/Auth';
 
+// Import API
+import API from "../../../utils/API";
+
 //Auth Constant
 const auth = new Auth();
 
