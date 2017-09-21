@@ -16,6 +16,9 @@ import Auth from './Auth/Auth';
 import history from './history';
 import { Route, Router, Redirect } from 'react-router-dom';
 
+// API import
+import API from "./utils/API";
+
 //Auth Constant
 const auth = new Auth();
 
@@ -24,6 +27,23 @@ const handleAuthentication = (nextState, replace) => {
     auth.handleAuthentication();
   }
 }
+
+
+
+
+const validateUserLogin = (props) =>{
+    
+        if (!auth.userProfile) {
+          auth.getProfile((err, profile) => {
+            API.addUser(profile);
+          });
+        } else {
+          API.addUser(auth.userProfile);
+        }
+
+    return  <Profile auth={auth} {...props} />
+}
+
 
 
 
@@ -42,7 +62,9 @@ class App extends Component {
 
                             <Route exact path="/" render={(props) => (
                                 auth.isAuthenticated()) ? (
-                                    <Profile auth={auth} {...props} />
+                                    validateUserLogin(props)
+                                    
+
                                 ):(<Redirect to="/home"/>) } />
                             <Route exact path="/Jobs" render={(props) =>(
                                 auth.isAuthenticated()) ? (
