@@ -15,7 +15,7 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
-    user_id: {
+    sub: {
         type: String,
         required: true
     },
