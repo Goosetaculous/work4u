@@ -21,6 +21,9 @@ router.patch("/addpost", UserModelController.addpost);
 // add skill to user profile
 router.patch("/addskill", UserModelController.addskill);
 
+// remove skill from user profile array
+router.patch("/removeskill", UserModelController.removeskill);
+
 // // Delete a specific user using the id in req.params.id
 // router.delete("/user/:account_id", User.<>);
 

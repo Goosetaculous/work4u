@@ -14,6 +14,10 @@ const API = {
 
   addSkill: (skill)=>{
     return axios.post("/user/addskill", { skill });
+  },
+
+  removeSkill: (skill)=>{
+    return axios.post("user/removeskill", { skill });
   }
 }
 export default API;

@@ -93,6 +93,27 @@ var UserModelController = {
         });
     },
 
+    // Remove skill from User array
+    removeskill: (req,res)=>{
+        console.log("=====================================")
+        console.log("remove skill method triggered")
+        console.log("=====================================")
+
+        console.log(req.body)
+        var removeSkill = req.body.skill;
+        var user = req.body.user_id;
+      
+        UserModel.update(
+            {sub: user},
+            {$pullAll: {skills: [removeSkill] }},
+            req.body
+        ).then(function(doc) {
+            res.json(doc);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    },
+
 
 
 }
