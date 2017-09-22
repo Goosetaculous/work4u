@@ -31,29 +31,6 @@ const handleAuthentication = (nextState, replace) => {
 
 
 
-const validateUserLogin = (props) =>{
-    
-        if (!auth.userProfile) {
-          auth.getProfile((err, profile) => {
-            API.addUser(profile);
-            console.log(profile.sub)
-            localStorage.setItem('user_id', profile.sub);
-
-          });
-        } else {
-          API.addUser(auth.userProfile);
-          // console.log(auth.userProfile.user.sub)
-          localStorage.setItem('user_id', auth.userProfile.user.sub);
-        }
-      
-
-
-    return  <Profile auth={auth} {...props} />
-}
-
-
-
-
 class App extends Component {
     constructor(){
         super()
@@ -69,9 +46,7 @@ class App extends Component {
 
                             <Route exact path="/" render={(props) => (
                                 auth.isAuthenticated()) ? (
-                                    validateUserLogin(props)
-                                    
-
+                                    <Profile auth={auth} {...props} /> 
                                 ):(<Redirect to="/home"/>) } />
                             <Route exact path="/Jobs" render={(props) =>(
                                 auth.isAuthenticated()) ? (
