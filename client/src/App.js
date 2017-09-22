@@ -36,10 +36,17 @@ const validateUserLogin = (props) =>{
         if (!auth.userProfile) {
           auth.getProfile((err, profile) => {
             API.addUser(profile);
+            console.log(profile.sub)
+            localStorage.setItem('user_id', profile.sub);
+
           });
         } else {
           API.addUser(auth.userProfile);
+          // console.log(auth.userProfile.user.sub)
+          localStorage.setItem('user_id', auth.userProfile.user.sub);
         }
+      
+
 
     return  <Profile auth={auth} {...props} />
 }

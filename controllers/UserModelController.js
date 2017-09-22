@@ -3,7 +3,7 @@ var UserModel = require("../models/UserModel.js");
 
 // ORM API
 var UserModelController = {
-    all: function(req, res) {
+    all: (req, res)=> {
         UserModel.find({}, function(err, data) {
             res.json(data);
         }).catch(function(err) {
@@ -12,11 +12,11 @@ var UserModelController = {
     },
 
 
-    add: function(req, res) {
+    add: (req, res)=> {
 
         // first, check if the user has already been added
         //UserModel.findOne({user_id: userObj.user_id}, function(err, data) {
-        UserModel.findOne({user_id: req.body.user_id}, function(err, data) {
+        UserModel.findOne({sub: req.body.user.sub}, function(err, data) {
 
             console.log("123321");
             console.log(data);
@@ -28,7 +28,7 @@ var UserModelController = {
             if (!data) {
                 // console.log(userObj);
                 console.log("User has not been created before. Now storing it to DB.");
-                UserModel.create(req.body).then(function(doc) {
+                UserModel.create(req.body.user).then(function(doc) {
                     console.log("creating finished");
                     res.json(doc);
                 }).catch(function(err) {
@@ -44,7 +44,7 @@ var UserModelController = {
     },
 
     // adding post to user Post Array
-    addpost: function(req,res){
+    addpost: (req,res)=>{
         var newPost = req.body.post; 
         var user = req.body.user_id;
 
@@ -60,7 +60,7 @@ var UserModelController = {
     },
 
     // adding post to user Post Array
-    appliedpost: function(req,res){
+    appliedpost: (req,res)=>{
         var newPost = req.body.post;
         var user = req.body.user_id;
 
@@ -74,6 +74,26 @@ var UserModelController = {
             res.json(err);
         });
     },
+
+    // adding skill to User
+    addskill: (req,res)=>{
+        console.log("add skill method triggered")
+        console.log(req.body)
+        var newSkill = req.body.skill;
+        var user = req.body.user_id;
+      
+        UserModel.update(
+            {sub: user},
+            {$push: {skills: newSkill}},
+            req.body
+        ).then(function(doc) {
+            res.json(doc);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    },
+
+
 
 }
 
