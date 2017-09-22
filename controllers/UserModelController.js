@@ -16,7 +16,7 @@ var UserModelController = {
 
         // first, check if the user has already been added
         //UserModel.findOne({user_id: userObj.user_id}, function(err, data) {
-        UserModel.findOne({user_id: req.body.user_id}, function(err, data) {
+        UserModel.findOne({sub: req.body.user.sub}, function(err, data) {
 
             console.log("123321");
             console.log(data);
@@ -28,7 +28,7 @@ var UserModelController = {
             if (!data) {
                 // console.log(userObj);
                 console.log("User has not been created before. Now storing it to DB.");
-                UserModel.create(req.body).then(function(doc) {
+                UserModel.create(req.body.user).then(function(doc) {
                     console.log("creating finished");
                     res.json(doc);
                 }).catch(function(err) {
