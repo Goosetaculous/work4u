@@ -9,15 +9,19 @@ const API = {
   // Object must be req.body.post  and  req.body.user_id
 
   addUserPost: (obj)=> {
-    return axios.post("/user/addpost", { obj });
+    return axios.put("/user/addpost", { obj });
   },
 
   addSkill: (skill)=>{
-    return axios.post("/user/addskill", { skill });
+    return axios.put("/user/addskill", { skill });
   },
 
   removeSkill: (skill)=>{
-    return axios.post("user/removeskill", { skill });
+    return axios.put("user/removeskill", { skill });
+  },
+
+  addSkillArray: (skillarray)=>{
+    return axios.put("user/addskillarray", { skillarray });
   }
 }
 export default API;

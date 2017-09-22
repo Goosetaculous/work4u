@@ -114,6 +114,27 @@ var UserModelController = {
         });
     },
 
+    // add skill array from User array
+    addskillarray: (req,res)=>{
+        console.log("=====================================")
+        console.log("add skill array method triggered")
+        console.log("=====================================")
+
+        console.log(req.body)
+        var skillArray = req.body.skillarray.skillarray;
+        var user = req.body.skillarray.user_id;
+      
+        UserModel.update(
+            {sub: user},
+            {$set: {skills: skillArray }},
+            req.body
+        ).then(function(doc) {
+            res.json(doc);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    },
+
 
 
 }
