@@ -3,6 +3,10 @@ var mongoose = require("mongoose");
 // Create Schema class
 var Schema = mongoose.Schema;
 var JobSchema = new Schema({
+    jobName: {
+        type: String,
+        required: true
+    },
     postedBy: {
         type: String,
         required: true
