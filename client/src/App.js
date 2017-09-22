@@ -60,7 +60,7 @@ class App extends Component {
                                 auth.isAuthenticated()) ? (
                                 <Applicant auth={auth} {...props} />
                             ):(<Redirect to="/home"/>) } />
-                            <Route exact path="/PostJob" render={(props) => (
+                            <Route exact path="/postjob" render={(props) => (
                                 auth.isAuthenticated()) ? (
                                 <PostJob auth={auth} {...props} />
                             ):(<Redirect to="/home"/>) } />

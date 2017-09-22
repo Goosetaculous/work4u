@@ -3,36 +3,25 @@ import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
-<<<<<<< HEAD
+
 import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
-const jobSkills = [
-	{
-		img:'https://dummyimage.com/250/ffffff/000000',
-		title: 'Home Repair',
-		value: 1
-	},
-	{
-		img:'https://dummyimage.com/250/ffffff/000000',
-		title: 'Auto Repair',
-		value: 2
-	},
-	{
-		img:'https://dummyimage.com/250/ffffff/000000',
-		title:'Other things',
-		value: 3
-	},
-	{
-		img:'https://dummyimage.com/250/ffffff/000000',
-		title: 'More things',
-		value: 4
-	},
+const styles = {
+  customWidth: {
+    width: 200,
+  },
+};
 
-];
-=======
->>>>>>> e9c38a39634cc61941e4bc86ab2c580b9f89b2d0
+const skills = ['Mechanical(Auto)','Electrical(Auto)','Body Work(Auto)','Installation(Auto)', 
+				'Construction(House)','Plumbing(House)','Electrical(House)','Maintenance(House)', 
+				'Moving(General)','Nanny(General)','Modeling(General)','Event(General)','Adult(General)'];
+for (let i = 0; i < skills.length; i++ ) {
+  skills.push(<MenuItem value={i} key={i} primaryText={{i}} />);
+}
+
+
 
 class PostJob extends Component {
 	constructor(props){
@@ -43,21 +32,12 @@ class PostJob extends Component {
 		  location: '',
 		  price: '', 
 		  details:'',
-		  data: [], 
-		  value: 0
+		  value: 10
 	  	}
+	 
 	 }
-	
 	handleChange = (event, index, value) => this.setState({value});
 
-	renderDropdownList(skill){
-		return(
-			<MenuItem
-				value={skill.value}
-				primaryText={skill.title}
-			/>
-			)
-	}
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -102,12 +82,9 @@ class PostJob extends Component {
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
-					
-					<DropDownMenu value={this.state.value} onChange={this.handleChange}>
-			          {
-			          	jobSkills.map((data)=>this.renderDropdownList(data))
-			          }
-			        </DropDownMenu>
+					<DropDownMenu maxHeight={300} value={this.state.value} onChange={this.handleChange}>
+				        {skills}
+				    </DropDownMenu>
 					
 					<TextField
 						hintText="Full Description of Job"

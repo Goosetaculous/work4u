@@ -27,16 +27,7 @@ class Profile extends Component {
 
     }
 
-<<<<<<< HEAD
-    handleCheck(skill) {
-        console.log(skill)
 
-        // this.setState(state => ({
-        //     checkedValues: state.checkedValues.includes(x)
-        //         ? state.checkedValues.filter(c => c !== x)
-        //         : [...state.checkedValues, x]
-        // }));
-=======
     handleCheck(skill,TYPE) {
         let checkedSkill =  `${skill}-${TYPE}`
         this.setState(state => ({
@@ -44,7 +35,7 @@ class Profile extends Component {
                 ? state.checkedValues.filter(c => c !== checkedSkill)
                 : [...state.checkedValues, checkedSkill]
         }));
->>>>>>> e9c38a39634cc61941e4bc86ab2c580b9f89b2d0
+
     }
 
     renderCheckbox(skill,TYPE){
