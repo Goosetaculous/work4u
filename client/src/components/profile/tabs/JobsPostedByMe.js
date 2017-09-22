@@ -15,7 +15,7 @@ const styles = {
     },
 };
 
-const tilesData = [
+/*const tilesData = [
     {
         img: 'https://pixy.org/images/placeholder.png',
         title: 'Mow my Law',
@@ -58,14 +58,19 @@ const tilesData = [
         title: 'Water plant',
         author: 'BkrmadtyaKarki',
     },
-];
-
-
+];*/
 
 
 class JobsPostedByMe extends Component {
+
+    state = {jobs: []};
+
     constructor(){
         super()
+    }
+
+    componentWillMount() {
+        fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
     }
 
     render(){
@@ -77,11 +82,11 @@ class JobsPostedByMe extends Component {
                     cols={4}
                     padding={3}
                 >
-                    {tilesData.map((tile) => (
+                    {this.state.jobs.map((job) => (
                         <GridTile
-                            title={tile.title}
+                            title={job.jobName}
                             titlePosition="top"
-                            subtitle={tile.author}
+                            subtitle={job.postedBy}
                             actionIcon={ <FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} />}
                         >
                         </GridTile>
