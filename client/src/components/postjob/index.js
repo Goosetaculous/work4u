@@ -14,12 +14,6 @@ const styles = {
   },
 };
 
-const skills = ['Mechanical(Auto)','Electrical(Auto)','Body Work(Auto)','Installation(Auto)', 
-				'Construction(House)','Plumbing(House)','Electrical(House)','Maintenance(House)', 
-				'Moving(General)','Nanny(General)','Modeling(General)','Event(General)','Adult(General)'];
-for (let i = 0; i < skills.length; i++ ) {
-  skills.push(<MenuItem value={i} key={i} primaryText={{i}} />);
-}
 
 
 
@@ -27,12 +21,12 @@ class PostJob extends Component {
 	constructor(props){
 	  super(props);
 	  this.state={
-		  date:'',
-		  description:'',
+		  postDate:'',
+		  shortDescript:'',
 		  location: '',
 		  price: '', 
-		  details:'',
-		  value: 10
+		  jobDetails:'',
+		  value: 2
 	  	}
 	 
 	 }
@@ -62,29 +56,34 @@ class PostJob extends Component {
 					<DatePicker
 						hintText="Date of the Job"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({date: newValue})}
+						onChange={(event, newValue) => this.setState({postDate: newValue})}
 					/>
 
 					<TextField
 						hintText="Paint my house"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({description: newValue})}
+						onChange={(event, newValue) => this.setState({shortDescript: newValue})}
 					/>
 					<TextField
 						hintText="Los Angeles, CA"
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({location: newValue})}
 					/>
-				</div>
-				<div style={{width: "50%", float: "right"}}>
 					<TextField
 						hintText="Price - $30.00"
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
-					<DropDownMenu maxHeight={300} value={this.state.value} onChange={this.handleChange}>
-				        {skills}
-				    </DropDownMenu>
+				</div>
+
+				<div style={{width: "50%", float: "right"}}>
+					<DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={true}>
+				        <MenuItem value={1} primaryText="Auto" />
+				        <MenuItem value={2} primaryText="Mechanical" />
+				        <MenuItem value={3} primaryText="Home" />
+				        <MenuItem value={4} primaryText="Moving" />
+				        <MenuItem value={5} primaryText="Miscellaneous" />
+      				</DropDownMenu>
 					
 					<TextField
 						hintText="Full Description of Job"
@@ -92,7 +91,7 @@ class PostJob extends Component {
 						multiLine={true}
 						rows={5}
 						rowsMax={5}
-						onChange={(event, newValue) => this.setState({details: newValue})}
+						onChange={(event, newValue) => this.setState({jobDetails: newValue})}
 					/><br/>
 					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>
 				</div>

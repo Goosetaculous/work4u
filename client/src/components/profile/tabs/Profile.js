@@ -32,9 +32,6 @@ class Profile extends Component {
 
     }
 
-
-<<<<<<< HEAD
-=======
     importSkillArray(){
         let user_id = localStorage.getItem("user_id");
         let skillarray = this.state.checkedValues;
@@ -51,7 +48,6 @@ class Profile extends Component {
         API.addSkillArray(skillObject);
     }
 
->>>>>>> 9637d725cc582befdc0f4c336107e7a2072e1b41
     handleCheck(skill,TYPE) {
         let checkedSkill =  `${skill}-${TYPE}`
 
@@ -61,11 +57,6 @@ class Profile extends Component {
                 : [...state.checkedValues, checkedSkill]
         }));
 
-<<<<<<< HEAD
-=======
-        
-
->>>>>>> 9637d725cc582befdc0f4c336107e7a2072e1b41
     }
 
     renderCheckbox(skill,TYPE){
