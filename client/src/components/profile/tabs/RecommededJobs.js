@@ -1,6 +1,7 @@
 import React ,  { Component } from 'react'
-import {GridList, GridTile} from 'material-ui/GridList';
+import {GridList, GridTile, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
+
 
 const styles = {
     root: {

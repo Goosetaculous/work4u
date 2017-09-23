@@ -5,6 +5,14 @@ import ProfileTabs from './tabs/'
 
 
 class Profile extends Component{
+    constructor() {
+        super();
+        this.state = {
+          test: ""
+        }
+    };
+
+
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -17,14 +25,27 @@ class Profile extends Component{
         }
     }
 
+    
+        test = (test) => {
+        console.log("hello from test");
+        console.log(test, this)
+        
+        this.setState({test:test});
+
+       return 
+
+    }
+
     render(){
         const { profile } = this.state;
+
         return(
+
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs/>
+                        <ProfileTabs passfunction={this.test}/>
                     </div>
 
                 </Wrapper>
