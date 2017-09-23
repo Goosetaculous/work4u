@@ -17,5 +17,6 @@ const Navpills = () =>
         <li className={window.location.pathname === "/postjob" ? "active" : ""}>
             <Link to="/postjob">Post Jobs</Link>
         </li>
+        
     </ul>;
 export default Navpills;

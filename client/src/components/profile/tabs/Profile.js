@@ -32,7 +32,6 @@ class Profile extends Component {
 
     }
 
-
     importSkillArray(){
         let user_id = localStorage.getItem("user_id");
         let skillarray = this.state.checkedValues;
@@ -57,8 +56,6 @@ class Profile extends Component {
                 ? this.state.checkedValues.filter(c => c !== checkedSkill)
                 : [...state.checkedValues, checkedSkill]
         }));
-
-        
 
     }
 
