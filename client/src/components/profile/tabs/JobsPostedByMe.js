@@ -82,15 +82,27 @@ class JobsPostedByMe extends Component {
                     cols={4}
                     padding={3}
                 >
-                    {this.state.jobs.map((job) => (
-                        <GridTile
-                            title={job.jobName}
-                            titlePosition="top"
-                            subtitle={job.postedBy}
-                            actionIcon={ <FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} />}
-                        >
-                        </GridTile>
-                    ))}
+                    {this.state.jobs.map((job) => {
+                        if (job.applied != "applied" ) {
+                            return <GridTile
+                                        title={job.jobName}
+                                        titlePosition="top"
+                                        subtitle={job.postedBy}
+                                        actionIcon={<div><FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} /><FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} /><FlatButton label="Decline" backgroundColor="#F53F30" primary={true} /></div>}
+                                    >
+                                    </GridTile>
+                        }
+                        else {
+                            return <GridTile
+                                        title={job.jobName}
+                                        titlePosition="top"
+                                        subtitle={job.postedBy}
+                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} />}
+                                    >
+                                    </GridTile>
+                        }
+                        
+                    })}
                 </GridList>
             </div>
 
