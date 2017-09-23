@@ -20,19 +20,29 @@ const styles = {
 class PostJob extends Component {
 	constructor(props){
 	  super(props);
-	  this.state={
-		  postDate:'',
-		  postedBy:'',
-		  shortDescript:'',
-		  location: '',
-		  price: '', 
-		  jobDetails:'',
-		  value: 2
-	  	}
-	 
-	 }
+
+	this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(event) {
+    	event.preventDefault();
+    	alert('Your job was submitted');
+  	}
 	
-	handleChange = (event, index, value) => this.setState({value});
+	handleInputChange(event) {
+	    const target = event.target;
+	    const value = target.value;
+	    const name = target.name;
+
+	    this.setState({
+	      [name]: value
+	    });
+
+	    console.log(value);
+	 }
+
+	
 
     componentWillMount() {
         this.setState({ profile: {} });
@@ -56,51 +66,54 @@ class PostJob extends Component {
 				<div style={{width: "50%", float: "left"}}>
 
 					<DatePicker
+						name='postDate'
 						hintText="Date of the Job"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({postDate: newValue})}
+						value={this.state.postDate}
+						onChange={this.handleInputChange}
 					/>
 
 					<TextField
-						hintText="Mickey Mouse"
+						name='postedBy'
+						hintText="John Doe"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({postedBy: newValue})}
+						onChange={this.handleInputChange}
 					/>
 
 					<TextField
+						name='shortDescript'
 						hintText="Paint my house"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({shortDescript: newValue})}
+						onChange={this.handleInputChange}
 					/>
+
 					<TextField
+						name='location'
 						hintText="Los Angeles, CA"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({location: newValue})}
+						onChange={this.handleInputChange}
 					/>
 				</div>
-					<TextField
-						hintText="Price - $30.00"
-						errorText="Required"
-						onChange={(event, newValue) => this.setState({price: newValue})}
-					/>
-				
 
 				<div style={{width: "50%", float: "right"}}>
-					<DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={true}>
-				        <MenuItem value={1} primaryText="Auto" />
-				        <MenuItem value={2} primaryText="Mechanical" />
-				        <MenuItem value={3} primaryText="Home" />
-				        <MenuItem value={4} primaryText="Moving" />
-				        <MenuItem value={5} primaryText="Miscellaneous" />
-      				</DropDownMenu>
+					
+				
+					<TextField
+						name='price'
+						hintText="Price - $30.00"
+						errorText="Required"
+						onChange={this.handleInputChange}
+					/>
+				
 					
 					<TextField
+						name='jobDetails'
 						hintText="Full Description of Job"
 						errorText="Required"
 						multiLine={true}
 						rows={5}
 						rowsMax={5}
-						onChange={(event, newValue) => this.setState({jobDetails: newValue})}
+						onChange={this.handleInputChange}
 					/><br/>
 					
 					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>

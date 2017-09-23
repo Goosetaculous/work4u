@@ -1,4 +1,5 @@
 import React , { Component } from 'react'
+import { Link } from "react-router-dom"
 import {Card, CardActions, CardHeader,  CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Auth from '../../../Auth/Auth';
@@ -11,7 +12,7 @@ class SideBar extends Component{
     constructor(){
         super()
     }
-
+   
     render(){
 
         return (
@@ -28,7 +29,7 @@ class SideBar extends Component{
                        Moving,sleeping
                     </CardText>
                     <CardActions>
-                        <FlatButton label="Post a Job"/>
+                        <Link to="/postjob"><FlatButton label="Post Jobs"/></Link>
                         <FlatButton label="All Jobs" />
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />
                     </CardActions>s
