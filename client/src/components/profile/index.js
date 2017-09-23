@@ -2,9 +2,17 @@ import React , { Component } from 'react'
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import ProfileTabs from './tabs/'
+import API from '../../utils/API'
 
 
 class Profile extends Component{
+    constructor(){
+        super()
+    }
+    componentDidMount(){
+
+    }
+
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;

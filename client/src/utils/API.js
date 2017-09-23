@@ -22,6 +22,10 @@ const API = {
 
   addSkillArray: (skillarray)=>{
     return axios.put("user/addskillarray", { skillarray });
+  },
+
+  getUser: (userId)=>{
+    return axios.get("user/"+userId)
   }
 }
 export default API;
