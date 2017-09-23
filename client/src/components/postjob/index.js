@@ -22,6 +22,7 @@ class PostJob extends Component {
 	  super(props);
 	  this.state={
 		  postDate:'',
+		  postedBy:'',
 		  shortDescript:'',
 		  location: '',
 		  price: '', 
@@ -30,6 +31,7 @@ class PostJob extends Component {
 	  	}
 	 
 	 }
+	
 	handleChange = (event, index, value) => this.setState({value});
 
     componentWillMount() {
@@ -57,6 +59,12 @@ class PostJob extends Component {
 						hintText="Date of the Job"
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({postDate: newValue})}
+					/>
+
+					<TextField
+						hintText="Mickey Mouse"
+						errorText="Required"
+						onChange={(event, newValue) => this.setState({postedBy: newValue})}
 					/>
 
 					<TextField
@@ -93,6 +101,7 @@ class PostJob extends Component {
 						rowsMax={5}
 						onChange={(event, newValue) => this.setState({jobDetails: newValue})}
 					/><br/>
+					
 					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>
 				</div>
 
