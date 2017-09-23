@@ -77,12 +77,13 @@ class PostJob extends Component {
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({location: newValue})}
 					/>
+				</div>
 					<TextField
 						hintText="Price - $30.00"
 						errorText="Required"
 						onChange={(event, newValue) => this.setState({price: newValue})}
 					/>
-				</div>
+				
 
 				<div style={{width: "50%", float: "right"}}>
 					<DropDownMenu value={this.state.value} onChange={this.handleChange} openImmediately={true}>
