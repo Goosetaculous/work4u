@@ -43,6 +43,21 @@ var UserModelController = {
         });
     },
 
+    getuser: function(req, res) {
+
+        console.log("=====================================")
+        console.log("get user by id route triggered")
+        console.log("=====================================")
+        
+        UserModel.find({
+          sub: req.params.id
+        }).then(function(doc) {
+          res.json(doc);
+        }).catch(function(err) {
+          res.json(err);
+        });
+      },
+
     // adding post to user Post Array
     addpost: (req,res)=>{
         var newPost = req.body.post; 
