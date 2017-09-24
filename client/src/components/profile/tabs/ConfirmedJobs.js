@@ -82,7 +82,7 @@ class ActiveJobs extends Component {
                             title={tile.title}
                             titlePosition="top"
                             subtitle={tile.author}
-                            actionIcon={ <FlatButton label="Review It" backgroundColor="#F5A730" primary={true} />}
+                            actionIcon={ <div><FlatButton label="I Am Satisfied!" backgroundColor="#F5A730" primary={true} /><FlatButton label="I Am Not Satisfied!" backgroundColor="#F5A730" primary={true} /></div>}
                         >
                         </GridTile>
                     ))}
