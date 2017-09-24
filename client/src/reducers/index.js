@@ -3,7 +3,7 @@ import UserReducer from './reducers_users';
 import LoggedInUser from './reducer_active_user';
 
 const allReducers =  combineReducers({
-    users: UserReducer,
+    //users: UserReducer,
     activeUser: LoggedInUser,
 
 })

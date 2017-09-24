@@ -56,7 +56,7 @@ class Profile extends Component{
         console.log("===============GET USER INFO ID=================")
         console.log("Get user ID function triggered")
         let userObject = API.getUser(localStorage.getItem('user_id')).then((res) => {
-            this.props.test_action(res.data[0])
+            this.props.LoggedInUser(res.data[0])
             console.log("================GET USER INFO ID END================")
         });
     }
