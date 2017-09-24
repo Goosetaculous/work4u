@@ -11,18 +11,6 @@ var JobSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
-        type: String,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
     appliedBy: {
         type: String
     },
@@ -34,6 +22,12 @@ var JobSchema = new Schema({
     },
     reviewFromJobPoster: {
         type: String
+    },
+    date:{
+        type:String
+    },
+    location: {
+        type: String
     }
 });
 
@@ -44,11 +38,3 @@ module.exports = JobModel;
 // Status will: intiated , applied , confirmed , completed 
 
 
-    // {
-    // "jobName": "gardening",
-    // "postedBy": "facebook|10157499583380453",
-    // "appliedBy": "google-oauth2|105150784954775008938",
-    // "status": "",
-    // "skillRequired":"",
-    // "reviewFromJobPoster":""
-    // }

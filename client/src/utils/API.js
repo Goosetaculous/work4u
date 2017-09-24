@@ -17,15 +17,23 @@ const API = {
   },
 
   removeSkill: (skill)=>{
-    return axios.put("user/removeskill", { skill });
+    return axios.put("/user/removeskill", { skill });
   },
 
   addSkillArray: (skillarray)=>{
-    return axios.put("user/addskillarray", { skillarray });
+    return axios.put("/user/addskillarray", { skillarray });
   },
 
   getUser: (user_id) =>{
-    return axios.get(`user/${user_id}`)
+    return axios.get(`/user/${user_id}`)
+  },
+
+  // Posts
+
+  applyToPost: (user_id, job_id) => {
+    return axios.post("/job/apply", { user_id, job_id})
   }
+
+
 }
 export default API;

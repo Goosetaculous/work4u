@@ -4,7 +4,7 @@
   "private": true,
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_ENV=development node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {

@@ -20,15 +20,22 @@ router.get("/all", (req, res)=> {
 router.post("/add", (req, res)=> {
 
 	console.log("api route job/add called.");
-	console.log("express received below request body");
-	console.log(req.body);
 
-	var jobName = req.body.jobName;
-	var postedBy = req.body.postedBy;
-	var jobSkills = req.body.jobSkills;
-	var jobLocation = req.body.jobLocation;
-	var jobDate = req.body.jobDate;
-	var jobPrice = req.body.jobPrice;
+	//var job = req.body.job;
+	//var postedBy = req.body.postedBy;
+	//var skillRequired = req.body.skillRequired;
+	// below for test only
+	// var jobName = "car repair";
+	// var postedBy = "123123";
+	// var skillRequired = "automotive";
+	// above for test only
+	let jobName = req.body.jobName;
+	let postedBy = req.body.postedBy;
+	let jobSkills = req.body.jobSkills;
+	let jobLocation = req.body.jobLocation;
+	let jobDate = 	req.body.jobDate;
+	let jobPrice = req.body.jobPrice;
+
 
 	Job.add(jobName, postedBy, jobSkills, jobLocation, jobDate, jobPrice, (data)=>{
 		res.json(data); // actually frontend does not nned this returned obj
@@ -37,9 +44,9 @@ router.post("/add", (req, res)=> {
 
 // apply for a job
 router.post("/apply", (req, res)=> {
-	var jobId = req.body.jobId;
-	var applicantId = req.body.applicantId;
-	Job.applyForAJob(jobId, applicantId, (data) =>{
+	var job_id = req.body.job_id;
+	var applicant_id = req.body.user_id;
+	Job.applyForAJob(job_id, applicant_id, (data) =>{
 		res.json(data); // actually frontend does not nned this returned obj
 	});
 });
@@ -77,5 +84,8 @@ router.post("/withdraw_offer", (req, res)=> {
 		res.json(data)
 	});
 });
+
+
+
 
 module.exports = router;

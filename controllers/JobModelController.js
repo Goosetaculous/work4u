@@ -50,7 +50,7 @@ var JobModelController = {
     },
     applyForAJob: function(applicantId, jobId, callback) {
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: applicantId}}, function(err, data) {
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: applicantId, status: "applied"}}, function(err, data) {
             if (err) {
                 console.log(err);
             }
