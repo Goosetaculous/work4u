@@ -19,18 +19,38 @@ const styles = {
 
 class PostJob extends Component {
 	constructor(props){
-	  super(props);
-
-	this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+		super(props);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
-	handleClick(event) {
+	handleClick = (event) => {
     	event.preventDefault();
-    	alert('Your job was submitted');
+		//alert('Your job was submitted');
+		console.log(this.state);
+		fetch('/job/add', {  
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				'jobName': this.state.jobName,
+				'postedBy': localStorage.getItem('user_id'),
+				'jobSkills': this.state.jobSkills,
+				'jobLocation': this.state.jobLocation,
+				'jobDate': this.state.jobDate,
+				'jobPrice': this.state.jobPrice
+			})
+		  }).then(data => data.json()).then(data => {
+			  console.log(data)
+			  window.location.reload(); // @job/goose, you guys may remove this once your parent state stuff is working
+		  });
+		  
   	}
 	
-	handleInputChange(event) {
+	handleInputChange = (event) => {
+
 	    const target = event.target;
 	    const value = target.value;
 	    const name = target.name;
@@ -39,10 +59,16 @@ class PostJob extends Component {
 	      [name]: value
 	    });
 
-	    console.log(value);
+	    console.log("Changing state field " + name + " to " + value);
 	 }
 
-	
+	 // a dedicated on change event handler must be implemented for date picker
+	 // see http://www.material-ui.com/#/components/date-picker for "onChange"
+	 handleDateChange = (event, date) => {
+		 console.log("Date is :");
+		 console.log(date);
+		 this.setState({jobDate: date});
+	 }
 
     componentWillMount() {
         this.setState({ profile: {} });
@@ -65,31 +91,24 @@ class PostJob extends Component {
 				<h5>Post A Job</h5>
 				<div style={{width: "50%", float: "left"}}>
 
+					<TextField
+						name='jobName'
+						hintText="Job name"
+						errorText="Required"
+						onChange={this.handleInputChange}
+					/>
+
 					<DatePicker
-						name='postDate'
-						hintText="Date of the Job"
+						name='JobDate'
+						hintText="When do you want to get it done"
 						errorText="Required"
-						value={this.state.postDate}
-						onChange={this.handleInputChange}
+						value={this.state.jobDate}
+						onChange={this.handleDateChange}
 					/>
 
 					<TextField
-						name='postedBy'
-						hintText="John Doe"
-						errorText="Required"
-						onChange={this.handleInputChange}
-					/>
-
-					<TextField
-						name='shortDescript'
-						hintText="Paint my house"
-						errorText="Required"
-						onChange={this.handleInputChange}
-					/>
-
-					<TextField
-						name='location'
-						hintText="Los Angeles, CA"
+						name='jobLocation'
+						hintText="Your location"
 						errorText="Required"
 						onChange={this.handleInputChange}
 					/>
@@ -99,16 +118,16 @@ class PostJob extends Component {
 					
 				
 					<TextField
-						name='price'
-						hintText="Price - $30.00"
+						name='jobPrice'
+						hintText="How much you want to pay"
 						errorText="Required"
 						onChange={this.handleInputChange}
 					/>
 				
 					
 					<TextField
-						name='jobDetails'
-						hintText="Full Description of Job"
+						name='jobSkills'
+						hintText="Skills"
 						errorText="Required"
 						multiLine={true}
 						rows={5}
