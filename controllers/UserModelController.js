@@ -18,12 +18,12 @@ var UserModelController = {
         //UserModel.findOne({user_id: userObj.user_id}, function(err, data) {
         UserModel.findOne({sub: req.body.user.sub}, function(err, data) {
 
-            console.log("123321");
+            console.log("add() of Controller is called.");
             console.log(data);
 
-            console.log("=============body==================")
-            console.log(req.body)
-            console.log("=============body==================")
+            //console.log("=============body==================")
+            //console.log(req.body)
+            //console.log("=============body==================")
             
             if (!data) {
                 // console.log(userObj);
@@ -42,6 +42,21 @@ var UserModelController = {
             res.json(err)
         });
     },
+
+    getuser: function(req, res) {
+
+        console.log("=====================================")
+        console.log("get user by id route triggered")
+        console.log("=====================================")
+        
+        UserModel.find({
+          sub: req.params.id
+        }).then(function(doc) {
+          res.json(doc);
+        }).catch(function(err) {
+          res.json(err);
+        });
+      },
 
     // adding post to user Post Array
     addpost: (req,res)=>{

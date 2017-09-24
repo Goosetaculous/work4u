@@ -2,18 +2,9 @@ import React , { Component } from 'react'
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import ProfileTabs from './tabs/'
-import API from '../../utils/API'
 
 
-class Profile extends Component{
-    constructor() {
-        super();
-        this.state = {
-          test: ""
-        }
-    };
-
-
+class ApplyJob extends Component{
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -26,35 +17,20 @@ class Profile extends Component{
         }
     }
 
-    test = (test) => {
-        console.log("hello from test");
-        console.log(test, this)
-        this.setState({test:test});
-
-        return 
-    }
-
-    getUserId = () =>{
-
-        console.log("================================")
-        console.log("Get user ID function triggered")
-        console.log("================================")
-        let userObject = API.getUser(localStorage.getItem('user_id'));
-        console.log(userObject)
-    }
-
-
 
     render(){
         const { profile } = this.state;
-        {this.getUserID}
         return(
-
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs passfunction={this.test}/>
+                        <h4>Job Information</h4>
+                        <p>Posted By: {}</p>
+                        <p>Job Description:{}</p>
+                        
+                        <RaisedButton label="Apply" primary={true}  onClick={(event) => this.handleClick(event)}/>
+
                     </div>
 
                 </Wrapper>
@@ -64,4 +40,4 @@ class Profile extends Component{
     }
 }
 
-export default  Profile
+export default  ApplyJob
