@@ -4,18 +4,12 @@ import Wrapper from '../../components/shared/content'
 import ProfileTabs from './tabs/'
 import API from '../../utils/API'
 
-import FlatButton from 'material-ui/FlatButton';
-
-
-
-
 //REDUX STUFF
-
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 //import actions
-import {selectUser} from '../../actions/';
+import {loggedInUser} from '../../actions/';
 
 
 // NOTES:
@@ -59,39 +53,27 @@ class Profile extends Component{
 
   
     getUserId(){
-
         console.log("===============GET USER INFO ID=================")
         console.log("Get user ID function triggered")
-        
         let userObject = API.getUser(localStorage.getItem('user_id')).then((res) => {
-            console.log(res.data[0]);
-               console.log("================GET USER INFO ID END================")
+            this.props.test_action(res.data[0])
+            console.log("================GET USER INFO ID END================")
         });
-
-     
     }
-
-
-
 
     render(){
         const { profile } = this.state;
-
         {this.getUserId()}
+        {this.props.activeUser}
         return(
-
             <div className="container">
-
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
-                    
-                    <div onClick={()=>this.props.test_action("YO")}>
+                    <div>
                         <ProfileTabs passfunction={this.test}/>
                     </div>
-
                 </Wrapper>
             </div>
-
         )
     }
 }
@@ -99,7 +81,8 @@ class Profile extends Component{
 
 function mapStateToProps(state) {
     return {
-        user: state.users
+        user: state.users,
+        activeUser: state.activeUser
     }
 }
 
@@ -107,7 +90,7 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch){
 
     return bindActionCreators({
-        test_action: selectUser
+        LoggedInUser: loggedInUser
     },dispatch)
 
 }

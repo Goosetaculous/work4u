@@ -1,9 +1,9 @@
 //ACTION CREATORS
 
-export const selectUser=(test)=>{
-    console.log("click THIS")
+export const loggedInUser=(user)=>{
+    console.log("FROM LOGGEDINUSER ACTION CREATOR")
     return{
-        type:"USER_IMPORTED",
-        payload: test
+        type:"LOGGED_IN_USER",
+        payload: user
     }
 };
