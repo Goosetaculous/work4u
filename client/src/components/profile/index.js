@@ -65,7 +65,7 @@ class Profile extends Component{
     render(){
         const { profile } = this.state;
         {this.getUserId()}
-        {console.log(this.props.activeUser)}
+        {console.log("this.props.activeUSer: ",this.props.activeUser)}
         return(
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>

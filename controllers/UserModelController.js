@@ -56,11 +56,16 @@ var UserModelController = {
 
         console.log("=====================================")
         console.log("get user by id route triggered")
+        console.log("req.params.id ",req.params.id)
         console.log("=====================================")
+
+        var sub = req.params.id.replace("%7C", "|")
         
+        console.log("AFTER REPLACE ", sub)
         UserModel.find({
-          sub: req.params.id
+            sub
         }).then(function(doc) {
+            console.log("RESPONSE: ", doc)
           res.json(doc);
         }).catch(function(err) {
           res.json(err);
