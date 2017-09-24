@@ -34,20 +34,23 @@ class Profile extends Component{
         return 
     }
 
-    getUserId = () =>{
+  
+    getUserId(){
 
         console.log("================================")
         console.log("Get user ID function triggered")
         console.log("================================")
-        let userObject = API.getUser(localStorage.getItem('user_id'));
-        console.log(userObject)
+        let userObject = API.getUser(localStorage.getItem('user_id')).then((res) => {
+            console.log(res);
+        });
     }
+
 
 
 
     render(){
         const { profile } = this.state;
-        {this.getUserID}
+        {this.getUserId()}
         return(
 
             <div className="container">
