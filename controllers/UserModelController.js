@@ -12,7 +12,7 @@ var UserModelController = {
     },
 
     user: (req,res)=>{
-        console.log(req.params.id) //debug
+        console.log("/n",req.params.id) //debug
         UserModel.find({_id: req.params.id}, function(err, data) {
             res.json(data);
         }).catch(function(err) {
@@ -86,8 +86,8 @@ var UserModelController = {
 
     // adding skill to User
     addskill: (req,res)=>{
-        console.log("add skill method triggered")
-        console.log(req.body)
+        // console.log("add skill method triggered")
+        // console.log(req.body)
         var newSkill = req.body.skill;
         var user = req.body.user_id;
       
