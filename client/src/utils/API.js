@@ -25,7 +25,7 @@ const API = {
   },
 
   getUser: (user_id) =>{
-    return axios.get(`user/getuser/${user_id}`)
+    return axios.get(`user/${user_id}`)
   }
 }
 export default API;
