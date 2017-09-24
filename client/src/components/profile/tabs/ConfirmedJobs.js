@@ -63,7 +63,7 @@ const tilesData = [
 
 
 
-class RecommededJobs extends Component {
+class ActiveJobs extends Component {
     constructor(){
         super()
     }
@@ -82,7 +82,7 @@ class RecommededJobs extends Component {
                             title={tile.title}
                             titlePosition="top"
                             subtitle={tile.author}
-                            actionIcon={ <FlatButton label="Cancel" backgroundColor="#F53F30" primary={true} />}
+                            actionIcon={ <div><FlatButton label="I Am Satisfied!" backgroundColor="#F5A730" primary={true} /><FlatButton label="I Am Not Satisfied!" backgroundColor="#F5A730" primary={true} /></div>}
                         >
                         </GridTile>
                     ))}
@@ -94,4 +94,4 @@ class RecommededJobs extends Component {
 
 }
 
-export default RecommededJobs;
+export default ActiveJobs;

@@ -78,13 +78,12 @@ class RecommededJobs extends Component {
                     padding={3}
                 >
                     {tilesData.map((tile) => (
-                        <GridTile
+                        <a href="recommended/?id"><GridTile
                             title={tile.title}
                             titlePosition="top"
                             subtitle={tile.author}
-                            actionIcon={ <FlatButton label="Apply" backgroundColor="#a4c639" primary={true} />}
                         >
-                        </GridTile>
+                        </GridTile></a>
                     ))}
                 </GridList>
             </div>

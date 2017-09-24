@@ -16,10 +16,20 @@ router.get("/all", UserModelController.all);
 router.post("/add", UserModelController.add);
 
 // Update an existing user with added post with a speicified id param, using data in req.body 
-router.patch("/addpost", UserModelController.addpost);
+router.put("/addpost", UserModelController.addpost);
 
 // add skill to user profile
-router.patch("/addskill", UserModelController.addskill);
+router.put("/addskill", UserModelController.addskill);
+
+// remove skill from user profile array
+router.put("/removeskill", UserModelController.removeskill);
+
+// add skill arry from user profile array
+router.put("/addskillarray", UserModelController.addskillarray);
+
+// // get a specific user using the id in req.params.id
+router.get("/:id",UserModelController.getuser );
+
 
 // // Delete a specific user using the id in req.params.id
 // router.delete("/user/:account_id", User.<>);

@@ -4,17 +4,72 @@ import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+const styles = {
+  customWidth: {
+    width: 200,
+  },
+};
+
+
+
+
 class PostJob extends Component {
 	constructor(props){
-	  super(props);
-	  this.state={
-		  date:'',
-		  description:'',
-		  location: '',
-		  price: '', 
-		  details:''
-	  }
+		super(props);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick = (event) => {
+    	event.preventDefault();
+		//alert('Your job was submitted');
+		console.log(this.state);
+		fetch('/job/add', {  
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				'jobName': this.state.jobName,
+				'postedBy': localStorage.getItem('user_id'),
+				'jobSkills': this.state.jobSkills,
+				'jobLocation': this.state.jobLocation,
+				'jobDate': this.state.jobDate,
+				'jobPrice': this.state.jobPrice
+			})
+		  }).then(data => data.json()).then(data => {
+			  console.log(data)
+			  window.location.reload(); // @job/goose, you guys may remove this once your parent state stuff is working
+		  });
+		  
+  	}
+	
+	handleInputChange = (event) => {
+
+	    const target = event.target;
+	    const value = target.value;
+	    const name = target.name;
+
+	    this.setState({
+	      [name]: value
+	    });
+
+	    console.log("Changing state field " + name + " to " + value);
 	 }
+
+	 // a dedicated on change event handler must be implemented for date picker
+	 // see http://www.material-ui.com/#/components/date-picker for "onChange"
+	 handleDateChange = (event, date) => {
+		 console.log("Date is :");
+		 console.log(date);
+		 this.setState({jobDate: date});
+	 }
+
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -27,50 +82,65 @@ class PostJob extends Component {
         }
     }
 
-render() {
-    const { profile } = this.state;
-    return (
+	render() {
+	    const { profile } = this.state;
+	    return (
 		<div className="container">
 			<SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
 			<Wrapper>
 				<h5>Post A Job</h5>
 				<div style={{width: "50%", float: "left"}}>
 
-					<DatePicker
-						hintText="Date of the Job"
+					<TextField
+						name='jobName'
+						hintText="Job name"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({date: newValue})}
+						onChange={this.handleInputChange}
+					/>
+
+					<DatePicker
+						name='JobDate'
+						hintText="When do you want to get it done"
+						errorText="Required"
+						value={this.state.jobDate}
+						onChange={this.handleDateChange}
 					/>
 
 					<TextField
-						hintText="Paint my house"
+						name='jobLocation'
+						hintText="Your location"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({description: newValue})}
-					/>
-					<TextField
-						hintText="Los Angeles, CA"
-						errorText="Required"
-						onChange={(event, newValue) => this.setState({location: newValue})}
+						onChange={this.handleInputChange}
 					/>
 				</div>
+
 				<div style={{width: "50%", float: "right"}}>
+					
+				
 					<TextField
-						hintText="Price - $30.00"
+						name='jobPrice'
+						hintText="How much you want to pay"
 						errorText="Required"
-						onChange={(event, newValue) => this.setState({price: newValue})}
+						onChange={this.handleInputChange}
 					/>
+				
+					
 					<TextField
-						hintText="Full Description of Job"
+						name='jobSkills'
+						hintText="Skills"
 						errorText="Required"
 						multiLine={true}
 						rows={5}
 						rowsMax={5}
-						onChange={(event, newValue) => this.setState({details: newValue})}
+						onChange={this.handleInputChange}
 					/><br/>
+					
+					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>
 				</div>
 
 			</Wrapper>
 		</div>
+
     );
   }
 }

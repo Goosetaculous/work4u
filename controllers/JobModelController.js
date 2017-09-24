@@ -9,36 +9,40 @@ var JobModelController = {
     			console.log(err);
     		}
     		else {
+                console.log("DB returned");
+                console.log(data);
     			callback(data);
     		}
     	});
     },
-    addOne: function(job, callback) {
+    add: function(jobName, postedBy, jobSkills, jobLocation, jobDate, jobPrice, callback) {
 
-        console.log("addOne called")
+        console.log("DB controller add() called.");
 
         //var postedBy = job.postedBy; // a string
         //var skillRequired = job.skillRequired; // a string
 
-        var postedBy = "12323132142143";
-        var skillRequired = "mechanic";
-
         var newJob = new JobModel({
+            jobName: jobName,
             postedBy: postedBy,
             appliedBy: "",
-            status: "started",
-            skillRequired: skillRequired,
+            status: "initiated",
+            skillRequired: jobSkills,
+            location: jobLocation,
+            date: jobDate,
+            price: jobPrice,
             reviewFromJobPoster: ""
         });
-        console.log("New Job" + newJob);
+
+        console.log("Adding below job to DB.");
+        console.log(newJob);
+        
         newJob.save(function(err, data) {
             
             if (err) {
                 console.log(err);
             }
             else {
-                console.log("Callback called...");
-
                 callback(data);
             }
         });
@@ -87,7 +91,7 @@ var JobModelController = {
         });
     },
     reviewAJob: function(jobId, reviewFromJobPoster, callback) {
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "started"}}, function(err, data) {
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "reviewed"}}, function(err, data) {
             if (err) {
                 console.log(err);
             }

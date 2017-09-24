@@ -28,8 +28,9 @@ app.use(express.static(path.join(__dirname, "client/build")));
 console.log(process.env.NODE_ENV)
 
 if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "development"){
-    console.log(process.env.MONGODB_URI)
-    mongoose.connect( process.env.MONGODB_URI, {
+    let MONGODB_URI ="mongodb://heroku_30hd5jdd:65q433u9i342cob9ftk0cd9v00@ds139984.mlab.com:39984/heroku_30hd5jdd"
+    console.log(MONGODB_URI)
+    mongoose.connect( MONGODB_URI, {
         useMongoClient: true
     });
 }
