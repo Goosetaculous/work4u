@@ -20,6 +20,16 @@ import { Route, Router, Redirect } from 'react-router-dom';
 // API import
 import API from "./utils/API";
 
+
+//REDUX stuff
+import { Provider } from 'react-redux';
+import {createStore} from 'redux';
+import allReducers from './reducers'
+
+
+const store =  createStore(allReducers); //create store
+
+
 //Auth Constant
 const auth = new Auth();
 
@@ -40,43 +50,45 @@ class App extends Component {
         return (
             <div>
                 <MuiThemeProvider>
-                    <Router history={history} component={App}>
-                        <div>
-                            <Navpills/>
-                            <Route exact path="/home" render={(props) => <Home auth={auth} {...props} />} />
+                    <Provider store={store}>
+                        <Router history={history} component={App}>
+                            <div>
+                                <Navpills/>
+                                <Route exact path="/home" render={(props) => <Home auth={auth} {...props} />}/>
 
-                            <Route exact path="/" render={(props) => (
-                                auth.isAuthenticated()) ? (
-                                    <Profile auth={auth} {...props} /> 
-                                ):(<Redirect to="/home"/>) } />
-                            <Route exact path="/Jobs" render={(props) =>(
-                                auth.isAuthenticated()) ? (
+                                <Route exact path="/" render={(props) => (
+                                    auth.isAuthenticated()) ? (
+                                    <Profile auth={auth} {...props} />
+                                ) : (<Redirect to="/home"/>)}/>
+                                <Route exact path="/Jobs" render={(props) => (
+                                    auth.isAuthenticated()) ? (
                                     <Jobs auth={auth} {...props} />
-                                ):(<Redirect to="/home"/>) } />
+                                ) : (<Redirect to="/home"/>)}/>
 
-                            <Route exact path="/profile" render={(props) =>(
-                                auth.isAuthenticated()) ? (
-                                <Profile auth={auth} {...props} />
-                            ):(<Redirect to="/home"/>) } />
+                                <Route exact path="/profile" render={(props) => (
+                                    auth.isAuthenticated()) ? (
+                                    <Profile auth={auth} {...props} />
+                                ) : (<Redirect to="/home"/>)}/>
 
 
-                            <Route exact path="/applicant" render={(props) => (
-                                auth.isAuthenticated()) ? (
-                                <Applicant auth={auth} {...props} />
-                            ):(<Redirect to="/home"/>) } />
-                            <Route exact path="/postjob" render={(props) => (
-                                auth.isAuthenticated()) ? (
-                                <PostJob auth={auth} {...props} />
-                            ):(<Redirect to="/home"/>) } />
-                            
-                            <Route exact path="/callback" render={(props) => {
+                                <Route exact path="/applicant" render={(props) => (
+                                    auth.isAuthenticated()) ? (
+                                    <Applicant auth={auth} {...props} />
+                                ) : (<Redirect to="/home"/>)}/>
+                                <Route exact path="/postjob" render={(props) => (
+                                    auth.isAuthenticated()) ? (
+                                    <PostJob auth={auth} {...props} />
+                                ) : (<Redirect to="/home"/>)}/>
 
-                            handleAuthentication(props);
-                            return <Callback {...props} />
-                              }}/>
+                                <Route exact path="/callback" render={(props) => {
 
-                        </div>
-                    </Router>
+                                    handleAuthentication(props);
+                                    return <Callback {...props} />
+                                }}/>
+
+                            </div>
+                        </Router>
+                    </Provider>
                 </MuiThemeProvider>
                 <Footer/>
             </div>
