@@ -30,3 +30,13 @@ var JobModel = mongoose.model("JobModel", JobSchema);
 module.exports = JobModel;
 
 // Status will: intiated , applied , confirmed , completed 
+
+
+    // {
+    // "jobName": "gardening",
+    // "postedBy": "facebook|10157499583380453",
+    // "appliedBy": "google-oauth2|105150784954775008938",
+    // "status": "",
+    // "skillRequired":"",
+    // "reviewFromJobPoster":""
+    // }
