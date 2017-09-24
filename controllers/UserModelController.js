@@ -11,6 +11,15 @@ var UserModelController = {
         });
     },
 
+    user: (req,res)=>{
+        console.log(req.params.id) //debug
+        UserModel.find({_id: req.params.id}, function(err, data) {
+            res.json(data);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    },
+
 
     add: (req, res)=> {
 

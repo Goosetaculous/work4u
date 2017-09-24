@@ -9,6 +9,9 @@ var UserModelController = require("../controllers/UserModelController.js");
 // collect and display all user data
 router.get("/all", UserModelController.all);
 
+// get User data
+router.get("/:id", UserModelController.user);
+
 // // collect user info per user account name (unique acount id found in id_token)
 // router.get("/user/:account_id?", User.test);
 

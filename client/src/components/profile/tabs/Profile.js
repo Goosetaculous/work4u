@@ -40,11 +40,6 @@ class Profile extends Component {
             "user_id": user_id,
             "skillarray": skillarray
         }
-
-        console.log("===================")
-        console.log(skillObject);
-        console.log("===================")
-
         API.addSkillArray(skillObject);
     }
 
