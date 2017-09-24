@@ -60,7 +60,7 @@ var UserModelController = {
         console.log("=====================================")
 
         var sub = req.params.id.replace("%7C", "|")
-        
+
         console.log("AFTER REPLACE ", sub)
         UserModel.find({
             sub
