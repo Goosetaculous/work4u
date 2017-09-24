@@ -25,12 +25,12 @@ router.post("/add", (req, res)=> {
 
 	var jobName = req.body.jobName;
 	var postedBy = req.body.postedBy;
-	var jobSkills = req.body.jobSkills;
+	var jobType = req.body.jobType;
 	var jobLocation = req.body.jobLocation;
 	var jobDate = req.body.jobDate;
 	var jobPrice = req.body.jobPrice;
 
-	Job.add(jobName, postedBy, jobSkills, jobLocation, jobDate, jobPrice, (data)=>{
+	Job.add(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, (data)=>{
 		res.json(data); // actually frontend does not nned this returned obj
 	});
 });

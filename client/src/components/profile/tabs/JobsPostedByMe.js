@@ -87,7 +87,7 @@ class JobsPostedByMe extends Component {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.postedBy}
+                                        subtitle={job.location}
                                         actionIcon={<div><FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} /><FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} /><FlatButton label="Decline" backgroundColor="#F53F30" primary={true} /></div>}
                                     >
                                     </GridTile>
@@ -96,7 +96,7 @@ class JobsPostedByMe extends Component {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.postedBy}
+                                        subtitle={job.location}
                                         actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} />}
                                     >
                                     </GridTile>
