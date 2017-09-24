@@ -28,3 +28,5 @@ var JobSchema = new Schema({
 // Create the model with the Schema
 var JobModel = mongoose.model("JobModel", JobSchema);
 module.exports = JobModel;
+
+// Status will: intiated , applied , confirmed , completed 

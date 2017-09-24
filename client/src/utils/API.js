@@ -24,8 +24,8 @@ const API = {
     return axios.put("user/addskillarray", { skillarray });
   },
 
-  getUser: (userId)=>{
-    return axios.get("user/"+userId)
+  getUser: (user_id) =>{
+    return axios.get(`user/getuser/${user_id}`)
   }
 }
 export default API;
