@@ -25,9 +25,9 @@ router.post("/add", (req, res)=> {
 	//var postedBy = req.body.postedBy;
 	//var skillRequired = req.body.skillRequired;
 	// below for test only
-	var jobName = "car repair";
-	var postedBy = "123123";
-	var skillRequired = "automotive";
+	// var jobName = "car repair";
+	// var postedBy = "123123";
+	// var skillRequired = "automotive";
 	// above for test only
 
 	Job.add(jobName, postedBy, skillRequired, (data)=>{

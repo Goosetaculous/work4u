@@ -4,11 +4,16 @@ import Wrapper from '../../components/shared/content'
 import ProfileTabs from './tabs/'
 import API from '../../utils/API'
 
+
 //REDUX STUFF
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+
+
+// NOTES:
+// Job Status: initiated , applied , confirmed , completed 
 
 
 class Profile extends Component{
@@ -40,15 +45,24 @@ class Profile extends Component{
         return 
     }
 
+    postStateToApplied = (applied) =>{
+        console.log("================================")
+        console.log("Post to Applied function triggered")
+
+    }
+
   
     getUserId(){
 
-        console.log("================================")
+        console.log("===============GET USER INFO ID=================")
         console.log("Get user ID function triggered")
-        console.log("================================")
+        
         let userObject = API.getUser(localStorage.getItem('user_id')).then((res) => {
-            console.log(res);
+            console.log(res.data[0]);
+               console.log("================GET USER INFO ID END================")
         });
+
+     
     }
 
 

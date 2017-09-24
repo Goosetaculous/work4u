@@ -23,11 +23,12 @@ import API from "./utils/API";
 
 //REDUX stuff
 import { Provider } from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 import allReducers from './reducers'
 
 
-const store =  createStore(allReducers); //create store
+const store =  createStore(allReducers,applyMiddleware(thunk)); //create store
 
 
 //Auth Constant
