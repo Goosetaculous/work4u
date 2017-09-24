@@ -7,7 +7,7 @@ import Profile from './Profile'
 import AppliedJobs from './AppliedJobs.js';
 import RecommendedJobs from './RecommendedJobs.js';
 import JobsPostedByMe from './JobsPostedByMe.js';
-import ActiveJobs from './ActiveJobs.js';
+import ConfirmedJobs from './ConfirmedJobs.js';
 import Reviews from './Reviews.js'
 
 // import card from shared
@@ -85,10 +85,10 @@ class ProfileTabs extends Component {
                         <JobsPostedByMe />
                     </div>
                 </Tab>
-                <Tab label="Active Jobs" >
+                <Tab label="Confirmed Jobs" >
                     <div>
-                        <h2 style={styles.headline}>Active Jobs</h2>
-                        <ActiveJobs />
+                        <h2 style={styles.headline}>Confirmed Jobs</h2>
+                        <ConfirmedJobs />
                     </div>
                 </Tab>
                 <Tab label="Reviews" >
