@@ -15,19 +15,16 @@ var JobModelController = {
     		}
     	});
     },
-    add: function(jobName, postedBy, jobSkills, jobLocation, jobDate, jobPrice, callback) {
+    add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, callback) {
 
         console.log("DB controller add() called.");
-
-        //var postedBy = job.postedBy; // a string
-        //var skillRequired = job.skillRequired; // a string
 
         var newJob = new JobModel({
             jobName: jobName,
             postedBy: postedBy,
             appliedBy: "",
             status: "initiated",
-            skillRequired: jobSkills,
+            type: jobType,
             location: jobLocation,
             date: jobDate,
             price: jobPrice,
