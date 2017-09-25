@@ -36,24 +36,28 @@ class Profile extends Component{
         return 
     }
 
-    postStateToApplied = (applied) =>{
-        console.log("================================")
-        console.log("Post to Applied function triggered")
+    // postStateToApplied = (post_id) =>{
+    //     console.log("================Applied Function  ================");
+    //     console.log("Post to Applied function triggered");
 
-    }
+    //     let user_id = localStorage.getItem('user_id';
+    //     API.applyToPost(user_id, job_id).then((res) => {
+    //         console.log(res.data[0]);
+    //         console.log("================Applied Function END ================");
+    //     });
+    // }
 
   
     getUserId(){
 
-        console.log("===============GET USER INFO ID=================")
-        console.log("Get user ID function triggered")
+        console.log("===============GET USER INFO ID=================");
+        console.log("Get user ID function triggered");
         
-        let userObject = API.getUser(localStorage.getItem('user_id')).then((res) => {
+        let userObject = API.getUser(localStorage.getItem('user_id'))
+        .then((res) => {
             console.log(res.data[0]);
-               console.log("================GET USER INFO ID END================")
+            console.log("================GET USER INFO ID END================");
         });
-
-     
     }
 
 

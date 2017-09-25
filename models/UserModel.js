@@ -28,6 +28,9 @@ var UserSchema = new Schema({
     jobsThisUserApplied: {
         type: [String]
     },
+    price:{
+        type: [Number]
+    }
 });
 
 // Create the model with the Schema
