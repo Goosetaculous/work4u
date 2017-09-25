@@ -45,9 +45,19 @@ var JobModelController = {
         });
         //
     },
-    applyForAJob: function(applicantId, jobId, callback) {
+    applyForAJob: function( jobId,applicantId, callback) {
+        console.log("apply for job controller triggered")
+        console.log(jobId);
+        console.log(applicantId);
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: applicantId}}, function(err, data) {
+        JobModel.update({_id: "59c863ff590bfd1f634bafc8"}, 
+            { $set: 
+                { 
+                    appliedBy: applicantId, 
+                    status: "applied"
+                }
+            }, 
+            function(err, data) {
             if (err) {
                 console.log(err);
             }
