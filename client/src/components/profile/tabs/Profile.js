@@ -8,11 +8,7 @@ import Checkbox from 'material-ui/Checkbox';
 import API from '../../../utils/API'
 
 
-
-
-const AUTO = ['Mechanical','Electrical','Body Work','Installation']
-const HOUSE = ['Construction','Plumping','Electrical','Maintenance']
-const GENERAL = ['Moving','Nanny','Modeling','Event','Adult']
+const SKILLS = ['Electric','Plumbing','Gardening','Automotive','Moving']
 
 const styles = {
     block: {
@@ -48,8 +44,8 @@ class Profile extends Component {
         API.addSkillArray(skillObject);
     }
 
-    handleCheck(skill,TYPE) {
-        let checkedSkill =  `${skill}-${TYPE}`
+    handleCheck(skill) {
+        let checkedSkill =  `${skill}`
 
         this.setState(state => ({
             checkedValues: state.checkedValues.includes(checkedSkill)
@@ -59,14 +55,14 @@ class Profile extends Component {
 
     }
 
-    renderCheckbox(skill,TYPE){
+    renderCheckbox(skill){
 
         return(
 
             <Checkbox
                 label={skill}
-                key={`${TYPE}${skill}`}
-                onCheck={() => this.handleCheck(skill,TYPE)}
+                key={`${skill}`}
+                onCheck={() => this.handleCheck(skill)}
 
                 style={styles.checkbox}
             />
@@ -80,21 +76,9 @@ class Profile extends Component {
                 {this.importSkillArray()}
               
                 <div style={styles.block}>
-                    <h5>Auto</h5>
+                    <h5>Select the job types you are interested in</h5>
                     {
-                        AUTO.map((data,index)=>this.renderCheckbox(data,"AUTO"))
-                    }
-                </div>
-                <div style={styles.block}>
-                    <h5>HOUSE</h5>
-                    {
-                        HOUSE.map((data,index)=>this.renderCheckbox(data,"HOUSE"))
-                    }
-                </div>
-                <div style={styles.block}>
-                    <h5>GENERAL</h5>
-                    {
-                        GENERAL.map((data,index)=>this.renderCheckbox(data,"GENERAL"))
+                        SKILLS.map((data,index)=>this.renderCheckbox(data))
                     }
                 </div>
             </div>

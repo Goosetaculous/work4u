@@ -73,6 +73,11 @@ class JobsPostedByMe extends Component {
         fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
     }
 
+    handleStopPosting = (event, jobName) => {
+        console.log("Trying to stop posting.");
+        console.log(jobName);
+    }
+
     render(){
         return(
             <div style={styles.root}>
@@ -83,11 +88,11 @@ class JobsPostedByMe extends Component {
                     padding={3}
                 >
                     {this.state.jobs.map((job) => {
-                        if (job.applied != "applied" ) {
+                        if (job.status == "applied" ) {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.postedBy}
+                                        subtitle={job.location}
                                         actionIcon={<div><FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} /><FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} /><FlatButton label="Decline" backgroundColor="#F53F30" primary={true} /></div>}
                                     >
                                     </GridTile>
@@ -96,8 +101,8 @@ class JobsPostedByMe extends Component {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.postedBy}
-                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} />}
+                                        subtitle={job.location}
+                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.handleStopPosting(event, job.jobName)}/>}
                                     >
                                     </GridTile>
                         }

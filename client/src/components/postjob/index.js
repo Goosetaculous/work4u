@@ -14,12 +14,14 @@ const styles = {
   },
 };
 
-
-
-
 class PostJob extends Component {
+
+	state = {jobType: {value: 1}}; // default job type
+
 	constructor(props){
+		
 		super(props);
+
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -37,7 +39,7 @@ class PostJob extends Component {
 			body: JSON.stringify({
 				'jobName': this.state.jobName,
 				'postedBy': localStorage.getItem('user_id'),
-				'jobSkills': this.state.jobSkills,
+				'jobType': this.state.jobType,
 				'jobLocation': this.state.jobLocation,
 				'jobDate': this.state.jobDate,
 				'jobPrice': this.state.jobPrice
@@ -53,7 +55,10 @@ class PostJob extends Component {
 
 	    const target = event.target;
 	    const value = target.value;
-	    const name = target.name;
+		const name = target.name;
+		
+		console.log("Event: ");
+		console.log(event);
 
 	    this.setState({
 	      [name]: value
@@ -65,9 +70,17 @@ class PostJob extends Component {
 	 // a dedicated on change event handler must be implemented for date picker
 	 // see http://www.material-ui.com/#/components/date-picker for "onChange"
 	 handleDateChange = (event, date) => {
-		 console.log("Date is :");
+		 console.log("Date is");
 		 console.log(date);
 		 this.setState({jobDate: date});
+	 }
+
+	 // a dedicated on change event handler must be implemented for dropdown menu
+	 // see http://www.material-ui.com/#/components/dropdown-menu
+	 handleMenuChange = (event, index, value) => {
+		 console.log("Selected type of job is");
+		 console.log(value);
+		 this.setState({jobType: value});
 	 }
 
     componentWillMount() {
@@ -123,17 +136,16 @@ class PostJob extends Component {
 						errorText="Required"
 						onChange={this.handleInputChange}
 					/>
-				
-					
-					<TextField
-						name='jobSkills'
-						hintText="Skills"
-						errorText="Required"
-						multiLine={true}
-						rows={5}
-						rowsMax={5}
-						onChange={this.handleInputChange}
-					/><br/>
+
+					<div>
+						<DropDownMenu value={this.state.jobType} onChange={this.handleMenuChange}>
+							<MenuItem value={1} primaryText="Electric" />
+							<MenuItem value={2} primaryText="Plumbing" />
+							<MenuItem value={3} primaryText="Gardening" />
+							<MenuItem value={4} primaryText="Automotive" />
+							<MenuItem value={4} primaryText="Moving" />
+						</DropDownMenu>
+					</div>
 					
 					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>
 				</div>

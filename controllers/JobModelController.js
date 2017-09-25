@@ -15,19 +15,16 @@ var JobModelController = {
     		}
     	});
     },
-    add: function(jobName, postedBy, jobSkills, jobLocation, jobDate, jobPrice, callback) {
+    add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, callback) {
 
         console.log("DB controller add() called.");
-
-        //var postedBy = job.postedBy; // a string
-        //var skillRequired = job.skillRequired; // a string
 
         var newJob = new JobModel({
             jobName: jobName,
             postedBy: postedBy,
             appliedBy: "",
             status: "initiated",
-            skillRequired: jobSkills,
+            type: jobType,
             location: jobLocation,
             date: jobDate,
             price: jobPrice,
@@ -48,9 +45,19 @@ var JobModelController = {
         });
         //
     },
-    applyForAJob: function(applicantId, jobId, callback) {
+    applyForAJob: function( jobId,applicantId, callback) {
+        console.log("apply for job controller triggered")
+        console.log(jobId);
+        console.log(applicantId);
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: applicantId}}, function(err, data) {
+        JobModel.update({_id: jobId}, 
+            { $set: 
+                { 
+                    appliedBy: applicantId, 
+                    status: "applied"
+                }
+            }, 
+            function(err, data) {
             if (err) {
                 console.log(err);
             }
@@ -61,7 +68,13 @@ var JobModelController = {
     },
     confirmAJob: function(jobId, callback) {
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "confirmed"}}, function(err, data) {
+        JobModel.update({_id: "59c863ff590bfd1f634bafc8"}, 
+            {$set: 
+                {
+                    status: "confirmed"
+                }
+            }, 
+            function(err, data) {
             if (err) {
                 console.log(err);
             }
@@ -70,6 +83,7 @@ var JobModelController = {
             }
         });
     },
+
     reviewAJob: function(jobId, reviewFromJobPoster, callback) {
         JobModel.findOneAndUpdate({_id: jobId}, {$set: {reviewFromJobPoster: reviewFromJobPoster}}, function(err, data) {
             if (err) {

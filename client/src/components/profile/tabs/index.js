@@ -63,16 +63,16 @@ class ProfileTabs extends Component {
                         <FlatButton label="Default" onClick={this.yo} />
                     </div>
                 </Tab>
-                <Tab label="Applied Jobs" >
+                <Tab label="Jobs I Applied" >
                     <div>
-                        <h2 style={styles.headline}>Applied Jobs</h2>
+                        <h2 style={styles.headline}>Jobs I Applied</h2>
                         <AppliedJobs />
                     </div>
                 </Tab>
-                <Tab label="Recommended Jobs" >
+                <Tab label="Look For A Job" >
                     <div>
                         <div>
-                            <h2 style={styles.headline}>Recommended jobs</h2>
+                            <h2 style={styles.headline}>Look For A Job</h2>
                         </div>
                         <div>
                            <RecommendedJobs />
