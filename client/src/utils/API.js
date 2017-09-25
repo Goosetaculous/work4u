@@ -31,7 +31,11 @@ const API = {
   // Posts
 
   applyToPost: (user_id, job_id) => {
-    return axios.post("/job/apply", { user_id, job_id})
+    return axios.patch("/job/apply", { user_id, job_id})
+  },
+
+  confirmPost: (job_id) => {
+    return axios.patch("/job/confirm", { job_id})
   }
 
 

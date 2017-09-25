@@ -11,7 +11,8 @@ class Profile extends Component{
     constructor() {
         super();
         this.state = {
-          test: ""
+          test: "",
+          post_array: []
         }
     };
 
@@ -36,16 +37,30 @@ class Profile extends Component{
         return 
     }
 
-    // postStateToApplied = (post_id) =>{
-    //     console.log("================Applied Function  ================");
-    //     console.log("Post to Applied function triggered");
+    postApplied = (job_id) =>{
+        console.log("================Applied Function  ================");
+        console.log("Post to Applied function triggered");
 
-    //     let user_id = localStorage.getItem('user_id';
-    //     API.applyToPost(user_id, job_id).then((res) => {
-    //         console.log(res.data[0]);
-    //         console.log("================Applied Function END ================");
-    //     });
-    // }
+        let user_id = localStorage.getItem('user_id');
+        API.applyToPost(user_id, job_id).then((res) => {
+            console.log(res.data[0]);
+            console.log("================Applied Function END ================");
+        });
+
+       
+    }
+
+    postConfirmed = (job_id) =>{
+        console.log("================Post Comfirmed Function  ================");
+        console.log("Post confirmed function triggered");
+
+        API.confirmPost(job_id).then((res) => {
+            console.log(res.data);
+            console.log("================Post Comfirmed Function END ================");
+        }); 
+    }
+
+
 
   
     getUserId(){
@@ -65,14 +80,15 @@ class Profile extends Component{
 
     render(){
         const { profile } = this.state;
-        {this.getUserId()}
+        {this.getUserId("59c86430590bfd1f634bafc9")}
+    
         return(
 
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs passfunction={this.test}/>
+                        <ProfileTabs />
                     </div>
 
                 </Wrapper>
