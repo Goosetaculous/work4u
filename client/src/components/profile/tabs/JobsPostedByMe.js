@@ -73,9 +73,9 @@ class JobsPostedByMe extends Component {
         fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
     }
 
-    handleStopPosting = (event) => {
+    handleStopPosting = (event, jobName) => {
         console.log("Trying to stop posting.");
-        console.log(event.target);
+        console.log(jobName);
     }
 
     render(){
@@ -102,7 +102,7 @@ class JobsPostedByMe extends Component {
                                         title={job.jobName}
                                         titlePosition="top"
                                         subtitle={job.location}
-                                        actionIcon={<FlatButton jobid={job._id} label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.handleStopPosting(event)}/>}
+                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.handleStopPosting(event, job.jobName)}/>}
                                     >
                                     </GridTile>
                         }
