@@ -139,10 +139,11 @@ class PostJob extends Component {
 
 					<div>
 						<DropDownMenu value={this.state.jobType} onChange={this.handleMenuChange}>
-							<MenuItem value={1} primaryText="Home" />
-							<MenuItem value={2} primaryText="Auto" />
-							<MenuItem value={3} primaryText="Moving" />
-							<MenuItem value={4} primaryText="Gardening" />
+							<MenuItem value={1} primaryText="Electric" />
+							<MenuItem value={2} primaryText="Plumbing" />
+							<MenuItem value={3} primaryText="Gardening" />
+							<MenuItem value={4} primaryText="Automotive" />
+							<MenuItem value={4} primaryText="Moving" />
 						</DropDownMenu>
 					</div>
 					
