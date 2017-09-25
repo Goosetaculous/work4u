@@ -40,6 +40,8 @@ class Profile extends Component{
         console.log("================Applied Function  ================");
         console.log("Post to Applied function triggered");
 
+        let user_id = localStorage.getItem('user_id';
+        
 
 
         console.log("================Applied Function END ================");

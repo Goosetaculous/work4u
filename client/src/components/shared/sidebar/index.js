@@ -26,11 +26,11 @@ class SideBar extends Component{
                     />
                     <CardTitle title="Expert in:" />
                     <CardText>
-                       Moving,sleeping
+                       Moving, sleeping (TODO: this should come from DB)
                     </CardText>
                     <CardActions>
-                        <Link to="/postjob"><FlatButton label="Post Jobs"/></Link>
-                        <FlatButton label="All Jobs" />
+                        <Link to="/postjob"><FlatButton label="Post a Job"/></Link>
+                        <Link to="/profile"><FlatButton label="Manage Jobs"/></Link>
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />
                     </CardActions>s
                 </Card>

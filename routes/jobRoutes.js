@@ -21,6 +21,7 @@ router.post("/add", (req, res)=> {
 
 	console.log("api route job/add called.");
 
+<<<<<<< HEAD
 	//var job = req.body.job;
 	//var postedBy = req.body.postedBy;
 	//var skillRequired = req.body.skillRequired;
@@ -36,8 +37,16 @@ router.post("/add", (req, res)=> {
 	let jobDate = 	req.body.jobDate;
 	let jobPrice = req.body.jobPrice;
 
+=======
+	var jobName = req.body.jobName;
+	var postedBy = req.body.postedBy;
+	var jobType = req.body.jobType;
+	var jobLocation = req.body.jobLocation;
+	var jobDate = req.body.jobDate;
+	var jobPrice = req.body.jobPrice;
+>>>>>>> 341171fd1f0ae57c0447ab31e75db1521034033c
 
-	Job.add(jobName, postedBy, jobSkills, jobLocation, jobDate, jobPrice, (data)=>{
+	Job.add(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, (data)=>{
 		res.json(data); // actually frontend does not nned this returned obj
 	});
 });
