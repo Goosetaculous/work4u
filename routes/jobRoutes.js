@@ -53,9 +53,9 @@ router.patch("/apply", (req, res)=> {
 });
 
 // confirm a job
-router.post("/confirm", (req, res)=> {
-	var jobId = req.body.jobId;
-	Job.confirmAJob(jobId, (data)=> {
+router.patch("/confirm", (req, res)=> {
+	var job_id = req.body.job_id;
+	Job.confirmAJob(job_id, (data)=> {
 		res.json(data); // actually frontend does not nned this returned obj
 	});
 });

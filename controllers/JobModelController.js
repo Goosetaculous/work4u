@@ -50,7 +50,7 @@ var JobModelController = {
         console.log(jobId);
         console.log(applicantId);
 
-        JobModel.update({_id: "59c863ff590bfd1f634bafc8"}, 
+        JobModel.update({_id: jobId}, 
             { $set: 
                 { 
                     appliedBy: applicantId, 
@@ -68,7 +68,13 @@ var JobModelController = {
     },
     confirmAJob: function(jobId, callback) {
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "confirmed"}}, function(err, data) {
+        JobModel.update({_id: "59c863ff590bfd1f634bafc8"}, 
+            {$set: 
+                {
+                    status: "confirmed"
+                }
+            }, 
+            function(err, data) {
             if (err) {
                 console.log(err);
             }
@@ -77,6 +83,7 @@ var JobModelController = {
             }
         });
     },
+
     reviewAJob: function(jobId, reviewFromJobPoster, callback) {
         JobModel.findOneAndUpdate({_id: jobId}, {$set: {reviewFromJobPoster: reviewFromJobPoster}}, function(err, data) {
             if (err) {
