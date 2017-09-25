@@ -21,30 +21,14 @@ router.post("/add", (req, res)=> {
 
 	console.log("api route job/add called.");
 
-<<<<<<< HEAD
-	//var job = req.body.job;
-	//var postedBy = req.body.postedBy;
-	//var skillRequired = req.body.skillRequired;
-	// below for test only
-	// var jobName = "car repair";
-	// var postedBy = "123123";
-	// var skillRequired = "automotive";
-	// above for test only
-	let jobName = req.body.jobName;
-	let postedBy = req.body.postedBy;
-	let jobSkills = req.body.jobSkills;
-	let jobLocation = req.body.jobLocation;
-	let jobDate = 	req.body.jobDate;
-	let jobPrice = req.body.jobPrice;
 
-=======
 	var jobName = req.body.jobName;
 	var postedBy = req.body.postedBy;
 	var jobType = req.body.jobType;
 	var jobLocation = req.body.jobLocation;
 	var jobDate = req.body.jobDate;
 	var jobPrice = req.body.jobPrice;
->>>>>>> 341171fd1f0ae57c0447ab31e75db1521034033c
+
 
 	Job.add(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, (data)=>{
 		res.json(data); // actually frontend does not nned this returned obj
@@ -52,9 +36,17 @@ router.post("/add", (req, res)=> {
 });
 
 // apply for a job
-router.post("/apply", (req, res)=> {
+router.patch("/apply", (req, res)=> {
+	// var job_id = req.body.job_id;
+	// var applicant_id = req.body.user_id
 	var job_id = req.body.job_id;
 	var applicant_id = req.body.user_id;
+	console.log("===========================")
+	console.log("apply route triggered")
+	console.log("===========================")
+	console.log("job ID collected: " + job_id);
+	console.log("applicant ID collected: " + applicant_id);
+	
 	Job.applyForAJob(job_id, applicant_id, (data) =>{
 		res.json(data); // actually frontend does not nned this returned obj
 	});

@@ -36,17 +36,16 @@ class Profile extends Component{
         return 
     }
 
-    postStateToApplied = (postId) =>{
-        console.log("================Applied Function  ================");
-        console.log("Post to Applied function triggered");
+    // postStateToApplied = (post_id) =>{
+    //     console.log("================Applied Function  ================");
+    //     console.log("Post to Applied function triggered");
 
-        let user_id = localStorage.getItem('user_id';
-        
-
-
-        console.log("================Applied Function END ================");
-
-    }
+    //     let user_id = localStorage.getItem('user_id';
+    //     API.applyToPost(user_id, job_id).then((res) => {
+    //         console.log(res.data[0]);
+    //         console.log("================Applied Function END ================");
+    //     });
+    // }
 
   
     getUserId(){
