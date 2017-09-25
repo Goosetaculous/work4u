@@ -11,9 +11,11 @@ class Profile extends Component{
     constructor() {
         super();
         this.state = {
+          user_id: localStorage.getItem('user_id'),
           test: "",
           post_array: []
         }
+        this.getUserInfo()
     };
 
 
@@ -60,35 +62,39 @@ class Profile extends Component{
         }); 
     }
 
-
-
-  
-    getUserId(){
-
-        console.log("===============GET USER INFO ID=================");
-        console.log("Get user ID function triggered");
-        
-        let userObject = API.getUser(localStorage.getItem('user_id'))
-        .then((res) => {
-            console.log(res.data[0]);
-            console.log("================GET USER INFO ID END================");
-        });
+    getUserInfo(){
+        API.getUser(this.state.user_id).then((res)=>{
+            this.setState({
+                userData: res.data[0]
+            })
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })
     }
 
 
 
+  
+    // getUserId(){
+    //
+    //     console.log("===============GET USER INFO ID=================");
+    //     console.log("Get user ID function triggered");
+    //
+    //     let userObject = API.getUser(localStorage.getItem('user_id'))
+    //     .then((res) => {
+    //         console.log(res.data[0]);
+    //         console.log("================GET USER INFO ID END================");
+    //     });
+    // }
 
     render(){
         const { profile } = this.state;
-        {this.getUserId("59c86430590bfd1f634bafc9")}
-    
         return(
-
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs />
+                        <ProfileTabs userData={this.state.userData} />
                     </div>
 
                 </Wrapper>

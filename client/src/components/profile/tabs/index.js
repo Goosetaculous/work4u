@@ -53,13 +53,12 @@ class ProfileTabs extends Component {
 
     render(){
         {this.props.jobsdata}
-        
         return(
             
             <Tabs>
                 <Tab label="My Skills" >
                     <div>
-                       <Profile/>
+                       <Profile userData={this.props.userData}/>
                         <FlatButton label="Default" onClick={this.yo} />
                     </div>
                 </Tab>

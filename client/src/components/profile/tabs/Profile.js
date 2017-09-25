@@ -1,19 +1,12 @@
 import React, { Component } from 'react'
-import Wrapper from '../../shared/content'
-
-//import ChipInput from 'material-ui-chip-input'
 import Checkbox from 'material-ui/Checkbox';
 
 // import Routes/API
 import API from '../../../utils/API'
 
-
-
-
 const AUTO = ['Mechanical','Electrical','Body Work','Installation']
 const HOUSE = ['Construction','Plumping','Electrical','Maintenance']
 const GENERAL = ['Moving','Nanny','Modeling','Event','Adult']
-
 const styles = {
     block: {
         width: "40%",
@@ -27,17 +20,22 @@ class Profile extends Component {
     constructor(){
         super()
         this.state = {
+            user_id: localStorage.getItem("user_id"),
             checkedValues: []
         }
+    }
+
+    componentWillMount(){
+
 
     }
 
     importSkillArray(){
-        let user_id = localStorage.getItem("user_id");
+
         let skillarray = this.state.checkedValues;
 
         const skillObject = {
-            "user_id": user_id,
+            user_id: this.state.user_id,
             "skillarray": skillarray
         }
 
@@ -50,19 +48,15 @@ class Profile extends Component {
 
     handleCheck(skill,TYPE) {
         let checkedSkill =  `${skill}-${TYPE}`
-
         this.setState(state => ({
             checkedValues: state.checkedValues.includes(checkedSkill)
                 ? this.state.checkedValues.filter(c => c !== checkedSkill)
                 : [...state.checkedValues, checkedSkill]
         }));
-
     }
 
     renderCheckbox(skill,TYPE){
-
         return(
-
             <Checkbox
                 label={skill}
                 key={`${TYPE}${skill}`}
@@ -78,7 +72,6 @@ class Profile extends Component {
         return(
             <div className="container" style={{width:"80%"}}>
                 {this.importSkillArray()}
-              
                 <div style={styles.block}>
                     <h5>Auto</h5>
                     {
