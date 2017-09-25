@@ -47,7 +47,7 @@ class ProfileTabs extends Component {
     // {this.props.passfunction("p1")}
     yo = () => {
         console.log("FUNCTION CALLED YO")
-        this.props.passfunction("p1")
+        {()=>this.props.testfunction}
     }
 
 
@@ -58,8 +58,8 @@ class ProfileTabs extends Component {
             <Tabs>
                 <Tab label="My Skills" >
                     <div>
-                       <Profile userData={this.props.userData}/>
-                        <FlatButton label="Default" onClick={this.yo} />
+                       <Profile userData={this.props.userData} _f1={this.props.f1} />
+                        <FlatButton label="Default" onClick={()=>this.props.f1("TEST")} />
                     </div>
                 </Tab>
                 <Tab label="Jobs I Applied" >

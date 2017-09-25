@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Checkbox from 'material-ui/Checkbox';
+import FlatButton from 'material-ui/FlatButton';
 
 // import Routes/API
 import API from '../../../utils/API'
@@ -53,6 +54,7 @@ class Profile extends Component {
                 ? this.state.checkedValues.filter(c => c !== checkedSkill)
                 : [...state.checkedValues, checkedSkill]
         }));
+
     }
 
     renderCheckbox(skill){
@@ -65,14 +67,15 @@ class Profile extends Component {
                 style={styles.checkbox}
             />
             )
-
     }
 
     render(){
         return(
             <div className="container" style={{width:"80%"}}>
                 {this.importSkillArray()}
+                <FlatButton label="profile.js" onClick={()=>this.props._f1("profile.js")}/>
                 <div style={styles.block}>
+                    {/*<FlatButton label={"profile.js"} onClick={this.props._f1}/>*/}
                     <h5>Select the job types you are interested in</h5>
                     {
                         SKILLS.map((data,index)=>this.renderCheckbox(data))

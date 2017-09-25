@@ -72,6 +72,10 @@ class Profile extends Component{
         })
     }
 
+    testfunction = (data)=>{
+        console.log("testfunction:",data)
+    }
+
 
 
   
@@ -94,7 +98,7 @@ class Profile extends Component{
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs userData={this.state.userData} />
+                        <ProfileTabs userData={this.state.userData} f1={this.testfunction} />
                     </div>
 
                 </Wrapper>
