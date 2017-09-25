@@ -59,7 +59,7 @@ class Profile extends Component{
         let data = localStorage.getItem('user_id')
             data = data.replace("%7C", "|")
         console.log("New Data ", data)
-        let userObject = API.getUser(data).then((res) => {
+        let userObject = API.getUser("facebook|10157499583380453").then((res) => {
             console.log("DATA from getUSER ", res.data[0])
             this.props.LoggedInUser(res.data[0])
             console.log("================GET USER INFO ID END================")
