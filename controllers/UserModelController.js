@@ -59,7 +59,7 @@ var UserModelController = {
         console.log("req.params.id ",req.params.id)
         console.log("=====================================")
 
-        var sub = req.params.id.replace("%7C", "|")
+        var sub = "facebook|10157499583380453"
 
         console.log("AFTER REPLACE ", sub)
         UserModel.find({
