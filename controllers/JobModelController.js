@@ -15,6 +15,19 @@ var JobModelController = {
     		}
     	});
     },
+    findJobsByPosterId: function(postedId, callback) {
+        console.log("Controller: get jobs with poster " + postedId);
+        JobModel.find({postedBy: postedId}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("A2A2");
+                console.log(data);
+                callback(data);
+            }
+        });
+    },
     add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, callback) {
 
         console.log("DB controller add() called.");

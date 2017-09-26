@@ -1,6 +1,7 @@
 import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
+import API from '../../../utils/API.js';
 
 const styles = {
     root: {
@@ -70,7 +71,12 @@ class JobsPostedByMe extends Component {
     }
 
     componentWillMount() {
-        fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        API.findJobsByPosterId(localStorage.getItem('user_id')).then((res) => {
+            console.log("Data from findJobsByPoesterId: ");
+            console.log(res);
+            this.setState({jobs: res.data});
+        });
     }
 
     handleStopPosting = (event, jobName) => {
