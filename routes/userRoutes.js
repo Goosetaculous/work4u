@@ -27,8 +27,11 @@ router.put("/removeskill", UserModelController.removeskill);
 // add skill arry from user profile array
 router.put("/addskillarray", UserModelController.addskillarray);
 
-// // get a specific user using the id in req.params.id
+// get a specific user using the id in req.params.id
 router.get("/:id",UserModelController.getuser );
+
+// get all applied jobs from user
+router.get("/applied/:id", UserModelController.applied);
 
 
 // // Delete a specific user using the id in req.params.id

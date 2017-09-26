@@ -150,6 +150,21 @@ var UserModelController = {
         });
     },
 
+     applied: function(req, res) {
+
+        console.log("=====================================")
+        console.log("Get all applied by user function")
+        console.log("=====================================")
+        
+        UserModel.find({
+          sub: req.body.job_id
+        }).then(function(doc) {
+          res.json(doc);
+        }).catch(function(err) {
+          res.json(err);
+        });
+      },
+
 
 
 }

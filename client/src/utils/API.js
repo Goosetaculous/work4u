@@ -28,6 +28,11 @@ const API = {
     return axios.get(`/user/${user_id}`)
   },
 
+  getAppliedJobs: (user_id) => {
+    return axios.get("user/applied" , {user_id})
+  },
+
+
   // Posts
 
   applyToPost: (user_id, job_id) => {
@@ -38,6 +43,7 @@ const API = {
     return axios.patch("/job/confirm", { job_id})
   }
 
+  
 
 }
 export default API;
