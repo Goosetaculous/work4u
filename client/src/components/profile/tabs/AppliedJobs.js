@@ -2,6 +2,7 @@ import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
 
+import API from '../../../utils/API'
 const styles = {
     root: {
         display: 'flex',
@@ -61,6 +62,8 @@ const tilesData = [
 ];
 
 
+ 
+
 
 
 class AppliedJobs extends Component {
@@ -68,7 +71,20 @@ class AppliedJobs extends Component {
         super()
     }
 
+    cancel = (event,job) => {
+        console.log("========Cancel Applied Job========")
+        
+        console.log("job id: " + job._id)
+        console.log("user id: " + this.props.user_id)
+        API.removeApplicant(job._id, this.props.user_id).then(function(res){
+            console.log(res)
+        })
+        console.log("=========Cancel Applied end=====")
+        this.props.getAppliedJobs();
+    }
+
     render(){
+        
         return(
             <div style={styles.root}>
                 <GridList
@@ -77,12 +93,19 @@ class AppliedJobs extends Component {
                     cols={4}
                     padding={3}
                 >
-                    {tilesData.map((tile) => (
+                    {this.props.appliedJobs.map((job) => (
                         <GridTile
-                            title={tile.title}
+                            title={job.jobName}
                             titlePosition="top"
-                            subtitle={tile.author}
-                            actionIcon={ <FlatButton label="Cancel Application" backgroundColor="#F53F30" color="white" primary={true} />}
+                            subtitle={job.postedBy}
+                            actionIcon={ 
+                                <FlatButton 
+                                    label="Cancel Application" 
+                                    backgroundColor="#F53F30" 
+                                    color="white" 
+                                    primary={true} 
+                                    onClick={(event) => this.cancel(event, job)}
+                                />}
                         >
                         </GridTile>
                     ))}
