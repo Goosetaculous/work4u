@@ -64,7 +64,7 @@ class Profile extends Component {
                 label={skill}
                 key={`${skill}`}
                 onCheck={() => this.handleCheck(skill)}
-
+                defaultChecked={this.props.skills.includes(skill)? true: false}
                 style={styles.checkbox}
             />
             )
@@ -72,12 +72,11 @@ class Profile extends Component {
 
     handleSave(){
         console.log("HANDLE SAVE")
-
         API.addSkillArray({
             user_id : this.props._id,
             skillarray: this.state.checkedValues
-
         })
+        this.props.setSkills(this.state.checkedValues)
     }
 
     render(){
