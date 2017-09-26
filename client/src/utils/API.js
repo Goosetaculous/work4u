@@ -36,6 +36,15 @@ const API = {
 
   confirmPost: (job_id) => {
     return axios.patch("/job/confirm", { job_id})
+  },
+
+  findJobsByPosterId: (poster_id) => {
+    console.log("135");
+    console.log("Poster Id is " + poster_id);
+    let a =  axios.post("/job/findByPosterId", {poster_id});
+    console.log("item");
+    console.log(a);
+    return a;
   }
 
 
