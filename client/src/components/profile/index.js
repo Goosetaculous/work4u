@@ -31,7 +31,20 @@ class Profile extends Component{
         } else {
             this.setState({ profile: userProfile });
         }
-        this.getUserInfo()
+
+    }
+
+    componentDidMount(){
+        API.getUser(this.state.user_id).then((res)=>{
+            console.log(res.data)
+            this.setState({
+                skills: res.data[0].skills || [],
+                _id: res.data[0]._id
+            })
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })
+
     }
 
 
@@ -59,11 +72,10 @@ class Profile extends Component{
     }
 
     getUserInfo(){
-        console.log("getUserInfo: ", this.state.user_id)
         API.getUser(this.state.user_id).then((res)=>{
-            console.log("RES: ",res.data[0].skills)
+            console.log(res.data)
             this.setState({
-                skills: res.data[0].skills,
+                skills: res.data[0].skills || [],
                 _id: res.data[0]._id
             })
         }).catch((err)=>{
@@ -73,7 +85,9 @@ class Profile extends Component{
 
     setSkills = (data)=>{
         console.log(" profile/index.js setSkills ",data)
-
+        this.setState({
+            skills: data
+        })
     }
 
     render(){
@@ -83,8 +97,6 @@ class Profile extends Component{
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        {console.log("SKILLS from profile/index.js", this.state.skills)}
-                        {console.log("_id from profile/index.js", this.state._id)}
                         <ProfileTabs
                             skills={this.state.skills}
                             _id={this.state._id}
