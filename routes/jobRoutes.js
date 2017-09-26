@@ -17,6 +17,21 @@ router.get("/all", (req, res)=> {
 });
 
 // add new job
+router.post("/findByPosterId", (req, res)=> {
+
+	console.log("api route job/findByPosterId called.");
+
+	console.log("poster id is " + req.body.user_id);
+
+	Job.findJobsByPosterId(req.body.poster_id, (data) => {
+		console.log("Found some");
+		console.log("Obj in job route ");
+		console.log(data);
+		res.json(data);
+	});
+});
+
+// add new job
 router.post("/add", (req, res)=> {
 
 	console.log("api route job/add called.");
