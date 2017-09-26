@@ -5,23 +5,13 @@ const API = {
   addUser: (user)=> {
     return axios.post("/user/add", { user });
   },
-  // add post to user array 
-  // Object must be req.body.post  and  req.body.user_id
-
-  addUserPost: (obj)=> {
-    return axios.put("/user/addpost", { obj });
-  },
-
-  addSkill: (skill)=>{
-    return axios.put("/user/addskill", { skill });
-  },
-
-  removeSkill: (skill)=>{
-    return axios.put("/user/removeskill", { skill });
-  },
 
   addSkillArray: (skillarray)=>{
     return axios.put("/user/addskillarray", { skillarray });
+  },
+
+  getUserSkill: (user_id)=>{
+    return axios.get(`/user/getuserskill/${user_id}`)
   },
 
   getUser: (user_id) =>{
@@ -34,7 +24,6 @@ const API = {
 
 
   // Posts
-
   applyToPost: (user_id, job_id) => {
     return axios.patch("/job/apply", { user_id, job_id})
   },
