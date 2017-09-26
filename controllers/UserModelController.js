@@ -1,4 +1,6 @@
 var UserModel = require("../models/UserModel.js");
+var JobModel = require("../models/JobModel.js");
+var mongoose = require("mongoose");
 
 // ORM API
 var UserModelController = {
@@ -105,15 +107,46 @@ var UserModelController = {
         console.log("=====================================")
         console.log("Get all applied by user function")
         console.log("=====================================")
-        
+        console.log(req.params.id)
+
         UserModel.find({
-          sub: req.body.job_id
-        }).then(function(doc) {
-          res.json(doc);
-        }).catch(function(err) {
-          res.json(err);
-        });
+          _id: req.params.id
+        }).populate("jobsThisUserApplied")
+        .then(function(doc){
+            res.json(doc[0].jobsThisUserApplied)  
+            console.log(doc[0].jobsThisUserApplied)
+        })
       },
+
+    removeApplicant: function(req, res) {
+
+        console.log("=====================================")
+        console.log("Remove Appicant Function triggered")
+        console.log("=====================================")
+        console.log("user id: " + req.body.user_id)
+        console.log("job id: " + req.body.job_id)
+        let job_id = mongoose.Types.ObjectId(req.body.job_id)
+
+        JobModel.update(
+            {_id: req.body.job_id},
+            {$set: {appliedBy: ""}},
+            req.body)
+        .then(function(doc){
+            res.json(doc)  
+            console.log(doc)
+        })
+
+        UserModel.update(
+            {_id: req.body.user_id},
+            {$pull: { jobsThisUserApplied: job_id} })
+        .then(function(doc){
+            res.json(doc)  
+            console.log(doc)
+        })
+        
+    }
+
+
 
 
 

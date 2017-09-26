@@ -8,6 +8,8 @@ import JobsPostedByMe from './JobsPostedByMe.js';
 import ConfirmedJobs from './ConfirmedJobs.js';
 import Reviews from './Reviews.js'
 
+import API from '../../../utils/API'
+
 
 // import card from shared
 import Cardsv2 from '../../shared/cardsv2'
@@ -27,7 +29,8 @@ class ProfileTabs extends Component {
     constructor() {
         super();
         this.state = {
-          recommendedCards: {}
+            recommendedCards: {},
+            appliedJobs:[] 
         }
     };
 
@@ -41,6 +44,24 @@ class ProfileTabs extends Component {
           />
         ));
     };
+
+    //================================================
+    // Function to call User Applied Data
+    //================================================
+
+    getAppliedJobs = () => {
+        console.log("==================Job Applied Start====================")
+        console.log(this.props._id)
+        API.getAppliedJobs(this.props._id).then((res)=>{
+            console.log("RES Applied: ",res)
+            console.log("==================Job Applied END====================")
+            this.setState({appliedJobs: res.data})
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })   
+    }
+
+  
 
     // test3 = (test3)=>{
     // {this.props.passfunction("p1")}
@@ -65,10 +86,17 @@ class ProfileTabs extends Component {
                         {/*<FlatButton label="Default" onClick={()=>this.props.f1("TEST")} />*/}
                     </div>
                 </Tab>
-                <Tab label="Jobs I Applied" >
+                <Tab 
+                    onActive={this.getAppliedJobs}
+                    label="Jobs I Applied" 
+                >
                     <div>
                         <h2 style={styles.headline}>Jobs I Applied</h2>
-                        <AppliedJobs _id={this.props._id} />
+                        <AppliedJobs  
+                            appliedJobs={this.state.appliedJobs}
+                            getAppliedJobs={this.getAppliedJobs}
+                            user_id={this.props._id}
+                         />
                     </div>
                 </Tab>
                 <Tab label="Look For A Job" >

@@ -18,8 +18,13 @@ const API = {
     return axios.get(`/user/${user_id}`)
   },
 
-  getAppliedJobs: (user_id) => {
-    return axios.get("user/applied" , {user_id})
+  getAppliedJobs: (_id) => {
+    return axios.get(`user/applied/${_id}`)
+  },
+
+  // call to remove applicant from post. _id is post ID.
+  removeApplicant: (job_id, user_id) => {
+    return axios.patch("user/removeapplicant" , { job_id, user_id})
   },
 
 

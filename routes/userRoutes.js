@@ -26,8 +26,10 @@ router.get("/:id",UserModelController.getuser );
 // get all applied jobs from user
 router.get("/applied/:id", UserModelController.applied);
 
+// remove applicant from ID
+router.patch("/removeapplicant", UserModelController.removeApplicant);
 
-// // Delete a specific user using the id in req.params.id
+// Delete a specific user using the id in req.params.id
 // router.delete("/user/:account_id", User.<>);
 
 // // collect user info per ID
