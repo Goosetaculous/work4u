@@ -11,9 +11,13 @@ class Profile extends Component{
     constructor() {
         super();
         this.state = {
+          user_id: localStorage.getItem('user_id'),
           test: "",
-          post_array: []
+          post_array: [],
+          skills:[],
+          _id:""
         }
+
     };
 
 
@@ -27,15 +31,9 @@ class Profile extends Component{
         } else {
             this.setState({ profile: userProfile });
         }
+        this.getUserInfo()
     }
 
-    test = (test) => {
-        console.log("hello from test");
-        console.log(test, this)
-        this.setState({test:test});
-
-        return 
-    }
 
     postApplied = (job_id) =>{
         console.log("================Applied Function  ================");
@@ -60,40 +58,41 @@ class Profile extends Component{
         }); 
     }
 
-
-
-  
-    getUserId(){
-
-        console.log("===============GET USER INFO ID=================");
-        console.log("Get user ID function triggered");
-        
-        let userObject = API.getUser(localStorage.getItem('user_id'))
-        .then((res) => {
-            console.log(res.data[0]);
-            console.log("================GET USER INFO ID END================");
-        });
+    getUserInfo(){
+        console.log("getUserInfo: ", this.state.user_id)
+        API.getUser(this.state.user_id).then((res)=>{
+            console.log("RES: ",res.data[0].skills)
+            this.setState({
+                skills: res.data[0].skills,
+                _id: res.data[0]._id
+            })
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })
     }
 
+    setSkills = (data)=>{
+        console.log(" profile/index.js setSkills ",data)
 
-
+    }
 
     render(){
         const { profile } = this.state;
-        {this.getUserId("59c86430590bfd1f634bafc9")}
-    
         return(
-
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs />
+                        {console.log("SKILLS from profile/index.js", this.state.skills)}
+                        {console.log("_id from profile/index.js", this.state._id)}
+                        <ProfileTabs
+                            skills={this.state.skills}
+                            _id={this.state._id}
+                            setSkills={this.setSkills}
+                        />
                     </div>
-
                 </Wrapper>
             </div>
-
         )
     }
 }
