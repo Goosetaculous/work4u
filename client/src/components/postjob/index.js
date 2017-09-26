@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import  { Redirect, Route } from  'react-router-dom'
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
@@ -8,6 +9,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+
+
 const styles = {
   customWidth: {
     width: 200,
@@ -16,21 +19,23 @@ const styles = {
 
 class PostJob extends Component {
 
-	state = {jobType: {value: 1}}; // default job type
+
 
 	constructor(props){
 		
 		super(props);
+		this.state ={
+			value: 0
+
+		}
+
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick = (event) => {
-    	event.preventDefault();
-		//alert('Your job was submitted');
-		console.log(this.state);
-		fetch('/job/add', {  
+		fetch('/job/add', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -45,10 +50,8 @@ class PostJob extends Component {
 				'jobPrice': this.state.jobPrice
 			})
 		  }).then(data => data.json()).then(data => {
-			  console.log(data)
-			  window.location.reload(); // @job/goose, you guys may remove this once your parent state stuff is working
+            this.props.history.push("/profile")
 		  });
-		  
   	}
 	
 	handleInputChange = (event) => {
@@ -138,7 +141,8 @@ class PostJob extends Component {
 					/>
 
 					<div>
-						<DropDownMenu value={this.state.jobType} onChange={this.handleMenuChange}>
+						<DropDownMenu value={this.state.value} onChange={this.handleMenuChange}>
+							<MenuItem value={0} primaryText="What kind of job?" />
 							<MenuItem value={1} primaryText="Electric" />
 							<MenuItem value={2} primaryText="Plumbing" />
 							<MenuItem value={3} primaryText="Gardening" />
