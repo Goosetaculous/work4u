@@ -30,7 +30,8 @@ class ProfileTabs extends Component {
         super();
         this.state = {
             recommendedCards: {},
-            appliedJobs:[] 
+            appliedJobs:[],
+            selectedIndex: -1
         }
     };
 
@@ -75,7 +76,7 @@ class ProfileTabs extends Component {
         {this.props.jobsdata}
         return(
             
-            <Tabs>
+            <Tabs initialSelectedIndex = {-1}>
                 <Tab label="My Skills" >
                     <div>
                        <Profile

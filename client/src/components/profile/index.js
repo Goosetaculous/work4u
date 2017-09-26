@@ -84,7 +84,6 @@ class Profile extends Component{
     }
 
     setSkills = (data)=>{
-        console.log(" profile/index.js setSkills ",data)
         this.setState({
             skills: data
         })

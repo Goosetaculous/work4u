@@ -26,8 +26,6 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("CWRP",this.props.skills)
-        console.log("CWRP NEXT PROPS",nextProps)
         nextProps.skills.length > 0 ?
         this.setState({
             checkedValues: nextProps.skills
@@ -68,7 +66,6 @@ class Profile extends Component {
         return(
             <div className="container" style={{width:"80%"}}>
                 <div style={styles.block}>
-                    {/*<FlatButton label={"profile.js"} onClick={this.props._f1}/>*/}
                     <h5>Select the job types you are interested in</h5>
                     {
                         SKILLS.map((data,index)=>this.renderCheckbox(data))

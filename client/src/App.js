@@ -66,7 +66,7 @@ class App extends Component {
                             ):(<Redirect to="/home"/>) } />
                             <Route exact path="/postjob" render={(props) => (
                                 auth.isAuthenticated()) ? (
-                                <PostJob auth={auth} {...props} />
+                                <PostJob auth={auth} {...props} history={history} />
                             ):(<Redirect to="/home"/>) } />
                             
                             <Route exact path="/callback" render={(props) => {
