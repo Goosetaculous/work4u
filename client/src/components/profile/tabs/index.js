@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import FlatButton from 'material-ui/FlatButton';
-
-
+// Components
 import Profile from './Profile'
 import AppliedJobs from './AppliedJobs.js';
 import RecommendedJobs from './RecommendedJobs.js';
 import JobsPostedByMe from './JobsPostedByMe.js';
 import ConfirmedJobs from './ConfirmedJobs.js';
 import Reviews from './Reviews.js'
+
 
 // import card from shared
 import Cardsv2 from '../../shared/cardsv2'
@@ -58,8 +57,12 @@ class ProfileTabs extends Component {
             <Tabs>
                 <Tab label="My Skills" >
                     <div>
-                       <Profile userData={this.props.userData} _f1={this.props.f1} />
-                        <FlatButton label="Default" onClick={()=>this.props.f1("TEST")} />
+                       <Profile
+                           skills={this.props.skills}
+                           _id ={this.props._id}
+                           setSkills={this.props.setSkills}
+                       />
+                        {/*<FlatButton label="Default" onClick={()=>this.props.f1("TEST")} />*/}
                     </div>
                 </Tab>
                 <Tab label="Jobs I Applied" >

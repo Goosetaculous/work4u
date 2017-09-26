@@ -87,14 +87,13 @@ var UserModelController = {
      * Update the Skill array from the db
      */
     addskillarray: (req,res)=>{
-        var skillArray = req.body.skillarray.skillarray;
-        var user = req.body.skillarray.user_id;
-      
+        console.log(req.body)
         UserModel.update(
-            {sub: user},
-            {$set: {skills: skillArray }},
+            {_id: req.body.skillarray.user_id},
+            {$set: {skills: req.body.skillarray.skillarray }},
             req.body
         ).then(function(doc) {
+            console.log("SUCCESS BITCHES")
             res.json(doc);
         }).catch(function(err) {
             res.json(err);
