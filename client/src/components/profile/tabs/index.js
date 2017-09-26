@@ -68,7 +68,7 @@ class ProfileTabs extends Component {
                 <Tab label="Jobs I Applied" >
                     <div>
                         <h2 style={styles.headline}>Jobs I Applied</h2>
-                        <AppliedJobs />
+                        <AppliedJobs _id={this.props._id} />
                     </div>
                 </Tab>
                 <Tab label="Look For A Job" >
