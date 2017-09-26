@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton';
 // import Routes/API
 import API from '../../../utils/API'
 
-
 const SKILLS = ['Electric','Plumbing','Gardening','Automotive','Moving']
 
 const styles = {
@@ -26,27 +25,14 @@ class Profile extends Component {
         }
     }
 
-    componentWillMount(){
-
-
+    componentWillReceiveProps(nextProps){
+        console.log("CWRP",this.props.skills)
+        console.log("CWRP NEXT PROPS",nextProps)
+        nextProps.skills.length > 0 ?
+        this.setState({
+            checkedValues: nextProps.skills
+        }):null
     }
-    //
-    // importSkillArray(){
-    //
-    //     let skillarray = this.state.checkedValues;
-    //
-    //     const skillObject = {
-    //         user_id: this.state.user_id,
-    //         "skillarray": skillarray
-    //     }
-    //
-    //
-    //     console.log("Skills from parent ", this.props.skills)
-    //     console.log("_id from parent ", this.props._id)
-    //
-    //     API.addSkillArray(skillObject);
-    //     this.props.setSkills(skillObject.skillarray)
-    // }
 
     handleCheck(skill) {
         let checkedSkill =  `${skill}`
@@ -64,14 +50,13 @@ class Profile extends Component {
                 label={skill}
                 key={`${skill}`}
                 onCheck={() => this.handleCheck(skill)}
-                defaultChecked={this.props.skills.includes(skill)? true: false}
+                defaultChecked={this.state.checkedValues.includes(skill)}
                 style={styles.checkbox}
             />
             )
     }
 
     handleSave(){
-        console.log("HANDLE SAVE")
         API.addSkillArray({
             user_id : this.props._id,
             skillarray: this.state.checkedValues
@@ -82,7 +67,6 @@ class Profile extends Component {
     render(){
         return(
             <div className="container" style={{width:"80%"}}>
-
                 <div style={styles.block}>
                     {/*<FlatButton label={"profile.js"} onClick={this.props._f1}/>*/}
                     <h5>Select the job types you are interested in</h5>
