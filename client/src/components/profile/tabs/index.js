@@ -31,7 +31,8 @@ class ProfileTabs extends Component {
         this.state = {
             recommendedCards: {},
             appliedJobs:[],
-            selectedIndex: -1
+            selectedIndex: -1,
+            recommendedJobs: []
         }
     };
 
@@ -67,7 +68,17 @@ class ProfileTabs extends Component {
     // Function to call User Recommended Data
     //================================================
 
-  
+   getRecommendedJobs = () => {
+        console.log("==================Recommeneded Job Start====================")
+        console.log(this.props.skills)
+        API.getRecommendedJobs(this.props.skills).then((res)=>{
+            console.log("RES Recommended: ",res)
+            console.log("==================Recommended JOb END====================")
+            this.setState({recommendedJobs: res.data})
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })   
+    }
 
 
 
@@ -99,13 +110,18 @@ class ProfileTabs extends Component {
                          />
                     </div>
                 </Tab>
-                <Tab label="Look For A Job" >
+                <Tab
+                    onActive={this.getRecommendedJobs} 
+                    label="Look For A Job" >
                     <div>
                         <div>
                             <h2 style={styles.headline}>Look For A Job</h2>
                         </div>
                         <div>
-                           <RecommendedJobs />
+                           <RecommendedJobs 
+                                user_id={this.props._id}
+                                recommendedJobs={this.state.recommendedJobs}
+                           />
                         </div>
                     </div>
                 </Tab>
