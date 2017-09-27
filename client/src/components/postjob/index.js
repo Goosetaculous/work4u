@@ -43,7 +43,7 @@ class PostJob extends Component {
 			},
 			body: JSON.stringify({
 				'jobName': this.state.jobName,
-				'postedBy': localStorage.getItem('user_id'),
+				'postedBy': localStorage.getItem("db_id"),
 				'jobType': this.state.jobType,
 				'jobLocation': this.state.jobLocation,
 				'jobDate': this.state.jobDate,

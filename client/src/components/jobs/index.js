@@ -29,7 +29,7 @@ class Jobs extends Component{
 
     componentDidMount(){
 
-        API.getAllJobs("59ca67f94338f41e975c9b77").then((res)=>{
+        API.getAllJobs(localStorage.getItem("db_id")).then((res)=>{
             console.log(res)
         })
 
