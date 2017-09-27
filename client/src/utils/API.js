@@ -32,8 +32,8 @@ const API = {
   },
 
   // get user recommended jobs. 
-  getRecommendedJobs: (skills) => {
-    return axios.post("job/recommended" , {skills})
+  getRecommendedJobs: (user_id,skills) => {
+    return axios.post("job/recommended" , {user_id, skills})
   },
 
 

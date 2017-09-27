@@ -24,7 +24,7 @@ class RecommededJobs extends Component {
     constructor(){
         super()
         this.state = {
-            user_id: this.props.user_id
+            // user_id: this.props.user_id
         }
     }
 
@@ -42,7 +42,7 @@ class RecommededJobs extends Component {
                     padding={3}
                 >
                     {this.props.recommendedJobs.map((job) => ( 
-                        { this.state.user_id != job_postedBy ?
+                        
                             <GridTile
                                 title={job.jobName}
                                 titlePosition="top"
@@ -50,7 +50,7 @@ class RecommededJobs extends Component {
                             >
                             </GridTile>
 
-                        }   
+                        
                     ))}
                 </GridList>
             </div>

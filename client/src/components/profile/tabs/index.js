@@ -71,7 +71,7 @@ class ProfileTabs extends Component {
    getRecommendedJobs = () => {
         console.log("==================Recommeneded Job Start====================")
         console.log(this.props.skills)
-        API.getRecommendedJobs(this.props.skills).then((res)=>{
+        API.getRecommendedJobs(this.props._id,this.props.skills).then((res)=>{
             console.log("RES Recommended: ",res)
             console.log("==================Recommended JOb END====================")
             this.setState({recommendedJobs: res.data})

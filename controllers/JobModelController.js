@@ -147,8 +147,12 @@ var JobModelController = {
     recommended: (req,res) => {
         console.log("=======Get Recommended Jobs Triggered======");
         console.log(req.body.skills);
+        console.log(req.body)
 
-        JobModel.find({ jobType: {$in: req.body.skills}}).then(function( data){
+        JobModel.find({ 
+            jobType: {$in: req.body.skills},
+            postedBy:  {$ne: req.body.user_id}
+        }).then(function( data){
             console.log(data)
             res.json(data);
         })
