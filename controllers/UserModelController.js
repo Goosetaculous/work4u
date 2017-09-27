@@ -22,6 +22,7 @@ var UserModelController = {
     add: (req, res)=> {
         UserModel.findOne({sub: req.body.user.sub}, (err, data)=> {
             if (!data) {
+                console.log("ADDING user:",req.body.user)
                 UserModel.create(req.body.user).then((doc)=> {
                     res.json(doc);
                 }).catch(function(err) {
@@ -41,7 +42,7 @@ var UserModelController = {
      */
     getuser: (req, res)=> {
         UserModel.find({
-          sub: req.params.id
+          _id: req.params.id
         }).then(function(doc) {
           res.json(doc);
         }).catch(function(err) {

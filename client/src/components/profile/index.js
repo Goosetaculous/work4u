@@ -11,7 +11,7 @@ class Profile extends Component{
     constructor() {
         super();
         this.state = {
-          user_id: localStorage.getItem('user_id'),
+          user_id: localStorage.getItem('db_id'),
           test: "",
           post_array: [],
           skills:[],
@@ -71,17 +71,17 @@ class Profile extends Component{
         }); 
     }
 
-    getUserInfo(){
-        API.getUser(this.state.user_id).then((res)=>{
-            console.log(res.data)
-            this.setState({
-                skills: res.data[0].skills || [],
-                _id: res.data[0]._id
-            })
-        }).catch((err)=>{
-            console.log("ERR ",err)
-        })
-    }
+    // getUserInfo(){
+    //     API.getUser(this.state.user_id).then((res)=>{
+    //         console.log(res.data)
+    //         this.setState({
+    //             skills: res.data[0].skills || [],
+    //             _id: res.data[0]._id
+    //         })
+    //     }).catch((err)=>{
+    //         console.log("ERR ",err)
+    //     })
+    // }
 
     setSkills = (data)=>{
         this.setState({
