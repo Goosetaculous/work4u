@@ -25,6 +25,7 @@ class SideBar extends Component{
                          avatar={this.props.picture}
                     />
                     <CardActions>
+                        <Link to="/jobs"><FlatButton label="All Jobs"/></Link>
                         <Link to="/postjob"><FlatButton label="Post A Job"/></Link>
                         <Link to="/profile"><FlatButton label="Manage Jobs and Skills"/></Link>
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />

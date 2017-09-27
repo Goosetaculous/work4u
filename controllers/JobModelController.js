@@ -1,5 +1,5 @@
 var JobModel = require("../models/JobModel.js");
-var UserModel = require("../models/UserModel.js");
+
 
 // ORM API
 var JobModelController = {
@@ -15,6 +15,23 @@ var JobModelController = {
     		}
     	});
     },
+
+    findJobsPostedbyOthers: (req,res)=>{
+        console.log("->",req.params.id)
+        JobModel.find({
+            _id : {$ne: req.params.id}
+        },(err,data)=>{
+            res.json(data)
+        }).catch(()=>{
+            res.json(err)
+        })
+
+
+
+    },
+
+
+
     findJobsByPosterId: function(postedId, callback) {
         console.log("Controller: get jobs with poster " + postedId);
         JobModel.find({postedBy: postedId}, function(err, data) {
