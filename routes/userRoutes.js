@@ -29,6 +29,8 @@ router.get("/applied/:id", UserModelController.applied);
 // remove applicant from ID
 router.patch("/removeapplicant", UserModelController.removeApplicant);
 
+router.patch("/apply", UserModelController.apply)
+
 // Delete a specific user using the id in req.params.id
 // router.delete("/user/:account_id", User.<>);
 

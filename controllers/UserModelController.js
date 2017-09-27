@@ -103,7 +103,8 @@ var UserModelController = {
         });
     },
 
-     applied: (req, res) => {
+    //function to search all post applied by user
+    applied: (req, res) => {
 
         console.log("=====================================")
         console.log("Get all applied by user function")
@@ -130,7 +131,7 @@ var UserModelController = {
 
         JobModel.update(
             {_id: req.body.job_id},
-            {$set: {appliedBy: ""}},
+            {$set: {appliedBy: "", status: "initiated"}},
             req.body)
         .then(function(doc){
             res.json(doc)  
@@ -147,15 +148,43 @@ var UserModelController = {
         
     },
 
+
     getKickedOffFromAJob: (job_id) => {
         UserModel.update(
             {_id: req.body.user_id},
             {$pull: { jobsThisUserApplied: job_id} })
+
+    apply: (req, res) => {
+
+        console.log("=====================================")
+        console.log("Apply function controller triggered")
+        console.log("=====================================")
+        console.log("user id: " + req.body.user_id)
+        console.log("job id: " + req.body.job_id)
+        let job_id = mongoose.Types.ObjectId(req.body.job_id)
+
+        JobModel.update(
+            {_id: req.body.job_id},
+            {$set: {appliedBy: req.body.user_id, status: "applied" }},
+            req.body)
         .then(function(doc){
             res.json(doc)  
             console.log(doc)
         })
+
+        UserModel.update(
+            {_id: req.body.user_id},
+            {$push: { jobsThisUserApplied: job_id} })
+
+        .then(function(doc){
+            res.json(doc)  
+            console.log(doc)
+        })
+
     }
+
+        
+    },
 
 
 
