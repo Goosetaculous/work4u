@@ -102,7 +102,7 @@ var UserModelController = {
         });
     },
 
-     applied: function(req, res) {
+     applied: (req, res) => {
 
         console.log("=====================================")
         console.log("Get all applied by user function")
@@ -118,7 +118,7 @@ var UserModelController = {
         })
       },
 
-    removeApplicant: function(req, res) {
+    removeApplicant: (req, res) => {
 
         console.log("=====================================")
         console.log("Remove Appicant Function triggered")

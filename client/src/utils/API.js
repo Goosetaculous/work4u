@@ -27,6 +27,11 @@ const API = {
     return axios.patch("user/removeapplicant" , { job_id, user_id})
   },
 
+  // get user recommended jobs. 
+  getRecommendedJobs: (skills) => {
+    return axios.post("job/recommended" , {skills})
+  },
+
 
   // Posts
   applyToPost: (user_id, job_id) => {

@@ -62,6 +62,10 @@ class ProfileTabs extends Component {
         })   
     }
 
+    //================================================
+    // Function to call User Recommended Data
+    //================================================
+
   
 
     // test3 = (test3)=>{
