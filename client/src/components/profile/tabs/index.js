@@ -121,6 +121,7 @@ class ProfileTabs extends Component {
                            <RecommendedJobs 
                                 user_id={this.props._id}
                                 recommendedJobs={this.state.recommendedJobs}
+                                getRecommendedJobs={this.getRecommendedJobs}
                            />
                         </div>
                     </div>

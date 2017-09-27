@@ -2,6 +2,8 @@ import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
 
+import API from '../../../utils/API'
+
 const styles = {
     root: {
         display: 'flex',
@@ -28,10 +30,19 @@ class RecommededJobs extends Component {
         }
     }
 
-    renderGridTile = () => {
-
-
+    applyToJob = (event,job) => {
+        console.log("========Apply to Job========")
+        
+        console.log("job id: " + job._id)
+        console.log("user id: " + this.props.user_id)
+        API.applyToJob(job._id, this.props.user_id).then(function(res){
+            console.log(res)
+        })
+        console.log("=========Apply to Job end=====")
+        this.props.getRecommendedJobs();
     }
+
+
     render(){
         return(
             <div style={styles.root}>
@@ -47,6 +58,14 @@ class RecommededJobs extends Component {
                                 title={job.jobName}
                                 titlePosition="top"
                                 subtitle={job.postedBy}
+                                actionIcon={
+                                    <FlatButton 
+                                        label="Apply" 
+                                        backgroundColor="green" 
+                                        color="white" 
+                                        primary={true} 
+                                        onClick={(event) => this.applyToJob(event, job)}
+                                    />}                                
                             >
                             </GridTile>
 
