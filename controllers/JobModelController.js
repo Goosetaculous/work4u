@@ -151,6 +151,7 @@ var JobModelController = {
 
         JobModel.find({ 
             jobType: {$in: req.body.skills},
+            status: "initiated",
             postedBy:  {$ne: req.body.user_id}
         }).then(function( data){
             console.log(data)

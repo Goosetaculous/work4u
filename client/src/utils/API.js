@@ -31,13 +31,26 @@ const API = {
     return axios.patch("user/removeapplicant" , { job_id, user_id})
   },
 
-  // get user recommended jobs. 
+  applyToJob: (job_id, user_id) => {
+    return axios.patch("user/apply", {job_id, user_id})
+  },
+
+  applyToJob: (job_id, user_id) => {
+    return axios.patch("user/apply", {job_id, user_id})
+  },
+
+
+
+
+  //==============================
+  //  POSTS ROUTES
+  //==============================
+
   getRecommendedJobs: (user_id,skills) => {
     return axios.post("job/recommended" , {user_id, skills})
   },
 
 
-  // Posts
   applyToPost: (user_id, job_id) => {
     return axios.patch("/job/apply", { user_id, job_id})
   },
