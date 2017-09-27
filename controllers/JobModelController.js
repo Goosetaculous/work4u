@@ -54,7 +54,7 @@ var JobModelController = {
             postedBy: postedBy,
             appliedBy: "",
             status: "initiated",
-            type: jobType,
+            jobType: jobType,
             location: jobLocation,
             date: jobDate,
             price: jobPrice,
