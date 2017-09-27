@@ -62,18 +62,13 @@ class ProfileTabs extends Component {
         })   
     }
 
+
     //================================================
     // Function to call User Recommended Data
     //================================================
 
   
 
-    // test3 = (test3)=>{
-    // {this.props.passfunction("p1")}
-    yo = () => {
-        console.log("FUNCTION CALLED YO")
-        {()=>this.props.testfunction}
-    }
 
 
     render(){

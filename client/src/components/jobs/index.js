@@ -5,6 +5,11 @@ import Wrapper from '../../components/shared/content'
 import PopulateCards from '../shared/cards'
 import FlatButton from 'material-ui/FlatButton';
 
+//API
+
+import API from '../../utils/API'
+
+
 
 class Jobs extends Component{
     constructor(){
@@ -21,6 +26,25 @@ class Jobs extends Component{
             this.setState({ profile: userProfile });
         }
     }
+
+    componentDidMount(){
+
+        API.getAllJobs(localStorage.getItem("db_id")).then((res)=>{
+            console.log(res)
+        })
+
+        // API.getUser(this.state.user_id).then((res)=>{
+        //     console.log(res.data)
+        //     this.setState({
+        //         skills: res.data[0].skills || [],
+        //         _id: res.data[0]._id
+        //     })
+        // }).catch((err)=>{
+        //     console.log("ERR ",err)
+        // })
+
+    }
+
     render(){
         const { profile } = this.state;
         return(

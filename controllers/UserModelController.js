@@ -28,7 +28,8 @@ var UserModelController = {
                     res.json(err);
                 });
             } else {
-                console.log("User has already been created before.")
+                res.json(data)
+                //console.log("User has already been created before.")
             }
         }).catch(function(err) {
             res.json(err)
