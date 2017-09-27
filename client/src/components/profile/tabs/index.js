@@ -62,15 +62,6 @@ class ProfileTabs extends Component {
         })   
     }
 
-  
-
-    // test3 = (test3)=>{
-    // {this.props.passfunction("p1")}
-    yo = () => {
-        console.log("FUNCTION CALLED YO")
-        {()=>this.props.testfunction}
-    }
-
 
     render(){
         {this.props.jobsdata}

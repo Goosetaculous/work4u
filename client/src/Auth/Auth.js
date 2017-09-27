@@ -57,7 +57,10 @@ export default class Auth {
         // Non authO native code. Added to relay user data to db
         console.log(authResult.idTokenPayload)
         localStorage.setItem('user_id', authResult.idTokenPayload.sub);
-        API.addUser(authResult.idTokenPayload);
+        API.addUser(authResult.idTokenPayload).then((res)=>{
+            localStorage.setItem('db_id', res.data._id )
+            }
+        );
 
 
         // navigate to the home route

@@ -42,6 +42,7 @@ class App extends Component {
                 <MuiThemeProvider>
                     <Router history={history} component={App}>
                         <div>
+                            {console.log("App.js")}
                             <Navpills/>
                             <Route exact path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
