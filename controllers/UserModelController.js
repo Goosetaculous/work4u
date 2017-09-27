@@ -145,8 +145,18 @@ var UserModelController = {
         .then(function(doc){
             res.json(doc)  
             console.log(doc)
-        })
+        });
         
+    },
+
+
+    getKickedOffFromAJob: (job_id) => {
+        UserModel.update(
+            {_id: req.body.user_id},
+            {$pull: { jobsThisUserApplied: job_id} })
+        .then(function(doc) {
+            res.json(doc);
+        });
     },
 
     apply: (req, res) => {
@@ -170,19 +180,13 @@ var UserModelController = {
         UserModel.update(
             {_id: req.body.user_id},
             {$push: { jobsThisUserApplied: job_id} })
+
         .then(function(doc){
             res.json(doc)  
             console.log(doc)
-        })
-        
-    },
+        });
 
-
-
-
-
-
-
+    }
 }
 
 module.exports = UserModelController;

@@ -87,18 +87,8 @@ router.post("/review", (req, res)=> {
 	});
 });
 
-
-// (job poster) cancel a job
-router.post("/cancel_job", (req, res)=> {
-	var jobId = req.body.jobId;
-	Job.cancelAJob(req.body.jobId, (data)=>{
-		res.json(data)
-	});
-});
-
 // (applicant) withdraw an offer
 router.post("/withdraw_offer", (req, res)=> {
-	var jobId = req.body.jobId;
 	Job.withdrawOffer(req.body.jobId, (data)=>{
 		res.json(data)
 	});
@@ -107,6 +97,32 @@ router.post("/withdraw_offer", (req, res)=> {
 router.post("/recommended", Job.recommended);
 
 
+// (job poster) cancel a job
+router.post("/cancel_posting_and_applicant", (req, res)=> {
+	let jobId = req.body.jobId;
+	let applicantId = req.body.applicantId;
+	Job.cancelAJob(jobId, (data)=>{
+		res.json(data)
+	});
+	User.getKickedOffFromAJob(applicantId);
+});
+
+router.post("/cancel_posting", (req, res)=> {
+	Job.cancelAJob(req.body.jobId, (data)=>{
+		res.json(data)
+	});
+});
+
+router.post("/decline_application", (req, res) => {
+	let applicantId = req.body.applicantId;
+	User.getKickedOffFromAJob(applicantId);
+});
+
+router.post("/confirm", (req, res) => {
+	Job.confirmAJob(req.body.jobId, (data) => {
+		res.json(data);
+	});
+});
 
 
 module.exports = router;
