@@ -17,7 +17,7 @@ var JobSchema = new Schema({
     status: {
         type: String
     },
-    type: {
+    jobType: {
         type: String
     },
     reviewFromJobPoster: {

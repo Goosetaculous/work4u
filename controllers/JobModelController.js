@@ -143,6 +143,15 @@ var JobModelController = {
                 callback(data);
             }
         });
+    },
+    recommended: (req,res) => {
+        console.log("=======Get Recommended Jobs Triggered======");
+        console.log(req.body);
+
+        JobModel.find({ type: {$in: res.body}}).then(function( data){
+            console.log(data)
+        })
+
     }
 }
 

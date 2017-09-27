@@ -63,6 +63,14 @@ class ProfileTabs extends Component {
     }
 
 
+    //================================================
+    // Function to call User Recommended Data
+    //================================================
+
+  
+
+
+
     render(){
         {this.props.jobsdata}
         return(

@@ -104,6 +104,8 @@ router.post("/withdraw_offer", (req, res)=> {
 	});
 });
 
+router.post("/recommended", Job.recommended);
+
 
 
 
