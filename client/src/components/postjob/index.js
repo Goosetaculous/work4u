@@ -9,6 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+import API from "../../utils/API.js";
 
 
 const styles = {
@@ -18,8 +19,6 @@ const styles = {
 };
 
 class PostJob extends Component {
-
-
 
 	constructor(props){
 		
@@ -35,7 +34,7 @@ class PostJob extends Component {
 	}
 
 	handleClick = (event) => {
-		fetch('/job/add', {
+		/*fetch('/job/add', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -51,6 +50,16 @@ class PostJob extends Component {
 			})
 		  }).then(data => data.json()).then(data => {
             this.props.history.push("/profile")
+		  });*/
+		  API.addAJob({
+			'jobName': this.state.jobName,
+			'postedBy': localStorage.getItem("db_id"),
+			'jobType': this.state.jobType,
+			'jobLocation': this.state.jobLocation,
+			'jobDate': this.state.jobDate,
+			'jobPrice': this.state.jobPrice
+		  }).then((res) => {
+			  this.props.history.push("/profile");
 		  });
   	}
 	

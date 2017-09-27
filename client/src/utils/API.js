@@ -6,6 +6,10 @@ const API = {
     return axios.post("/user/add", { user });
   },
 
+  addAJob: (job) => {
+    return axios.post("/job/add", {job});
+  },
+
   addSkillArray: (skillarray)=>{
     return axios.put("/user/addskillarray", { skillarray });
   },
@@ -47,15 +51,23 @@ const API = {
   },
 
   findJobsByPosterId: (poster_id) => {
-    console.log("135");
-    console.log("Poster Id is " + poster_id);
-    let a =  axios.post("/job/findByPosterId", {poster_id});
-    console.log("item");
-    console.log(a);
-    return a;
+    return axios.post("/job/findByPosterId", {poster_id});
+  },
+
+  removeJobByIdAndRemoveApplicationById: (jobId, applicant) => {
+    return axios.post("/job/cancel_posting_and_applicant", {jobId, applicant});
+  },
+
+  removeOnlyJobById: (jobId) => {
+    return axios.post("/job/cancel_posting", {jobId});
+  },
+
+  confirmJobById: (jobId) => {
+    return axios.post("job/confirm", {jobId});
+  },
+
+  declineApplicantById: (applicantId) => {
+    return axios.post("job/decline_application", {applicantId});
   }
-
-  
-
 }
 export default API;

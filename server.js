@@ -38,8 +38,9 @@ else {
   
   console.log("Using local Mongoose");
     let mongoose_db_name = "work4youDB";
-    mongoose.connect("mongodb://heroku_30hd5jdd:65q433u9i342cob9ftk0cd9v00@ds139984.mlab.com:39984/heroku_30hd5jdd", {
-        useMongoClient: true
+    //mongoose.connect("mongodb://heroku_30hd5jdd:65q433u9i342cob9ftk0cd9v00@ds139984.mlab.com:39984/heroku_30hd5jdd", {
+    mongoose.connect("mongodb://localhost/" + mongoose_db_name, {
+      useMongoClient: true
     });
 
 }
