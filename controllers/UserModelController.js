@@ -148,6 +148,12 @@ var UserModelController = {
         
     },
 
+
+    getKickedOffFromAJob: (job_id) => {
+        UserModel.update(
+            {_id: req.body.user_id},
+            {$pull: { jobsThisUserApplied: job_id} })
+
     apply: (req, res) => {
 
         console.log("=====================================")
@@ -169,14 +175,16 @@ var UserModelController = {
         UserModel.update(
             {_id: req.body.user_id},
             {$push: { jobsThisUserApplied: job_id} })
+
         .then(function(doc){
             res.json(doc)  
             console.log(doc)
         })
+
+    }
+
         
     },
-
-
 
 
 

@@ -79,9 +79,38 @@ class JobsPostedByMe extends Component {
         });
     }
 
-    handleStopPosting = (event, jobName) => {
+    removeJobByIdAndRemoveApplicationById = (event, jobId, applicanttId) => {
         console.log("Trying to stop posting.");
-        console.log(jobName);
+        console.log(jobId);
+        API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
+            alert("job with id " + jobId + " was removed");
+            alert("also, applicant ")
+        });
+    };
+
+    removeOnlyJobById = (event, jobId) => {
+        console.log("Trying to stop posting.");
+        console.log(jobId);
+        API.removeOnlyJobById(jobId).then((res) => {
+            alert("job with id " + jobId + " was removed");
+            alert("also, applicant ")
+        });
+    };
+
+    confirmJobById = (event, jobId) => {
+        console.log("Trying to set below job confirmed.");
+        console.log(jobId);
+        API.confirmJobById(jobId).then((res) => {
+            alert("job with id " + jobId + " was confirmed");
+        });
+    };
+
+    declineApplicantById = (event, applicantId) => {
+        console.log("Trying to set below job confirmed.");
+        console.log(applicantId);
+        API.declineApplicantById(applicantId).then((res) => {
+            alert("applicant with id " + applicantId + " was declinde");
+        });
     }
 
     render(){
@@ -99,7 +128,12 @@ class JobsPostedByMe extends Component {
                                         title={job.jobName}
                                         titlePosition="top"
                                         subtitle={job.location}
-                                        actionIcon={<div><FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} /><FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} /><FlatButton label="Decline" backgroundColor="#F53F30" primary={true} /></div>}
+                                        actionIcon={
+                                            <div>
+                                                <FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeJobByIdAndRemoveApplicationById(event, job._id, job.appliedBy)}/>
+                                                <FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} onClick={(event) => this.confirmJobById(event, job._id)}/>
+                                                <FlatButton label="Decline" backgroundColor="#F53F30" primary={true} onClick={(event) => this.declineApplicantById(event, job.appliedBy)}/>
+                                            </div>}
                                     >
                                     </GridTile>
                         }
@@ -108,7 +142,7 @@ class JobsPostedByMe extends Component {
                                         title={job.jobName}
                                         titlePosition="top"
                                         subtitle={job.location}
-                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.handleStopPosting(event, job.jobName)}/>}
+                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
                                     >
                                     </GridTile>
                         }
