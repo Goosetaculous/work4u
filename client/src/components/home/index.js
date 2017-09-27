@@ -1,7 +1,7 @@
 // import react
 import React , { Component } from 'react';
 
-
+import FlatButton from 'material-ui/FlatButton';
 import "./style.css"
 
 /*const styles = {
@@ -13,14 +13,17 @@ import "./style.css"
 
 // import private components
 // import TopNavbar from "../shared/topnavbar/";
-import HomePageJobList from "./HomePageJobList.js";
+//import HomePageJobList from "./HomePageJobList.js";
 
 // import NavBar Login TESTING
 import Navtest from "../shared/Navtest/";
 
+//import Logo from "./logo.png"
 
 // Import of auth
 import Auth from '../../Auth/Auth';
+
+
 
 //Auth Constant
 const auth = new Auth();
@@ -35,13 +38,14 @@ class Homepage extends Component{
 
             <div>
                 <Navtest />
-                <div className="hook-line">
-                    More Doing, More Saving!
+                <div className="hook-line" >
+                    
+                    Less Doing, More Saving
+                   
+                    <FlatButton className="about-button" label="How it works" />
+                    
                 </div>
-                <div className="job-list">
-                    Most Popular Jobs
-                    <HomePageJobList />
-                </div>
+                
 
             </div>
         )

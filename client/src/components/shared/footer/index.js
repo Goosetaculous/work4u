@@ -11,7 +11,7 @@ class Bottom extends Component {
                         <span className="footer-link"><a href="https://www.google.com">API Category</a></span>
                     </div>
                     <div className="copyright-statement">
-                        XXX Copyright Reserved
+                        © 2017 Work4U 
                     </div>
                 </div>
             </div>
