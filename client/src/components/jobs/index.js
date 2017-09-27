@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
-import PopulateCards from '../shared/cards'
+import PopulateCards from '../shared/1buttoncards/'
 import FlatButton from 'material-ui/FlatButton';
 
 //API
@@ -14,6 +14,9 @@ import API from '../../utils/API'
 class Jobs extends Component{
     constructor(){
         super()
+        this.state={
+            jobs:[]
+        }
     }
     componentWillMount() {
         this.setState({ profile: {} });
@@ -28,21 +31,11 @@ class Jobs extends Component{
     }
 
     componentDidMount(){
-
         API.getAllJobs(localStorage.getItem("db_id")).then((res)=>{
-            console.log(res)
+            this.setState({
+                jobs: res.data
+            })
         })
-
-        // API.getUser(this.state.user_id).then((res)=>{
-        //     console.log(res.data)
-        //     this.setState({
-        //         skills: res.data[0].skills || [],
-        //         _id: res.data[0]._id
-        //     })
-        // }).catch((err)=>{
-        //     console.log("ERR ",err)
-        // })
-
     }
 
     render(){
@@ -54,7 +47,7 @@ class Jobs extends Component{
                     <div style={{textAlign: "center"}}>
                         <TextField hintText="Job Keywords"/><FlatButton label="Search" primary={true}/>
                         <br/>
-                        <PopulateCards/>
+                        <PopulateCards jobs={this.state.jobs}/>
                     </div>
                 </Wrapper>
             </div>
