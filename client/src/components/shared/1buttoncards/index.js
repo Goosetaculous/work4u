@@ -3,6 +3,9 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+//API
+import API from '../../../utils/API'
+
 
 
 const styles = {
@@ -17,66 +20,35 @@ const styles = {
     },
 };
 
-const tilesData = [
-    {
-        img: 'https://pixy.org/images/placeholder.png',
-        title: 'Mow my Law',
-        author: 'UCSD',
-        featured: true,
-    },
-    {
-        img: 'https://pixy.org/images/placeholder.png',
-        title: 'Clean my car',
-        author: 'Carlsbad',
-    },
-    {
-        img: 'images/grid-list/camera-813814_640.jpg',
-        title: 'Camera',
-        author: 'Danson67',
-    },
-    {
-        img: 'images/grid-list/morning-819362_640.jpg',
-        title: 'Morning',
-        author: 'fancycrave1',
-        featured: true,
-    },
-    {
-        img: 'images/grid-list/hats-829509_640.jpg',
-        title: 'Hats',
-        author: 'Hans',
-    },
-    {
-        img: 'images/grid-list/honey-823614_640.jpg',
-        title: 'Honey',
-        author: 'fancycravel',
-    },
-    {
-        img: 'images/grid-list/vegetables-790022_640.jpg',
-        title: 'Vegetables',
-        author: 'jill111',
-    },
-    {
-        img: 'images/grid-list/water-plant-821293_640.jpg',
-        title: 'Water plant',
-        author: 'BkrmadtyaKarki',
-    },
-];
-
-
-
 
 class PopulateCards extends Component {
     constructor(){
         super()
     }
 
+    getUserInfo(id,cb){
+        API.getUser(id).then((res)=>{
+            cb({
+                name: res.data[0].given_name,
+                picture: res.data[0].picture
+            })
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })
+    }
+
     createCard(job){
+        this.getUserInfo(job.postedBy,(data)=>{
+            console.log(data)
+
+
+        })
         return(
             <Card>
                 <CardHeader
-                    title={job.name}
+                    title={job.jobName}
                     subtitle={` at ${job.location}`}
-                    avatar="images/jsa-128.jpg"
+                    // avatar="images/jsa-128.jpg"
                 />
 
                 <CardText>

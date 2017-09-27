@@ -16,6 +16,9 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
+    picture: {
+        type: String,
+    },
     sub: {
         type: String,
         required: true
