@@ -45,6 +45,7 @@ class AppliedJobs extends Component {
                     padding={3}
                 >
                     {this.props.appliedJobs.map((job) => (
+                        
                         <GridTile
                             title={job.jobName}
                             titlePosition="top"
