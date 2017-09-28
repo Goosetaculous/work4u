@@ -46,8 +46,8 @@ class PopulateCards extends Component {
         return(
             <Card>
                 <CardHeader
-                    title={job.jobName}
-                    subtitle={` at ${job.location}`}
+                    title={`${job.jobName} in ${job.location}`}
+
                     // avatar="images/jsa-128.jpg"
                 />
 
