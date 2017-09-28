@@ -24,7 +24,7 @@ class PostJob extends Component {
 		
 		super(props);
 		this.state ={
-			value: 0
+			jobType: "none"
 
 		}
 
@@ -92,7 +92,9 @@ class PostJob extends Component {
 	 handleMenuChange = (event, index, value) => {
 		 console.log("Selected type of job is");
 		 console.log(value);
-		 this.setState({jobType: value});
+		 this.setState({
+		 	value: value
+		 });
 	 }
 
     componentWillMount() {
@@ -150,13 +152,13 @@ class PostJob extends Component {
 					/>
 
 					<div>
-						<DropDownMenu value={this.state.value} onChange={this.handleMenuChange}>
-							<MenuItem value={0} primaryText="What kind of job?" />
-							<MenuItem value={1} primaryText="Electric" />
-							<MenuItem value={2} primaryText="Plumbing" />
-							<MenuItem value={3} primaryText="Gardening" />
-							<MenuItem value={4} primaryText="Automotive" />
-							<MenuItem value={4} primaryText="Moving" />
+						<DropDownMenu value={this.state.jobType} onChange={this.handleMenuChange}>
+							<MenuItem value={"none"} primaryText="What kind of job?" />
+							<MenuItem value={"Electic"} primaryText="Electric" />
+							<MenuItem value={"Plumbing"} primaryText="Plumbing" />
+							<MenuItem value={"Gardening"} primaryText="Gardening" />
+							<MenuItem value={"Automotive"} primaryText="Automotive" />
+							<MenuItem value={"Moving"} primaryText="Moving" />
 						</DropDownMenu>
 					</div>
 					
