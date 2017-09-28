@@ -7,7 +7,7 @@ const API = {
   },
 
   addAJob: (job) => {
-    return axios.post("/job/add", {job});
+    return axios.post("/job/add", job);
   },
 
   addSkillArray: (skillarray)=>{

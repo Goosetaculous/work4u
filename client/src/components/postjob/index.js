@@ -34,31 +34,16 @@ class PostJob extends Component {
 	}
 
 	handleClick = (event) => {
-		/*fetch('/job/add', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				'jobName': this.state.jobName,
-				'postedBy': localStorage.getItem("db_id"),
-				'jobType': this.state.jobType,
-				'jobLocation': this.state.jobLocation,
-				'jobDate': this.state.jobDate,
-				'jobPrice': this.state.jobPrice
-			})
-		  }).then(data => data.json()).then(data => {
-            this.props.history.push("/profile")
-		  });*/
-		  API.addAJob({
+		  let newJob = {
 			'jobName': this.state.jobName,
 			'postedBy': localStorage.getItem("db_id"),
 			'jobType': this.state.jobType,
 			'jobLocation': this.state.jobLocation,
 			'jobDate': this.state.jobDate,
 			'jobPrice': this.state.jobPrice
-		  }).then((res) => {
+		  };
+		  console.log(newJob);
+		  API.addAJob(newJob).then((res) => {
 			  this.props.history.push("/profile");
 		  });
   	}
@@ -93,7 +78,7 @@ class PostJob extends Component {
 		 console.log("Selected type of job is");
 		 console.log(value);
 		 this.setState({
-		 	value: value
+			jobType: value
 		 });
 	 }
 
