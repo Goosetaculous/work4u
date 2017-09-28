@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import  { Redirect, Route } from  'react-router-dom'
+
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
@@ -106,14 +106,16 @@ class PostJob extends Component {
 					<TextField
 						name='jobName'
 						hintText="Job name"
-						errorText="Required"
+						floatingLabelText="Job name"
+						errorText={!this.state.jobName ? "Required":null}
 						onChange={this.handleInputChange}
 					/>
 
 					<DatePicker
 						name='JobDate'
 						hintText="When do you want to get it done"
-						errorText="Required"
+						floatingLabelText="Get it done by "
+						errorText={!this.state.jobDate ? "Required": null}
 						value={this.state.jobDate}
 						onChange={this.handleDateChange}
 					/>
@@ -121,7 +123,8 @@ class PostJob extends Component {
 					<TextField
 						name='jobLocation'
 						hintText="Your location"
-						errorText="Required"
+						floatingLabelText="You location"
+						errorText={!this.state.jobLocation? "Required": null}
 						onChange={this.handleInputChange}
 					/>
 				</div>
@@ -132,7 +135,9 @@ class PostJob extends Component {
 					<TextField
 						name='jobPrice'
 						hintText="How much you want to pay"
-						errorText="Required"
+						floatingLabelText="Amount"
+						errorText={!this.state.jobPrice? "Required": null}
+						validations={this._mustBeNumber}
 						onChange={this.handleInputChange}
 					/>
 
