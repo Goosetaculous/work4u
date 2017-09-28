@@ -17,6 +17,7 @@ const styles = {
     gridList: {
         width: 1000,
         overflowY: 'auto',
+        padding: '2px'
     },
 };
 
@@ -40,8 +41,6 @@ class PopulateCards extends Component {
     createCard(job){
         this.getUserInfo(job.postedBy,(data)=>{
             console.log(data)
-
-
         })
         return(
             <Card>
@@ -60,6 +59,7 @@ class PopulateCards extends Component {
                 </CardActions>
             </Card>
         )
+
     }
 
     render(){
