@@ -17,9 +17,8 @@ import "./style.css"
 
 // import NavBar Login TESTING
 import Navtest from "../shared/Navtest/";
-
-//import Logo from "./logo.png"
-
+// import NavBar Login TESTING
+import AboutModal from "../AboutModal/";
 // Import of auth
 import Auth from '../../Auth/Auth';
 
@@ -39,10 +38,11 @@ class Homepage extends Component{
             <div>
                 <Navtest />
                 <div className="hook-line" >
-                    
+
                     Less Doing, More Saving
                    
-                    <FlatButton className="about-button" label="How it works" />
+                <AboutModal /> 
+                    
                     
                 </div>
                 

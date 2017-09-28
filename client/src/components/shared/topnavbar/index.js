@@ -15,8 +15,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 // import private css
 import "./style.css";
 
-//import logo
-import "./logo.png"
+
 
 const style = {
     margin: 12,

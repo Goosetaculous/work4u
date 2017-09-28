@@ -95,17 +95,13 @@ class Navtest extends Component{
         const { isAuthenticated } = auth;
         return(
             <div>
-              
                 <AppBar
-                    
                     className="white-app-bar"
                     style={{backgroundColor: 'transparent'}}
                     iconElementLeft={<img className='logo' src={image} />}
                     iconElementRight={ <Login />}
-                    
-                   
-
                 />
+                
             </div>
         )
     }
