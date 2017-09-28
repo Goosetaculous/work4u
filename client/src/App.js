@@ -8,7 +8,7 @@ import PostJob from './components/postjob';
 
 
 import Footer from './components/shared/footer'
-import Navpills from './components/shared/navpills';
+//import Navpills from './components/shared/navpills';
 import "./App.css";
 
 //Auth Imports
@@ -42,8 +42,7 @@ class App extends Component {
                 <MuiThemeProvider>
                     <Router history={history} component={App}>
                         <div>
-                            {console.log("App.js")}
-                            <Navpills/>
+
                             <Route exact path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
                             <Route exact path="/" render={(props) => (
