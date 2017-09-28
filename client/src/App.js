@@ -51,7 +51,7 @@ class App extends Component {
                                 ):(<Redirect to="/home"/>) } />
                             <Route exact path="/Jobs" render={(props) =>(
                                 auth.isAuthenticated()) ? (
-                                    <Jobs auth={auth} {...props} />
+                                    <Jobs auth={auth} {...props} history={history} />
                                 ):(<Redirect to="/home"/>) } />
 
                             <Route exact path="/profile" render={(props) =>(
