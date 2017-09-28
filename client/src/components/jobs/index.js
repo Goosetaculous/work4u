@@ -48,7 +48,7 @@ class Jobs extends Component{
                     <div style={{textAlign: "center"}}>
                         <TextField hintText="Job Keywords"/><FlatButton label="Search" primary={true}/>
                         <br/>
-                        <PopulateCards jobs={this.state.jobs} _id={this.state._id}/>
+                        <PopulateCards jobs={this.state.jobs} _id={this.state._id} history={this.props.history}/>
                     </div>
                 </Wrapper>
             </div>
