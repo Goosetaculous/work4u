@@ -100,7 +100,7 @@ var JobModelController = {
     },
     confirmAJob: function(jobId, callback) {
 
-        JobModel.update({_id: "59c863ff590bfd1f634bafc8"}, 
+        JobModel.update({_id: jobId}, 
             {$set: 
                 {
                     status: "confirmed"
@@ -127,7 +127,7 @@ var JobModelController = {
         });
     },
     cancelAJob: function(jobId, callback) {
-        User.findOneAndRemove({_id: jobId}, function(err, data) {
+        Job.findOneAndRemove({_id: jobId}, function(err, data) {
             if (err) {
                 console.log(err);
             }
@@ -158,8 +158,20 @@ var JobModelController = {
         }).then(function( data){
             console.log(data)
             res.json(data);
-        })
+        });
+    },
+    kickApplicant: (jobId, callback) => {
+        console.log("remove an applicant and mark job as INITIATED");
+        console.log(jobId);
 
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                callback(data);
+            }
+        });
     }
 }
 

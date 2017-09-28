@@ -64,7 +64,7 @@ const API = {
   },
 
   confirmPost: (job_id) => {
-    return axios.patch("/job/confirm", { job_id})
+    return axios.patch("/job/confirm", job_id)
   },
 
   findJobsByPosterId: (poster_id) => {
@@ -83,8 +83,8 @@ const API = {
     return axios.post("job/confirm", {jobId});
   },
 
-  declineApplicantById: (applicantId) => {
-    return axios.post("job/decline_application", {applicantId});
+  declineApplicantById: (jobId, applicantId) => {
+    return axios.post("job/decline_application", {jobId, applicantId});
   }
 }
 export default API;
