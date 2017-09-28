@@ -27,34 +27,20 @@ class PopulateCards extends Component {
         super()
     }
 
-    getUserInfo(id,cb){
-        API.getUser(id).then((res)=>{
-            cb({
-                name: res.data[0].given_name,
-                picture: res.data[0].picture
-            })
-        }).catch((err)=>{
-            console.log("ERR ",err)
-        })
-    }
-
     applyJob(job_id){
         console.log("userId",this.props._id)
         console.log("jobId",job_id)
-        API.applyToJob(job_id, this.props._id).then(function(res){
+        API.applyToJob(job_id, this.props._id).then((res)=>{
             console.log(res)
-            this.props.history.push("/");
-
+            this.props.history.push("/jobs");
         })
 
     }
 
     createCard(job){
-        this.getUserInfo(job.postedBy,(data)=>{
-            console.log(data)
-        })
         return(
             <Card>
+
                 <CardHeader
                     title={`${job.jobName} in ${job.location}`}
                     // avatar="images/jsa-128.jpg"

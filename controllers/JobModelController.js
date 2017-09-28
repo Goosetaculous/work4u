@@ -18,8 +18,8 @@ var JobModelController = {
     /**
      *
      * @param req.params.id - current _id of logged in user
-     * @param All jobs NOT posted by current user
-     * Query job not equal to postedBy
+     * @param All jobs NOT posted by current user and has not applied yet
+     *
      */
 
     findJobsPostedbyOthers: (req,res)=>{
