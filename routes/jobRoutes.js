@@ -118,8 +118,16 @@ router.post("/cancel_posting", (req, res)=> {
 });
 
 router.post("/decline_application", (req, res) => {
+	console.log("decline an application and mark job as initiated for applicantId");
 	let applicantId = req.body.applicantId;
+	let jobId = req.body.jobId;
+	
 	User.getKickedOffFromAJob(applicantId);
+	Job.kickApplicant(jobId, (data) => {
+		console.log("pppp");
+		console.log(data);
+		res.json(data);
+	});
 });
 
 router.post("/confirm", (req, res) => {
