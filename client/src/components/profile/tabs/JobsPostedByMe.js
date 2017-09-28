@@ -70,7 +70,7 @@ class JobsPostedByMe extends Component {
         super()
     }
 
-    componentDidMount() {
+    componentWillMount() {
         //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
         API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
             console.log("Data from findJobsByPoesterId: ");
@@ -105,10 +105,10 @@ class JobsPostedByMe extends Component {
         });
     };
 
-    declineApplicantById = (event, applicantId) => {
+    declineApplicantById = (event, jobId, applicantId) => {
         console.log("Trying to set below job confirmed.");
         console.log(applicantId);
-        API.declineApplicantById(applicantId).then((res) => {
+        API.declineApplicantById(jobId, applicantId).then((res) => {
             alert("applicant with id " + applicantId + " was declinde");
         });
     }
@@ -132,12 +132,15 @@ class JobsPostedByMe extends Component {
                                             <div>
                                                 <FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeJobByIdAndRemoveApplicationById(event, job._id, job.appliedBy)}/>
                                                 <FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} onClick={(event) => this.confirmJobById(event, job._id)}/>
-                                                <FlatButton label="Decline" backgroundColor="#F53F30" primary={true} onClick={(event) => this.declineApplicantById(event, job.appliedBy)}/>
+                                                <FlatButton label="Decline" backgroundColor="#F53F30" primary={true} onClick={(event) => this.declineApplicantById(event, job._id, job.appliedBy)}/>
                                             </div>}
                                     >
                                     </GridTile>
                         }
-                        else {
+                        else if (job.status == "confirmed") {
+                            return <div></div>;
+                        }
+                        else if (job.status == "initiated") {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"

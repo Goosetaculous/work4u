@@ -1,6 +1,7 @@
 import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
+import API from '../../../utils/API.js';
 
 const styles = {
     root: {
@@ -15,7 +16,7 @@ const styles = {
     },
 };
 
-const tilesData = [
+/*const tilesData = [
     {
         img: 'https://pixy.org/images/placeholder.png',
         title: 'Mow my Law',
@@ -58,14 +59,56 @@ const tilesData = [
         title: 'Water plant',
         author: 'BkrmadtyaKarki',
     },
-];
+];*/
 
 
+class ConfirmedJobs extends Component {
 
+    state = {jobs: []};
 
-class ActiveJobs extends Component {
     constructor(){
         super()
+    }
+
+    componentWillMount() {
+        //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
+            console.log("Data from findJobsByPoesterId: ");
+            console.log(res);
+            this.setState({jobs: res.data});
+        });
+    }
+
+    removeJobByIdAndRemoveApplicationById = (event, jobId, applicanttId) => {
+        console.log("Trying to stop posting.");
+        console.log(jobId);
+        API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
+            alert("job with id " + jobId + " was removed");
+            alert("also, applicant ")
+        });
+    };
+
+    removeOnlyJobById = (event, jobId) => {
+        console.log("Trying to stop posting.");
+        console.log(jobId);
+        API.removeOnlyJobById(jobId).then((res) => {
+            alert("job with id " + jobId + " was removed");
+            alert("also, applicant ")
+        });
+    };
+
+    makrCompleteById = (event, jobId) => {
+        console.log("Trying to set below job confirmed.");
+        console.log(jobId);
+        // TODO
+    };
+
+    declineApplicantById = (event, jobId, applicantId) => {
+        console.log("Trying to set below job confirmed.");
+        console.log(applicantId);
+        API.declineApplicantById(jobId, applicantId).then((res) => {
+            alert("applicant with id " + applicantId + " was declinde");
+        });
     }
 
     render(){
@@ -77,15 +120,22 @@ class ActiveJobs extends Component {
                     cols={4}
                     padding={3}
                 >
-                    {tilesData.map((tile) => (
-                        <GridTile
-                            title={tile.title}
-                            titlePosition="top"
-                            subtitle={tile.author}
-                            actionIcon={ <div><FlatButton label="I Am Satisfied!" backgroundColor="#F5A730" primary={true} /><FlatButton label="I Am Not Satisfied!" backgroundColor="#F5A730" primary={true} /></div>}
-                        >
-                        </GridTile>
-                    ))}
+                    {this.state.jobs.map((job) => {
+                        if (job.status == "comfirmed" ) {
+                            return <GridTile
+                                        title={job.jobName}
+                                        titlePosition="top"
+                                        subtitle={job.location}
+                                        actionIcon={
+                                                <FlatButton label="It's Done!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.makrCompleteById(event, job._id, job.appliedBy)}/>
+                                        }
+                                    >
+                                    </GridTile>
+                        }
+                        else {
+                            return <div></div>
+                        }
+                    })}
                 </GridList>
             </div>
 
@@ -94,4 +144,4 @@ class ActiveJobs extends Component {
 
 }
 
-export default ActiveJobs;
+export default ConfirmedJobs;
