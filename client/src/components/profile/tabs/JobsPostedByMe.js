@@ -70,9 +70,9 @@ class JobsPostedByMe extends Component {
         super()
     }
 
-    componentWillMount() {
+    componentDidMount() {
         //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
-        API.findJobsByPosterId(localStorage.getItem('user_id')).then((res) => {
+        API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
             console.log("Data from findJobsByPoesterId: ");
             console.log(res);
             this.setState({jobs: res.data});
