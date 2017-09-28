@@ -38,6 +38,7 @@ router.post("/findByPosterId", (req, res)=> {
 router.post("/add", (req, res)=> {
 
 	console.log("api route job/add called.");
+	console.log(req.body);
 
 
 	var jobName = req.body.jobName;
@@ -46,6 +47,9 @@ router.post("/add", (req, res)=> {
 	var jobLocation = req.body.jobLocation;
 	var jobDate = req.body.jobDate;
 	var jobPrice = req.body.jobPrice;
+
+	console.log("A1A21: ");
+	console.log(jobName);
 
 
 	Job.add(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, (data)=>{
