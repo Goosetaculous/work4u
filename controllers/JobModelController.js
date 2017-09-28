@@ -1,5 +1,5 @@
 var JobModel = require("../models/JobModel.js");
-var UserModel = require("../models/UserModel.js");
+
 
 // ORM API
 var JobModelController = {
@@ -15,6 +15,36 @@ var JobModelController = {
     		}
     	});
     },
+
+    findJobsPostedbyOthers: (req,res)=>{
+        console.log("->",req.params.id)
+        JobModel.find({
+            _id : {$ne: req.params.id}
+        },(err,data)=>{
+            res.json(data)
+        }).catch(()=>{
+            res.json(err)
+        })
+
+
+
+    },
+
+
+
+    findJobsByPosterId: function(postedId, callback) {
+        console.log("Controller: get jobs with poster " + postedId);
+        JobModel.find({postedBy: postedId}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("A2A2");
+                console.log(data);
+                callback(data);
+            }
+        });
+    },
     add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, callback) {
 
         console.log("DB controller add() called.");
@@ -24,7 +54,7 @@ var JobModelController = {
             postedBy: postedBy,
             appliedBy: "",
             status: "initiated",
-            type: jobType,
+            jobType: jobType,
             location: jobLocation,
             date: jobDate,
             price: jobPrice,
@@ -113,6 +143,21 @@ var JobModelController = {
                 callback(data);
             }
         });
+    },
+    recommended: (req,res) => {
+        console.log("=======Get Recommended Jobs Triggered======");
+        console.log(req.body.skills);
+        console.log(req.body)
+
+        JobModel.find({ 
+            jobType: {$in: req.body.skills},
+            status: "initiated",
+            postedBy:  {$ne: req.body.user_id}
+        }).then(function( data){
+            console.log(data)
+            res.json(data);
+        })
+
     }
 }
 

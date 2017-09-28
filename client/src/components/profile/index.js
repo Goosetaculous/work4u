@@ -11,9 +11,13 @@ class Profile extends Component{
     constructor() {
         super();
         this.state = {
+          user_id: localStorage.getItem('db_id'),
           test: "",
-          post_array: []
+          post_array: [],
+          skills:[],
+          _id:""
         }
+
     };
 
 
@@ -27,15 +31,22 @@ class Profile extends Component{
         } else {
             this.setState({ profile: userProfile });
         }
+
     }
 
-    test = (test) => {
-        console.log("hello from test");
-        console.log(test, this)
-        this.setState({test:test});
+    componentDidMount(){
+        API.getUser(this.state.user_id).then((res)=>{
+            console.log(res.data)
+            this.setState({
+                skills: res.data[0].skills || [],
+                _id: res.data[0]._id
+            })
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })
 
-        return 
     }
+
 
     postApplied = (job_id) =>{
         console.log("================Applied Function  ================");
@@ -60,40 +71,39 @@ class Profile extends Component{
         }); 
     }
 
+    // getUserInfo(){
+    //     API.getUser(this.state.user_id).then((res)=>{
+    //         console.log(res.data)
+    //         this.setState({
+    //             skills: res.data[0].skills || [],
+    //             _id: res.data[0]._id
+    //         })
+    //     }).catch((err)=>{
+    //         console.log("ERR ",err)
+    //     })
+    // }
 
-
-  
-    getUserId(){
-
-        console.log("===============GET USER INFO ID=================");
-        console.log("Get user ID function triggered");
-        
-        let userObject = API.getUser(localStorage.getItem('user_id'))
-        .then((res) => {
-            console.log(res.data[0]);
-            console.log("================GET USER INFO ID END================");
-        });
+    setSkills = (data)=>{
+        this.setState({
+            skills: data
+        })
     }
-
-
-
 
     render(){
         const { profile } = this.state;
-        {this.getUserId("59c86430590bfd1f634bafc9")}
-    
         return(
-
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs />
+                        <ProfileTabs
+                            skills={this.state.skills}
+                            _id={this.state._id}
+                            setSkills={this.setSkills}
+                        />
                     </div>
-
                 </Wrapper>
             </div>
-
         )
     }
 }

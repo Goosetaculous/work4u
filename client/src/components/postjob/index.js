@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import  { Redirect, Route } from  'react-router-dom'
 import SideBar from '../../components/shared/sidebar'
 import Wrapper from '../../components/shared/content'
 import DatePicker from 'material-ui/DatePicker';
@@ -8,6 +9,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+import API from "../../utils/API.js";
+
+
 const styles = {
   customWidth: {
     width: 200,
@@ -16,21 +20,21 @@ const styles = {
 
 class PostJob extends Component {
 
-	state = {jobType: {value: 1}}; // default job type
-
 	constructor(props){
 		
 		super(props);
+		this.state ={
+			jobType: "none"
+
+		}
+
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick = (event) => {
-    	event.preventDefault();
-		//alert('Your job was submitted');
-		console.log(this.state);
-		fetch('/job/add', {  
+		/*fetch('/job/add', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -38,17 +42,25 @@ class PostJob extends Component {
 			},
 			body: JSON.stringify({
 				'jobName': this.state.jobName,
-				'postedBy': localStorage.getItem('user_id'),
+				'postedBy': localStorage.getItem("db_id"),
 				'jobType': this.state.jobType,
 				'jobLocation': this.state.jobLocation,
 				'jobDate': this.state.jobDate,
 				'jobPrice': this.state.jobPrice
 			})
 		  }).then(data => data.json()).then(data => {
-			  console.log(data)
-			  window.location.reload(); // @job/goose, you guys may remove this once your parent state stuff is working
+            this.props.history.push("/profile")
+		  });*/
+		  API.addAJob({
+			'jobName': this.state.jobName,
+			'postedBy': localStorage.getItem("db_id"),
+			'jobType': this.state.jobType,
+			'jobLocation': this.state.jobLocation,
+			'jobDate': this.state.jobDate,
+			'jobPrice': this.state.jobPrice
+		  }).then((res) => {
+			  this.props.history.push("/profile");
 		  });
-		  
   	}
 	
 	handleInputChange = (event) => {
@@ -80,7 +92,9 @@ class PostJob extends Component {
 	 handleMenuChange = (event, index, value) => {
 		 console.log("Selected type of job is");
 		 console.log(value);
-		 this.setState({jobType: value});
+		 this.setState({
+		 	value: value
+		 });
 	 }
 
     componentWillMount() {
@@ -139,11 +153,12 @@ class PostJob extends Component {
 
 					<div>
 						<DropDownMenu value={this.state.jobType} onChange={this.handleMenuChange}>
-							<MenuItem value={1} primaryText="Electric" />
-							<MenuItem value={2} primaryText="Plumbing" />
-							<MenuItem value={3} primaryText="Gardening" />
-							<MenuItem value={4} primaryText="Automotive" />
-							<MenuItem value={4} primaryText="Moving" />
+							<MenuItem value={"none"} primaryText="What kind of job?" />
+							<MenuItem value={"Electic"} primaryText="Electric" />
+							<MenuItem value={"Plumbing"} primaryText="Plumbing" />
+							<MenuItem value={"Gardening"} primaryText="Gardening" />
+							<MenuItem value={"Automotive"} primaryText="Automotive" />
+							<MenuItem value={"Moving"} primaryText="Moving" />
 						</DropDownMenu>
 					</div>
 					
