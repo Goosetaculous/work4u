@@ -15,19 +15,21 @@ var JobModelController = {
     		}
     	});
     },
+    /**
+     *
+     * @param req.params.id - current _id of logged in user
+     * @param All jobs NOT posted by current user
+     * Query job not equal to postedBy
+     */
 
     findJobsPostedbyOthers: (req,res)=>{
-        console.log("->",req.params.id)
         JobModel.find({
-            _id : {$ne: req.params.id}
+            postedBy : {$ne: req.params.id}
         },(err,data)=>{
             res.json(data)
         }).catch(()=>{
             res.json(err)
         })
-
-
-
     },
 
 

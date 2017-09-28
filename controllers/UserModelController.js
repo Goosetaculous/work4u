@@ -38,6 +38,21 @@ var UserModelController = {
     },
     /**
      * @param req.params.id
+     * Return a user based on ID from the db
+     */
+
+    getuserbyId: (req, res)=> {
+        UserModel.find({
+            sub: req.params.id
+        }).then(function(doc) {
+            res.json(doc);
+        }).catch(function(err) {
+            res.json(err);
+        });
+    },
+
+    /**
+     * @param req.params.id
      * Return a user based on sub from the db
      */
     getuser: (req, res)=> {
