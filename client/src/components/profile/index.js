@@ -15,7 +15,6 @@ class Profile extends Component{
         }
     };
 
-
     componentWillMount() {
         this.setState({ profile: {} });
         const { userProfile, getProfile } = this.props.auth;
@@ -26,7 +25,6 @@ class Profile extends Component{
         } else {
             this.setState({ profile: userProfile });
         }
-
     }
 
     componentDidMount(){
@@ -40,29 +38,6 @@ class Profile extends Component{
         })
     }
 
-
-    postApplied = (job_id) =>{
-        console.log("================Applied Function  ================");
-        console.log("Post to Applied function triggered");
-
-        let user_id = localStorage.getItem('user_id');
-        API.applyToPost(user_id, job_id).then((res) => {
-            console.log(res.data[0]);
-            console.log("================Applied Function END ================");
-        });
-
-       
-    }
-
-    postConfirmed = (job_id) =>{
-        console.log("================Post Comfirmed Function  ================");
-        console.log("Post confirmed function triggered");
-
-        API.confirmPost(job_id).then((res) => {
-            console.log(res.data);
-            console.log("================Post Comfirmed Function END ================");
-        }); 
-    }
     setSkills = (data)=>{
         this.setState({
             skills: data
