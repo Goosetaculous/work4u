@@ -42,7 +42,7 @@ var UserModelController = {
      */
     getuser: (req, res)=> {
         UserModel.find({
-          _id: req.params.id
+          sub: req.params.id
         }).then(function(doc) {
           res.json(doc);
         }).catch(function(err) {

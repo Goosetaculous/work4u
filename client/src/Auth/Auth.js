@@ -58,6 +58,7 @@ export default class Auth {
         console.log(authResult.idTokenPayload)
         localStorage.setItem('user_id', authResult.idTokenPayload.sub);
         API.addUser(authResult.idTokenPayload).then((res)=>{
+            console.log("RES ",res.data._id)
             localStorage.setItem('db_id', res.data._id )
             }
         );
