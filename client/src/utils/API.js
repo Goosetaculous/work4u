@@ -22,6 +22,10 @@ const API = {
     return axios.get(`/user/${user_id}`)
   },
 
+  getUserbyId: (user_id) =>{
+     return axios.get(`/user/byid/${user_id}`)
+  },
+
   getAppliedJobs: (_id) => {
     return axios.get(`user/applied/${_id}`)
   },
