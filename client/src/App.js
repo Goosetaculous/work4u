@@ -42,7 +42,7 @@ class App extends Component {
                 <MuiThemeProvider>
                     <Router history={history} component={App}>
                         <div>
-
+                            
                             <Route exact path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
                             <Route exact path="/" render={(props) => (
