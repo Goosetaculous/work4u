@@ -89,14 +89,14 @@ class ConfirmedJobs extends Component {
         console.log("Giving good review.");
         console.log(jobId);
         API.giveGoodReview(jobId).then((res) => {
-            //
+            window.location.reload();
         });
     };
     badReview = (event, jobId) => {
         console.log("Giving bad review.");
         console.log(jobId);
         API.giveBadReview(jobId).then((res) => {
-            //
+            window.location.reload();
         });
     };
 

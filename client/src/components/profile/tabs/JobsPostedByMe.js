@@ -85,6 +85,7 @@ class JobsPostedByMe extends Component {
         API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
             alert("job with id " + jobId + " was removed");
         });
+        window.location.reload();
     };
 
     removeOnlyJobById = (event, jobId) => {
@@ -93,6 +94,7 @@ class JobsPostedByMe extends Component {
         API.removeOnlyJobById(jobId).then((res) => {
             alert("job with id " + jobId + " was removed");
         });
+        window.location.reload();
     };
 
     confirmJobById = (event, jobId) => {
@@ -101,6 +103,7 @@ class JobsPostedByMe extends Component {
         API.confirmJobById(jobId).then((res) => {
             alert("job with id " + jobId + " was confirmed");
         });
+        window.location.reload();
     };
 
     declineApplicantById = (event, jobId, applicantId) => {
@@ -109,6 +112,7 @@ class JobsPostedByMe extends Component {
         API.declineApplicantById(jobId, applicantId).then((res) => {
             alert("applicant with id " + applicantId + " was declinde");
         });
+        window.location.reload();
     }
 
     render(){
