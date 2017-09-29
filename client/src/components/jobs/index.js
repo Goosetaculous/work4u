@@ -39,7 +39,7 @@ class Jobs extends Component{
         })
     }
 
-    search(){
+    search=()=>{
         console.log("Search Bitches")
     }
 
@@ -50,7 +50,9 @@ class Jobs extends Component{
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div style={{textAlign: "center"}}>
-                        <TextField hintText="Job Keywords"/><FlatButton label="Search" primary={true} onclick={()=>this.search()}/>
+                        <TextField name='search_field' hintText="Job Keywords" />
+                        <FlatButton label="Search" primary={true} onClick={()=>this.search()}/>
+                        <FlatButton label="Reset" primary={true} onClick={()=>this.reset()}/>
                         <br/>
                         <PopulateCards jobs={this.state.jobs} _id={this.state._id} history={this.props.history}/>
                     </div>

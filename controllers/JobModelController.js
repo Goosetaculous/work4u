@@ -32,6 +32,17 @@ var JobModelController = {
             res.json(err)
         })
     },
+    /**
+     *
+     * @param req
+     * @param res
+     *
+     * Get the search term and look for it in all fields...
+     */
+
+    findJobsBySearch: (req,res)=>{
+      res.json({success:1})
+    },
 
 
 

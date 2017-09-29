@@ -34,6 +34,10 @@ const API = {
     return axios.get(`/job/get/${_id}`)
   },
 
+  getSearcjJobs:(term)=>{
+    return axios.post('/job/search', term)
+  },
+
   // call to remove applicant from post. _id is post ID.
   removeApplicant: (job_id, user_id) => {
     return axios.patch("user/removeapplicant" , { job_id, user_id})

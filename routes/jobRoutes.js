@@ -19,6 +19,9 @@ router.get("/all", (req, res)=> {
 //get all jobs NOT posted by the current user
 router.get('/get/:id', Job.findJobsPostedbyOthers)
 
+// Search a job by keyword
+router.post('/search', Job.findJobsBySearch)
+
 // add new job
 router.post("/findByPosterId", (req, res)=> {
 
