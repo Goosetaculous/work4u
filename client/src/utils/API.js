@@ -34,6 +34,11 @@ const API = {
     return axios.get(`/job/get/${_id}`)
   },
 
+  getSearchJobs:(term,id)=>{
+
+    return axios.post('/job/search', {term,id})
+  },
+
   // call to remove applicant from post. _id is post ID.
   removeApplicant: (job_id, user_id) => {
     return axios.patch("user/removeapplicant" , { job_id, user_id})
@@ -78,6 +83,7 @@ const API = {
   },
 
   removeOnlyJobById: (jobId) => {
+    console.log("API cancel job only hit");
     return axios.post("/job/cancel_posting", {jobId});
   },
 
@@ -87,6 +93,12 @@ const API = {
 
   declineApplicantById: (jobId, applicantId) => {
     return axios.post("job/decline_application", {jobId, applicantId});
+  },
+  giveGoodReview: (jobId) => {
+    return axios.post("/job/goodReview", {jobId});
+  },
+  giveBadReview: (jobId) => {
+    return axios.post("/job/badReview", {jobId});
   }
 }
 export default API;

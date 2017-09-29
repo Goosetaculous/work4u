@@ -31,8 +31,24 @@ var JobSchema = new Schema({
     },
     location: {
         type: String
+    },
+    price:{
+        type: Number,
+        set: setPrice
     }
-});
+
+},{timestamps: {
+    createdAt:"createdAt"
+}
+},{ versionKey: false });
+
+function getPrice(num){
+    return (num/100).toFixed(2)
+}
+
+function setPrice(num){
+    return parseFloat(num).toFixed(2)
+}
 
 // Create the model with the Schema
 var JobModel = mongoose.model("JobModel", JobSchema);

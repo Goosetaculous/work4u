@@ -26,12 +26,44 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            applicants: {$nin: req.params.id}
+            applicants: {$nin: [req.params.id]}
         },(err,data)=>{
             res.json(data)
-        }).catch(()=>{
+        }).catch((err)=>{
             res.json(err)
         })
+    },
+    /**
+     *
+     * @param req - term and user id
+     *
+     * Get the search term and look for it in all fields excluding stuff you posted
+     */
+
+    findJobsBySearch: (req,res)=>{
+        console.log("TEST",req.body)
+        let term = new RegExp(req.body.term, 'i')
+        console.log(term)
+        JobModel.find({
+            $and: [
+                {postedBy : {$ne: req.body.id}},
+                {applicants: {$nin: [req.body.id]}},
+                {$or: [
+                        {jobName:{$regex: term} },
+                        {location:{$regex: term}},
+                        {date:{$regex: term}}
+
+                    ]
+                }
+            ]
+        },(err,data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
+
+
+
     },
 
 
@@ -141,21 +173,14 @@ var JobModelController = {
         });
     },
     cancelAJob: function(jobId, callback) {
-        Job.findOneAndRemove({_id: jobId}, function(err, data) {
+        console.log("controller cancel a job hit");
+        console.log(jobId);
+        JobModel.findOneAndRemove({_id: jobId}, function(err, data) {
             if (err) {
                 console.log(err);
             }
             else {
-                callback(data);
-            }
-        });
-    },
-    reviewAJob: function(jobId, reviewFromJobPoster, callback) {
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "reviewed"}}, function(err, data) {
-            if (err) {
-                console.log(err);
-            }
-            else {
+                console.log("callback in controller hit");
                 callback(data);
             }
         });
@@ -192,7 +217,33 @@ var JobModelController = {
                 
             }
         });
-    }
+    },
+    goodReview: (jobId, callback) => {
+        console.log("Controller goodReview hit.");
+        console.log(jobId);
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "positiveReviewed"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("Changed status to goodReview");
+                callback(data);
+            }
+        });
+    },
+    badReview: (jobId, callback) => {
+        console.log("Controller goodReview hit.");
+        console.log(jobId);
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "negativeReviewed"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("Changed status to bddReview");
+                callback(data);
+            }
+        });
+    },
 }
 
 module.exports = JobModelController;
