@@ -8,7 +8,7 @@ import JobsPostedByMe from './JobsPostedByMe.js';
 import ConfirmedJobs from './ConfirmedJobs.js';
 import Reviews from './Reviews.js'
 
-import API from '../../../utils/API'
+//import API from '../../../utils/API'
 
 
 // import card from shared
@@ -54,7 +54,7 @@ class ProfileTabs extends Component {
     getAppliedJobs = () => {
         console.log("==================Job Applied Start====================")
         console.log(this.props._id)
-        API.getAppliedJobs(this.props._id).then((res)=>{
+        this.props.API.getAppliedJobs(this.props._id).then((res)=>{
             console.log("RES Applied: ",res)
             console.log("==================Job Applied END====================")
             this.setState({appliedJobs: res.data})
@@ -71,7 +71,7 @@ class ProfileTabs extends Component {
    getRecommendedJobs = () => {
         console.log("==================Recommeneded Job Start====================")
         console.log(this.props.skills)
-        API.getRecommendedJobs(this.props._id,this.props.skills).then((res)=>{
+       this.props.API.getRecommendedJobs(this.props._id,this.props.skills).then((res)=>{
             console.log("RES Recommended: ",res)
             console.log("==================Recommended JOb END====================")
             this.setState({recommendedJobs: res.data})
@@ -93,8 +93,8 @@ class ProfileTabs extends Component {
                            skills={this.props.skills}
                            _id ={this.props._id}
                            setSkills={this.props.setSkills}
+                           API={this.props.API}
                        />
-                        {/*<FlatButton label="Default" onClick={()=>this.props.f1("TEST")} />*/}
                     </div>
                 </Tab>
                 <Tab 

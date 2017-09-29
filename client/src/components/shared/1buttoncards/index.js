@@ -33,10 +33,7 @@ class PopulateCards extends Component {
      * applyToJob accepts job_id and user_id (object ID)
      */
     applyJob(job_id){
-        console.log("userId",this.props._id)
-        console.log("jobId",job_id)
         API.applyToJob(job_id, this.props._id).then((res)=>{
-            console.log(res)
             this.props.history.push("/profile");
         })
 
@@ -65,15 +62,13 @@ class PopulateCards extends Component {
     render(){
         return(
             <div style={styles.root}>
-                {console.log(this.props.jobs)}
-                {this.props._id}
                 <GridList
                     cellHeight={180}
                     style={styles.gridList}
                     cols={4}
                     padding={3}
                 >
-                    {this.props.jobs.map((job) => this.createCard(job) )}
+                    {this.props.jobs? this.props.jobs.map((job) => this.createCard(job) ):<div>Andy will post a job</div> }
                 </GridList>
             </div>
 

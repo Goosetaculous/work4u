@@ -39,6 +39,10 @@ class Jobs extends Component{
         })
     }
 
+    search(){
+        console.log("Search Bitches")
+    }
+
     render(){
         const { profile } = this.state;
         return(
@@ -46,7 +50,7 @@ class Jobs extends Component{
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div style={{textAlign: "center"}}>
-                        <TextField hintText="Job Keywords"/><FlatButton label="Search" primary={true}/>
+                        <TextField hintText="Job Keywords"/><FlatButton label="Search" primary={true} onclick={()=>this.search()}/>
                         <br/>
                         <PopulateCards jobs={this.state.jobs} _id={this.state._id} history={this.props.history}/>
                     </div>
