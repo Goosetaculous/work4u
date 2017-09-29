@@ -154,5 +154,15 @@ router.post("/confirm", (req, res) => {
 	});
 });
 
+router.post("/goodReview", (req, res) => {
+	Job.goodReview(req.body.jobId, (data) => {
+		res.json(data);
+	});
+});
+router.post("/badReview", (req, res) => {
+	Job.goodReview(req.body.jobId, (data) => {
+		res.json(data);
+	});
+});
 
 module.exports = router;

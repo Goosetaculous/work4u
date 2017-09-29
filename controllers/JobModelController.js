@@ -214,7 +214,27 @@ var JobModelController = {
                 
             }
         });
-    }
+    },
+    goodReview: (jobId, callback) => {
+        JobModel.findOneAndUpdate({_id: jobId}), {$set: {status: "completed"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(data);
+            }
+        }
+    },
+    badReview: (jobId, callback) => {
+        JobModel.findOneAndUpdate({_id: jobId}), {$set: {status: "failed"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(data);
+            }
+        }
+    },
 }
 
 module.exports = JobModelController;
