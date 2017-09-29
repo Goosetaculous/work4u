@@ -93,7 +93,6 @@ class JobsPostedByMe extends Component {
         console.log(jobId);
         API.removeOnlyJobById(jobId).then((res) => {
             alert("job with id " + jobId + " was removed");
-            alert("also, applicant ")
         });
     };
 
@@ -137,9 +136,6 @@ class JobsPostedByMe extends Component {
                                     >
                                     </GridTile>
                         }
-                        else if (job.status == "confirmed") {
-                            return <div></div>;
-                        }
                         else if (job.status == "initiated") {
                             return <GridTile
                                         title={job.jobName}
@@ -148,6 +144,9 @@ class JobsPostedByMe extends Component {
                                         actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
                                     >
                                     </GridTile>
+                        }
+                        else {
+                            return <div></div>;
                         }
                         
                     })}

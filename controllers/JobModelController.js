@@ -173,21 +173,14 @@ var JobModelController = {
         });
     },
     cancelAJob: function(jobId, callback) {
-        Job.findOneAndRemove({_id: jobId}, function(err, data) {
+        console.log("controller cancel a job hit");
+        console.log(jobId);
+        JobModel.findOneAndRemove({_id: jobId}, function(err, data) {
             if (err) {
                 console.log(err);
             }
             else {
-                callback(data);
-            }
-        });
-    },
-    reviewAJob: function(jobId, reviewFromJobPoster, callback) {
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "reviewed"}}, function(err, data) {
-            if (err) {
-                console.log(err);
-            }
-            else {
+                console.log("callback in controller hit");
                 callback(data);
             }
         });
@@ -226,24 +219,30 @@ var JobModelController = {
         });
     },
     goodReview: (jobId, callback) => {
-        JobModel.findOneAndUpdate({_id: jobId}), {$set: {status: "completed"}}, function(err, data) {
+        console.log("Controller goodReview hit.");
+        console.log(jobId);
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "positiveReviewed"}}, function(err, data) {
             if (err) {
                 console.log(err);
             }
             else {
-                console.log(data);
+                console.log("Changed status to goodReview");
+                callback(data);
             }
-        }
+        });
     },
     badReview: (jobId, callback) => {
-        JobModel.findOneAndUpdate({_id: jobId}), {$set: {status: "failed"}}, function(err, data) {
+        console.log("Controller goodReview hit.");
+        console.log(jobId);
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {status: "negativeReviewed"}}, function(err, data) {
             if (err) {
                 console.log(err);
             }
             else {
-                console.log(data);
+                console.log("Changed status to bddReview");
+                callback(data);
             }
-        }
+        });
     },
 }
 

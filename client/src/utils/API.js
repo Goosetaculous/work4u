@@ -83,6 +83,7 @@ const API = {
   },
 
   removeOnlyJobById: (jobId) => {
+    console.log("API cancel job only hit");
     return axios.post("/job/cancel_posting", {jobId});
   },
 
@@ -94,10 +95,10 @@ const API = {
     return axios.post("job/decline_application", {jobId, applicantId});
   },
   giveGoodReview: (jobId) => {
-    return axios.post("/job/goodReview", jobId);
+    return axios.post("/job/goodReview", {jobId});
   },
   giveBadReview: (jobId) => {
-    return axios.post("/job/badReview", jobId);
+    return axios.post("/job/badReview", {jobId});
   }
 }
 export default API;
