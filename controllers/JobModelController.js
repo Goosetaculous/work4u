@@ -25,8 +25,7 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            //appliedBy: {$ne: req.params.id}
-            status: "initiated"
+            applicants: {$nin: req.params.id}
         },(err,data)=>{
             res.json(data)
         }).catch(()=>{
@@ -87,7 +86,7 @@ var JobModelController = {
         JobModel.update({_id: jobId}, 
             { $set: 
                 { 
-                    appliedBy: applicantId, 
+                    appliedBy: applicantId,
                     status: "applied",
                     $push: {applicants: applicantId}
                 }
