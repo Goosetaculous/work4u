@@ -84,7 +84,6 @@ class JobsPostedByMe extends Component {
         console.log(jobId);
         API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
             alert("job with id " + jobId + " was removed");
-            alert("also, applicant ")
         });
     };
 
