@@ -80,9 +80,19 @@ class ConfirmedJobs extends Component {
         });
     };
 
-    makrCompleteById = (event, jobId) => {
-        console.log("Trying to set below job confirmed.");
+    goodReview = (event, jobId) => {
+        console.log("Giving good review.");
         console.log(jobId);
+        API.giveGoodReview(jobId).then((res) => {
+            //
+        });
+    };
+    badReview = (event, jobId) => {
+        console.log("Giving bad review.");
+        console.log(jobId);
+        API.giveBadReview(jobId).then((res) => {
+            //
+        });
     };
 
     render(){
@@ -101,7 +111,10 @@ class ConfirmedJobs extends Component {
                                         titlePosition="top"
                                         subtitle={job.location}
                                         actionIcon={
-                                                <FlatButton label="It's Done!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.makrCompleteById(event, job._id, job.appliedBy)}/>
+                                            <div>
+                                                <FlatButton label="Give Good Review" backgroundColor="#30F57B" primary={true} onClick={(event) => this.goodReview(event, job._id)}/>
+                                                <FlatButton label="Give Bad Review!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.badReview(event, job._id)}/>
+                                            </div>
                                         }
                                     >
                                     </GridTile>
