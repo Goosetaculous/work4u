@@ -132,7 +132,12 @@ router.post("/cancel_posting_and_applicant", (req, res)=> {
 });
 
 router.post("/cancel_posting", (req, res)=> {
+	console.log("API route cancel_posting hit");
+	console.log("job is id ");
+	console.log(req.body.jobId)
 	Job.cancelAJob(req.body.jobId, (data)=>{
+		console.log("cancel posting finished");
+		console.log(data);
 		res.json(data)
 	});
 });
@@ -155,12 +160,16 @@ router.post("/confirm", (req, res) => {
 });
 
 router.post("/goodReview", (req, res) => {
+	console.log("API route goodReview hit.");
+	console.log(req.body.jobId);
 	Job.goodReview(req.body.jobId, (data) => {
 		res.json(data);
 	});
 });
 router.post("/badReview", (req, res) => {
-	Job.goodReview(req.body.jobId, (data) => {
+	console.log("API route badReview hit.");
+	console.log(req.body.jobId);
+	Job.badReview(req.body.jobId, (data) => {
 		res.json(data);
 	});
 });

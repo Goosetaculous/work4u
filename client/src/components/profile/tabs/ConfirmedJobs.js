@@ -72,10 +72,15 @@ class ConfirmedJobs extends Component {
 
     componentWillMount() {
         //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
-        API.findJobsConfirmedByMe(localStorage.getItem('db_id')).then((res) => {
+        /*API.findJobsConfirmedByMe(localStorage.getItem('db_id')).then((res) => {
             console.log("Data from findJobsConfirmedByMe for user " + localStorage.getItem('db_id'));
             console.log(res.data);
             //console.log(res.data[0]);
+            this.setState({jobs: res.data});
+        });*/
+        API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
+            console.log("Data from findJobsByPoesterId: ");
+            console.log(res);
             this.setState({jobs: res.data});
         });
     };
