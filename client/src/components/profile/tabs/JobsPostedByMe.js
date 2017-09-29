@@ -107,12 +107,13 @@ class JobsPostedByMe extends Component {
     };
 
     declineApplicantById = (event, jobId, applicantId) => {
-        console.log("Trying to set below job confirmed.");
+        console.log("declining a job.");
         console.log(applicantId);
         API.declineApplicantById(jobId, applicantId).then((res) => {
-            alert("applicant with id " + applicantId + " was declinde");
+            window.location.reload();
+
         });
-        window.location.reload();
+        //window.location.reload();
     }
 
     render(){

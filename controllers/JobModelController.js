@@ -26,7 +26,10 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            applicants: {$nin: [req.params.id]}
+            $and:[
+                    { applicants: {$nin: [req.params.id]} },
+                    {declined: {$nin: [req.params.id]} }
+                ]
         },(err,data)=>{
             res.json(data)
         }).catch((err)=>{
@@ -34,9 +37,7 @@ var JobModelController = {
         })
     },
     /**
-     *
      * @param req - term and user id
-     *
      * Get the search term and look for it in all fields excluding stuff you posted
      */
 
@@ -47,7 +48,14 @@ var JobModelController = {
         JobModel.find({
             $and: [
                 {postedBy : {$ne: req.body.id}},
-                {applicants: {$nin: [req.body.id]}},
+
+                {$and:[
+                    {applicants: {$nin: [req.body.id]}},
+                    {declined: {$nin: [req.body.id]}},
+
+                ] },
+
+
                 {$or: [
                         {jobName:{$regex: term} },
                         {location:{$regex: term}},
@@ -116,7 +124,7 @@ var JobModelController = {
         console.log(jobId);
         console.log(applicantId);
 
-        JobModel.update({_id: jobId}, 
+        JobModel.update({_id: jobId},
             { $set: 
                 { 
                     appliedBy: applicantId,
@@ -200,10 +208,11 @@ var JobModelController = {
         });
     },
     kickApplicant: (jobId, applicantId, callback) => {
-        console.log("remove an applicant and mark job as INITIATED");
-        console.log(jobId);
-
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated",$push: {declined: applicantId}}}, function(err, data) {
+        JobModel.findByIdAndUpdate(jobId, {
+                appliedBy: "",
+                status: "initiated",
+                $push: { declined: applicantId},
+            }, (err, data)=> {
             if (err) {
                 console.log(err);
             }
@@ -212,9 +221,15 @@ var JobModelController = {
                     {_id: applicantId},
                     {$pull: { jobsThisUserApplied: jobId} })
                 .then(function(doc) {
-                    callback(data);
+                    JobModel.update(
+                        {_id: applicantId},
+                        {$pull: { applicants: applicantId} }
+                    )
+                    .then(()=>{
+                        callback(data);
+                    })
+
                 });
-                
             }
         });
     },

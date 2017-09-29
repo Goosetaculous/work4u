@@ -112,7 +112,6 @@ var UserModelController = {
             {$set: {skills: req.body.skillarray.skillarray }},
             req.body
         ).then(function(doc) {
-            console.log("SUCCESS BITCHES")
             res.json(doc);
         }).catch(function(err) {
             res.json(err);
@@ -175,16 +174,7 @@ var UserModelController = {
     },
 
     apply: (req, res) => {
-
-        console.log("=====================================")
-        console.log("Apply function controller triggered")
-        console.log("=====================================")
-        console.log("user id: " + req.body.user_id)
-        console.log("job id: " + req.body.job_id)
         let job_id = mongoose.Types.ObjectId(req.body.job_id)
-        // console.log("\n")
-        // console.log("BODY", req.body)
-        // console.log("\n")
 
         JobModel.findByIdAndUpdate(req.body.job_id,{
             appliedBy: req.body.user_id,

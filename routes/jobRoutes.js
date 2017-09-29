@@ -148,8 +148,7 @@ router.post("/decline_application", (req, res) => {
 	let jobId = req.body.jobId;
 	
 	Job.kickApplicant(jobId, applicantId, (data) => {
-		console.log("pppp");
-		console.log(data);
+		res.json(data)
 	});
 });
 
