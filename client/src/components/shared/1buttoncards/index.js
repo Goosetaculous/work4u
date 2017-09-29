@@ -25,14 +25,19 @@ const styles = {
 class PopulateCards extends Component {
     constructor(){
         super()
+        this.state={
+            applied: true
+        }
     }
 
+    /**
+     *
+     * @param job_id
+     * applyToJob accepts job_id and user_id (object ID)
+     */
     applyJob(job_id){
-        console.log("userId",this.props._id)
-        console.log("jobId",job_id)
         API.applyToJob(job_id, this.props._id).then((res)=>{
-            console.log(res)
-            this.props.history.push("/jobs");
+            this.props.history.push("/profile");
         })
 
     }
@@ -60,15 +65,13 @@ class PopulateCards extends Component {
     render(){
         return(
             <div style={styles.root}>
-                {console.log(this.props.jobs)}
-                {this.props._id}
                 <GridList
                     cellHeight={180}
                     style={styles.gridList}
                     cols={4}
                     padding={3}
                 >
-                    {this.props.jobs.map((job) => this.createCard(job) )}
+                    {this.props.jobs.length > 0? this.props.jobs.map((job) => this.createCard(job) ):<div>No Jobs found</div> }
                 </GridList>
             </div>
 

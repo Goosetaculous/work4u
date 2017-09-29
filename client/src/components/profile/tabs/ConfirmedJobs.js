@@ -72,44 +72,28 @@ class ConfirmedJobs extends Component {
 
     componentWillMount() {
         //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
-        API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
-            console.log("Data from findJobsByPoesterId: ");
-            console.log(res);
+        API.findJobsConfirmedByMe(localStorage.getItem('db_id')).then((res) => {
+            console.log("Data from findJobsConfirmedByMe for user " + localStorage.getItem('db_id'));
+            console.log(res.data);
+            //console.log(res.data[0]);
             this.setState({jobs: res.data});
         });
-    }
-
-    removeJobByIdAndRemoveApplicationById = (event, jobId, applicanttId) => {
-        console.log("Trying to stop posting.");
-        console.log(jobId);
-        API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
-            alert("job with id " + jobId + " was removed");
-            alert("also, applicant ")
-        });
     };
 
-    removeOnlyJobById = (event, jobId) => {
-        console.log("Trying to stop posting.");
+    goodReview = (event, jobId) => {
+        console.log("Giving good review.");
         console.log(jobId);
-        API.removeOnlyJobById(jobId).then((res) => {
-            alert("job with id " + jobId + " was removed");
-            alert("also, applicant ")
+        API.giveGoodReview(jobId).then((res) => {
+            //
         });
     };
-
-    makrCompleteById = (event, jobId) => {
-        console.log("Trying to set below job confirmed.");
+    badReview = (event, jobId) => {
+        console.log("Giving bad review.");
         console.log(jobId);
-        // TODO
-    };
-
-    declineApplicantById = (event, jobId, applicantId) => {
-        console.log("Trying to set below job confirmed.");
-        console.log(applicantId);
-        API.declineApplicantById(jobId, applicantId).then((res) => {
-            alert("applicant with id " + applicantId + " was declinde");
+        API.giveBadReview(jobId).then((res) => {
+            //
         });
-    }
+    };
 
     render(){
         return(
@@ -121,13 +105,16 @@ class ConfirmedJobs extends Component {
                     padding={3}
                 >
                     {this.state.jobs.map((job) => {
-                        if (job.status == "comfirmed" ) {
+                        if (job.status == "confirmed" ) {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
                                         subtitle={job.location}
                                         actionIcon={
-                                                <FlatButton label="It's Done!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.makrCompleteById(event, job._id, job.appliedBy)}/>
+                                            <div>
+                                                <FlatButton label="Give Good Review" backgroundColor="#30F57B" primary={true} onClick={(event) => this.goodReview(event, job._id)}/>
+                                                <FlatButton label="Give Bad Review!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.badReview(event, job._id)}/>
+                                            </div>
                                         }
                                     >
                                     </GridTile>

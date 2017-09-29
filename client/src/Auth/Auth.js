@@ -12,7 +12,7 @@ export default class Auth {
         redirectUri: AUTH_CONFIG.callbackUrl,
         audience: `https://${AUTH_CONFIG.domain}/userinfo`,
         responseType: 'token id_token',
-        scope: 'openid profile'
+        scope: 'openid profile email'
     });
 
     userProfile;
@@ -53,17 +53,14 @@ export default class Auth {
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
-
-        // Non authO native code. Added to relay user data to db
         console.log(authResult.idTokenPayload)
+        // Non authO native code. Added to relay user data to db
+        //console.log(authResult.idTokenPayload)
         localStorage.setItem('user_id', authResult.idTokenPayload.sub);
         API.addUser(authResult.idTokenPayload).then((res)=>{
-            console.log("RES ",res.data._id)
             localStorage.setItem('db_id', res.data._id )
             }
         );
-
-
         // navigate to the home route
         history.replace('/');
     }

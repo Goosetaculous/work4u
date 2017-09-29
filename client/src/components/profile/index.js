@@ -55,6 +55,7 @@ class Profile extends Component{
                             skills={this.state.skills}
                             _id={this.state._id}
                             setSkills={this.setSkills}
+                            API={API}
                         />
                     </div>
                 </Wrapper>

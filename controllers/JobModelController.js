@@ -1,3 +1,4 @@
+var UserModel = require("../models/UserModel.js");
 var JobModel = require("../models/JobModel.js");
 
 
@@ -25,13 +26,44 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            //appliedBy: {$ne: req.params.id}
-            status: "initiated"
+            applicants: {$nin: [req.params.id]}
         },(err,data)=>{
             res.json(data)
-        }).catch(()=>{
+        }).catch((err)=>{
             res.json(err)
         })
+    },
+    /**
+     *
+     * @param req - term and user id
+     *
+     * Get the search term and look for it in all fields excluding stuff you posted
+     */
+
+    findJobsBySearch: (req,res)=>{
+        console.log("TEST",req.body)
+        let term = new RegExp(req.body.term, 'i')
+        console.log(term)
+        JobModel.find({
+            $and: [
+                {postedBy : {$ne: req.body.id}},
+                {applicants: {$nin: [req.body.id]}},
+                {$or: [
+                        {jobName:{$regex: term} },
+                        {location:{$regex: term}},
+                        {date:{$regex: term}}
+
+                    ]
+                }
+            ]
+        },(err,data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
+
+
+
     },
 
 
@@ -87,7 +119,7 @@ var JobModelController = {
         JobModel.update({_id: jobId}, 
             { $set: 
                 { 
-                    appliedBy: applicantId, 
+                    appliedBy: applicantId,
                     status: "applied",
                     $push: {applicants: applicantId}
                 }
@@ -117,6 +149,17 @@ var JobModelController = {
                 callback(data);
             }
         });
+    },
+    findJobsConfirmedByMe: function(poster_id, callback) {
+        console.log("Job controller tries to find confirmed jobs for " + poster_id);
+        JobModel.find({postedBy: poster_id, status: "confirmed"}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                callback(data);
+            }
+        })
     },
 
     reviewAJob: function(jobId, reviewFromJobPoster, callback) {
@@ -163,7 +206,7 @@ var JobModelController = {
             res.json(data);
         });
     },
-    kickApplicant: (jobId, callback) => {
+    kickApplicant: (jobId, applicantId, callback) => {
         console.log("remove an applicant and mark job as INITIATED");
         console.log(jobId);
 
@@ -172,10 +215,36 @@ var JobModelController = {
                 console.log(err);
             }
             else {
-                callback(data);
+                UserModel.update(
+                    {_id: applicantId},
+                    {$pull: { jobsThisUserApplied: jobId} })
+                .then(function(doc) {
+                    callback(data);
+                });
+                
             }
         });
-    }
+    },
+    goodReview: (jobId, callback) => {
+        JobModel.findOneAndUpdate({_id: jobId}), {$set: {status: "completed"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(data);
+            }
+        }
+    },
+    badReview: (jobId, callback) => {
+        JobModel.findOneAndUpdate({_id: jobId}), {$set: {status: "failed"}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(data);
+            }
+        }
+    },
 }
 
 module.exports = JobModelController;
