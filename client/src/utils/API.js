@@ -43,12 +43,6 @@ const API = {
     return axios.patch("user/apply", {job_id, user_id})
   },
 
-  applyToJob: (job_id, user_id) => {
-    return axios.patch("user/apply", {job_id, user_id})
-  },
-
-
-
 
   //==============================
   //  POSTS ROUTES

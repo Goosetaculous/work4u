@@ -24,7 +24,9 @@ var JobModelController = {
 
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
-            postedBy : {$ne: req.params.id}
+            postedBy : {$ne: req.params.id},
+            //appliedBy: {$ne: req.params.id}
+            status: "initiated"
         },(err,data)=>{
             res.json(data)
         }).catch(()=>{
@@ -86,7 +88,8 @@ var JobModelController = {
             { $set: 
                 { 
                     appliedBy: applicantId, 
-                    status: "applied"
+                    status: "applied",
+                    $push: {applicants: applicantId}
                 }
             }, 
             function(err, data) {
