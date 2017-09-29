@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import Checkbox from 'material-ui/Checkbox';
 import FlatButton from 'material-ui/FlatButton';
 
-// import Routes/API
-import API from '../../../utils/API'
-
 const SKILLS = ['Electric','Plumbing','Gardening','Automotive','Moving']
 
 const styles = {
@@ -39,7 +36,6 @@ class Profile extends Component {
                 ? this.state.checkedValues.filter(c => c !== checkedSkill)
                 : [...state.checkedValues, checkedSkill]
         }));
-
     }
 
     renderCheckbox(skill){
@@ -55,7 +51,7 @@ class Profile extends Component {
     }
 
     handleSave(){
-        API.addSkillArray({
+        this.props.API.addSkillArray({
             user_id : this.props._id,
             skillarray: this.state.checkedValues
         })

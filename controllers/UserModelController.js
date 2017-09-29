@@ -182,15 +182,27 @@ var UserModelController = {
         console.log("user id: " + req.body.user_id)
         console.log("job id: " + req.body.job_id)
         let job_id = mongoose.Types.ObjectId(req.body.job_id)
+        // console.log("\n")
+        // console.log("BODY", req.body)
+        // console.log("\n")
 
-        JobModel.update(
-            {_id: req.body.job_id},
-            {$set: {appliedBy: req.body.user_id, status: "applied" }},
-            req.body)
-        .then(function(doc){
-            res.json(doc)  
-            console.log(doc)
+        JobModel.findByIdAndUpdate(req.body.job_id,{
+            appliedBy: req.body.user_id,
+            status: "applied",
+            $push: {applicants: req.body.user_id}
+        }).then((doc)=>{
+            res.json(doc)
         })
+
+        // JobModel.update(
+        //     {_id: req.body.job_id},
+        //     {$set: {appliedBy: req.body.user_id, status: "applied",$push: {applicants: req.body.user_id}} },
+        //    // {$push: {applicants: req.body.user_id}},
+        //     req.body)
+        // .then(function(doc){
+        //     res.json(doc)
+        //     console.log(doc)
+        // })
 
         UserModel.update(
             {_id: req.body.user_id},
