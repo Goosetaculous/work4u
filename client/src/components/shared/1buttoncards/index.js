@@ -25,6 +25,9 @@ const styles = {
 class PopulateCards extends Component {
     constructor(){
         super()
+        this.state={
+            applied: true
+        }
     }
 
     /**

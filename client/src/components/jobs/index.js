@@ -74,8 +74,6 @@ class Jobs extends Component{
                 this.setState({
                     jobs: res.data
                 })
-                console.log("WOHOO")
-
             })
 
         }

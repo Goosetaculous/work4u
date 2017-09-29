@@ -86,7 +86,7 @@ class ProfileTabs extends Component {
         {this.props.jobsdata}
         return(
             
-            <Tabs initialSelectedIndex = {-1}>
+            <Tabs initialSelectedIndex = {0}>
                 <Tab label="My Skills" >
                     <div>
                        <Profile
