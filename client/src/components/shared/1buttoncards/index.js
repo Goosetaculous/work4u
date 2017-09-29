@@ -27,12 +27,17 @@ class PopulateCards extends Component {
         super()
     }
 
+    /**
+     *
+     * @param job_id
+     * applyToJob accepts job_id and user_id (object ID)
+     */
     applyJob(job_id){
         console.log("userId",this.props._id)
         console.log("jobId",job_id)
         API.applyToJob(job_id, this.props._id).then((res)=>{
             console.log(res)
-            this.props.history.push("/jobs");
+            this.props.history.push("/profile");
         })
 
     }
