@@ -34,10 +34,13 @@ var JobSchema = new Schema({
     },
     price:{
         type: Number,
-
         set: setPrice
     }
-});
+
+},{timestamps: {
+    createdAt:"createdAt"
+}
+},{ versionKey: false });
 
 function getPrice(num){
     return (num/100).toFixed(2)
