@@ -52,7 +52,7 @@ class Jobs extends Component{
     }
 
     search=()=>{
-        API.getSearchJobs(this.state.term).then((res)=>{
+        API.getSearchJobs(this.state.term,this.state._id).then((res)=>{
             console.log(res)
             this.setState({
                 jobs: res.data

@@ -44,17 +44,21 @@ var JobModelController = {
      */
 
     findJobsBySearch: (req,res)=>{
-
+        console.log("TEST",req.body)
         let term = new RegExp(req.body.term, 'i')
         JobModel.find({
-            $or:
-            [
-                {jobName:{$regex: term} },
-                {location:{$regex: term}},
-                {date:{$regex: term}}
-
-
-            ]},(err,data)=>{
+            $and: [
+                {postedBy : {$ne: req.body.id}},
+                {applicants: {$nin: [req.body.id]}},
+                {$or: [
+                        {jobName:{$regex: term} },
+                        {location:{$regex: term}},
+                        {date:{$regex: term}},
+                        {price:{$regex: term}}
+                    ]
+                }
+            ]
+        },(err,data)=>{
             res.json(data)
         }).catch((err)=>{
             res.json(err)
