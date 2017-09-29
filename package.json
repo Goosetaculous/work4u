@@ -9,6 +9,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "auth0-lock": "^10.22.0",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.0",
     "cookie-parser": "^1.4.3",
@@ -18,6 +19,8 @@
     "morgan": "^1.9.0",
     "nodemon": "^1.12.1",
     "path": "^0.12.7",
+    "react-dropzone-s3-uploader": "^1.1.0",
+    "react-s3-uploader": "^4.5.0",
     "serve-favicon": "^2.4.5"
   },
   "description": "* https://daveceddia.com/create-react-app-express-backend/ * https://daveceddia.com/create-react-app-express-production/ * Changed app.listens * Removed the second router js file * Added Heroku port configuration * Added Mongoose directory “models” and the data App.js tries to get. * Added Heroku mongoose configuration * Changed app.js to server.js * Installed module \"concurrently\" (not needed) * Changed top level package.json so it concurrently run two servers (not needed) * Changed top level package.json so it has post Heroku script * Changed route.js to handle \"*\" so it points to client/build/index.html * Changed server.js to make \"build\" static and public * Installed module \"react-materialize\", changed index.html and App.js to include materialize CSS",
