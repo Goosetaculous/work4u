@@ -203,7 +203,7 @@ var JobModelController = {
         console.log("remove an applicant and mark job as INITIATED");
         console.log(jobId);
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated"}}, function(err, data) {
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated",$push: {declined: applicantId}}}, function(err, data) {
             if (err) {
                 console.log(err);
             }
