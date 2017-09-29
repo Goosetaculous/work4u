@@ -55,18 +55,12 @@ export default class Auth {
         localStorage.setItem('expires_at', expiresAt);
         console.log(authResult.idTokenPayload)
         // Non authO native code. Added to relay user data to db
-        console.log(authResult.idTokenPayload)
+        //console.log(authResult.idTokenPayload)
         localStorage.setItem('user_id', authResult.idTokenPayload.sub);
         API.addUser(authResult.idTokenPayload).then((res)=>{
-            console.log("RES ",res.data._id)
             localStorage.setItem('db_id', res.data._id )
             }
         );
-
-
-
-
-
         // navigate to the home route
         history.replace('/');
     }

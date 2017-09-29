@@ -26,12 +26,44 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            applicants: {$nin: req.params.id}
+            applicants: {$nin: [req.params.id]}
         },(err,data)=>{
             res.json(data)
-        }).catch(()=>{
+        }).catch((err)=>{
             res.json(err)
         })
+    },
+    /**
+     *
+     * @param req - term and user id
+     *
+     * Get the search term and look for it in all fields excluding stuff you posted
+     */
+
+    findJobsBySearch: (req,res)=>{
+        console.log("TEST",req.body)
+        let term = new RegExp(req.body.term, 'i')
+        console.log(term)
+        JobModel.find({
+            $and: [
+                {postedBy : {$ne: req.body.id}},
+                {applicants: {$nin: [req.body.id]}},
+                {$or: [
+                        {jobName:{$regex: term} },
+                        {location:{$regex: term}},
+                        {date:{$regex: term}}
+
+                    ]
+                }
+            ]
+        },(err,data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
+
+
+
     },
 
 

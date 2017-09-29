@@ -15,7 +15,7 @@
     "react-dropzone-s3-uploader": "^1.1.0",
     "react-router-dom": "^4.2.2",
     "react-s3-uploader": "^4.5.0",
-    "react-scripts": "^1.0.12",
+    "react-scripts": "^1.0.14",
     "redux": "^3.7.2"
   },
   "scripts": {
