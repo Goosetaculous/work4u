@@ -15,7 +15,8 @@ class Jobs extends Component{
     constructor(){
         super()
         this.state={
-            jobs:[]
+            jobs:[],
+            term:""
         }
     }
     componentWillMount() {
@@ -30,7 +31,14 @@ class Jobs extends Component{
         }
     }
 
-    componentDidMount(){
+    handleInputChange=(event)=>{
+        this.setState({
+            term: event.target.value
+        })
+
+    }
+
+    allJobs(){
         API.getAllJobs(localStorage.getItem("db_id")).then((res)=>{
             this.setState({
                 jobs: res.data,
@@ -39,8 +47,23 @@ class Jobs extends Component{
         })
     }
 
+    componentDidMount(){
+        this.allJobs()
+    }
+
     search=()=>{
-        console.log("Search Bitches")
+        API.getSearchJobs(this.state.term).then((res)=>{
+            console.log(res)
+            console.log("WOHOO")
+
+        })
+    }
+
+    reset=()=>{
+        this.setState({
+            term:""
+        })
+        this.allJobs()
     }
 
     render(){
@@ -50,7 +73,7 @@ class Jobs extends Component{
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div style={{textAlign: "center"}}>
-                        <TextField name='search_field' hintText="Job Keywords" />
+                        <TextField name='search_field' hintText="Job Keywords" value={this.state.term} onChange={this.handleInputChange} />
                         <FlatButton label="Search" primary={true} onClick={()=>this.search()}/>
                         <FlatButton label="Reset" primary={true} onClick={()=>this.reset()}/>
                         <br/>

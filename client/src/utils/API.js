@@ -34,7 +34,7 @@ const API = {
     return axios.get(`/job/get/${_id}`)
   },
 
-  getSearcjJobs:(term)=>{
+  getSearchJobs:(term)=>{
     return axios.post('/job/search', term)
   },
 

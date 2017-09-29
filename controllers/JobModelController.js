@@ -29,7 +29,7 @@ var JobModelController = {
             applicants: {$nin: req.params.id}
         },(err,data)=>{
             res.json(data)
-        }).catch(()=>{
+        }).catch((err)=>{
             res.json(err)
         })
     },
@@ -42,7 +42,18 @@ var JobModelController = {
      */
 
     findJobsBySearch: (req,res)=>{
-      res.json({success:1})
+        console.log("TERM: ",req.body)
+        // JobModel.find({
+        //     jobName: new RegExp(req.body.term, 'i')
+        //
+        // },(err,data)=>{
+        //     res.json(data)
+        // }).catch((err)=>{
+        //     res.json(err)
+        // })
+        res.json({success:1})
+
+
     },
 
 
