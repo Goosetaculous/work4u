@@ -7,6 +7,13 @@ import Auth from '../../../Auth/Auth';
 //Auth Constant
 const auth = new Auth();
 
+const cardStyle = {
+    display: 'block',
+    width: '100%',
+    backgroundColor: 'purple500',
+    height: '100%'
+}
+
 
 class SideBar extends Component{
     constructor(){
@@ -16,9 +23,9 @@ class SideBar extends Component{
     render(){
 
         return (
-            <div style={{paddingRight:"10px", marginTop:"1px",width:"20%"}}>
+            <div style={{paddingRight:"10px", marginTop:"1px",width:"30%", height: "350px"}}>
 
-                <Card>
+                <Card style={cardStyle}>
                     <CardHeader
                         title={this.props.given_name}
                         subtitle={this.props.family_name}

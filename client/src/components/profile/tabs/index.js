@@ -19,7 +19,7 @@ const styles = {
         fontSize: 24,
         paddingTop: 16,
         marginBottom: 12,
-        fontWeight: 400,
+        fontWeight: 400,      
     },
 };
 
@@ -138,12 +138,7 @@ class ProfileTabs extends Component {
                         <ConfirmedJobs />
                     </div>
                 </Tab>
-                <Tab label="Reviews" >
-                    <div>
-                        <h2 style={styles.headline}>Reviews</h2>
-                        <Reviews />
-                    </div>
-                </Tab>
+                
             </Tabs>
         )
     }
