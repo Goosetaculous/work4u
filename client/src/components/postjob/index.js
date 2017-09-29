@@ -11,6 +11,9 @@ import MenuItem from 'material-ui/MenuItem';
 
 import API from "../../utils/API.js";
 
+//Image uploader to S3
+import S3Uploader from "../S3uploader/index.js"
+
 
 const styles = {
   customWidth: {
@@ -150,6 +153,9 @@ class PostJob extends Component {
 							<MenuItem value={"Automotive"} primaryText="Automotive" />
 							<MenuItem value={"Moving"} primaryText="Moving" />
 						</DropDownMenu>
+					</div>
+					<div>
+						<S3Uploader/>
 					</div>
 					
 					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>

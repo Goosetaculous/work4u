@@ -13,6 +13,15 @@ router.use("/user", userRoutes);
 router.use("/job", jobRoutes);
 
 
+
+// app.use('/s3', require('react-dropzone-s3-uploader/s3router')({
+//   bucket: 'work4u',                           // required
+//   region: 'us-west-1',                            // optional
+//   headers: {'Access-Control-Allow-Origin': '*'},  // optional
+//   ACL: 'public-read',                                 // this is the default - set to `public-read` to let anyone view uploads
+// }));
+
+
 // Otherwise send all other requests the index.html page
 // React router will handle routing withing the app
 router.get("*", function(req, res) {
