@@ -54,6 +54,9 @@ class Jobs extends Component{
     search=()=>{
         API.getSearchJobs(this.state.term).then((res)=>{
             console.log(res)
+            this.setState({
+                jobs: res.data
+            })
             console.log("WOHOO")
 
         })

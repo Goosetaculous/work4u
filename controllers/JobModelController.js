@@ -24,10 +24,12 @@ var JobModelController = {
      */
 
     findJobsPostedbyOthers: (req,res)=>{
+        console.log(req.params.id)
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            applicants: {$nin: req.params.id}
+            applicants: {$nin: [req.params.id]}
         },(err,data)=>{
+            console.log(data)
             res.json(data)
         }).catch((err)=>{
             res.json(err)
@@ -42,16 +44,22 @@ var JobModelController = {
      */
 
     findJobsBySearch: (req,res)=>{
-        console.log("TERM: ",req.body)
-        // JobModel.find({
-        //     jobName: new RegExp(req.body.term, 'i')
-        //
-        // },(err,data)=>{
-        //     res.json(data)
-        // }).catch((err)=>{
-        //     res.json(err)
-        // })
-        res.json({success:1})
+
+        let term = new RegExp(req.body.term, 'i')
+        JobModel.find({
+            $or:
+            [
+                {jobName:{$regex: term} },
+                {location:{$regex: term}},
+                {date:{$regex: term}}
+
+
+            ]},(err,data)=>{
+            res.json(data)
+        }).catch((err)=>{
+            res.json(err)
+        })
+
 
 
     },

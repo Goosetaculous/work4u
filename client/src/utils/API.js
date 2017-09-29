@@ -35,7 +35,7 @@ const API = {
   },
 
   getSearchJobs:(term)=>{
-    return axios.post('/job/search', term)
+    return axios.post('/job/search', {term})
   },
 
   // call to remove applicant from post. _id is post ID.
