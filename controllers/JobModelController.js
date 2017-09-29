@@ -1,3 +1,4 @@
+var UserModel = require("../models/UserModel.js");
 var JobModel = require("../models/JobModel.js");
 
 
@@ -117,6 +118,17 @@ var JobModelController = {
             }
         });
     },
+    findJobsConfirmedByMe: function(poster_id, callback) {
+        console.log("Job controller tries to find confirmed jobs for " + poster_id);
+        JobModel.find({postedBy: poster_id, status: "confirmed"}, function(err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                callback(data);
+            }
+        })
+    },
 
     reviewAJob: function(jobId, reviewFromJobPoster, callback) {
         JobModel.findOneAndUpdate({_id: jobId}, {$set: {reviewFromJobPoster: reviewFromJobPoster}}, function(err, data) {
@@ -162,7 +174,7 @@ var JobModelController = {
             res.json(data);
         });
     },
-    kickApplicant: (jobId, callback) => {
+    kickApplicant: (jobId, applicantId, callback) => {
         console.log("remove an applicant and mark job as INITIATED");
         console.log(jobId);
 
@@ -171,7 +183,13 @@ var JobModelController = {
                 console.log(err);
             }
             else {
-                callback(data);
+                UserModel.update(
+                    {_id: applicantId},
+                    {$pull: { jobsThisUserApplied: jobId} })
+                .then(function(doc) {
+                    callback(data);
+                });
+                
             }
         });
     }

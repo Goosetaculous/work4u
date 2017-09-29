@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var path = require("path");
 var Job = require("../controllers/JobModelController.js");
+var User = require("../controllers/UserModelController.js");
 
 
 // collect all job data
@@ -24,11 +25,27 @@ router.post("/findByPosterId", (req, res)=> {
 
 	console.log("api route job/findByPosterId called.");
 
-	console.log("poster id is " + req.body.user_id);
+	console.log("poster id is " + req.body.poster_id);
 
 	Job.findJobsByPosterId(req.body.poster_id, (data) => {
 		console.log("Found some");
 		console.log("Obj in job route ");
+		console.log(data);
+		res.json(data);
+	});
+});
+
+// add new job
+router.post("/findJobsConfirmedByMe", (req, res)=> {
+
+	console.log("api route job/findJobsConfirmedByMe called.");
+	console.log("api route job/findJobsConfirmedByMe called.");
+	console.log("api route job/findJobsConfirmedByMe called.");
+	console.log(req.body);
+	console.log("poster id is " + req.body.poster_id);
+
+	Job.findJobsConfirmedByMe(req.body.poster_id, (data) => {
+		console.log("Data from controller received by router");
 		console.log(data);
 		res.json(data);
 	});
@@ -122,11 +139,9 @@ router.post("/decline_application", (req, res) => {
 	let applicantId = req.body.applicantId;
 	let jobId = req.body.jobId;
 	
-	User.getKickedOffFromAJob(applicantId);
-	Job.kickApplicant(jobId, (data) => {
+	Job.kickApplicant(jobId, applicantId, (data) => {
 		console.log("pppp");
 		console.log(data);
-		res.json(data);
 	});
 });
 
