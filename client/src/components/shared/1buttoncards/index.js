@@ -45,17 +45,13 @@ class PopulateCards extends Component {
     createCard(job){
         return(
             <Card>
-
-                <CardHeader
-                    title={`${job.jobName} in ${job.location}`}
-                    // avatar="images/jsa-128.jpg"
-                />
-
                 <CardText>
-                    som job description
+                    <b>Job</b>: {job.jobName}
+                    <br/>
+                    <b>Location</b>: {job.location}
                 </CardText>
                 <CardActions>
-                    <FlatButton label="Apply" onClick={()=>this.applyJob(job._id)} />
+                    <FlatButton label="Apply" primary={true} onClick={()=>this.applyJob(job._id)} />
                 </CardActions>
             </Card>
         )
