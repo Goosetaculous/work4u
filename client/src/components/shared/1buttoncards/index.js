@@ -68,7 +68,7 @@ class PopulateCards extends Component {
                     cols={4}
                     padding={3}
                 >
-                    {this.props.jobs.length > 0? this.props.jobs.map((job) => this.createCard(job) ):<div>Andy will post a job</div> }
+                    {this.props.jobs.length > 0? this.props.jobs.map((job) => this.createCard(job) ):<div>No Jobs found</div> }
                 </GridList>
             </div>
 
