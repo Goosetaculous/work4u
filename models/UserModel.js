@@ -34,6 +34,9 @@ var UserSchema = new Schema({
     }],
     price:{
         type: [Number]
+    },
+    email:{
+        type: String
     }
 });
 
