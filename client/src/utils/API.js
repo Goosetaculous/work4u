@@ -87,6 +87,12 @@ const API = {
 
   declineApplicantById: (jobId, applicantId) => {
     return axios.post("job/decline_application", {jobId, applicantId});
+  },
+  giveGoodReview: (jobId) => {
+    return axios.post("/job/goodReview", jobId);
+  },
+  giveBadReview: (jobId) => {
+    return axios.post("/job/badReview", jobId);
   }
 }
 export default API;
