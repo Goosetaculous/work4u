@@ -14,11 +14,11 @@ class S3Uploader extends React.Component {
  
   render() {
 
-    const server; 
+    var server ; 
       if (process.env.NODE_ENV === "production"){
           server = 'https://work4u.herokuapp.com/'
       }else if(process.env.NODE_ENV === "development"){
-        server = 'https://work4u-dev .herokuapp.com/'
+        server = 'https://work4u-dev.herokuapp.com/'
       }else{
         server ='http://localhost:3001'
       };
