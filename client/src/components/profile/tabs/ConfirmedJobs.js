@@ -92,24 +92,7 @@ createCard(job){
         )
     }else{
         return(
-    
-                <Card>
-
-                    <CardHeader
-                        title={`${job.jobName} in ${job.location}`}
-                    />
-                    <CardMedia>
-                           
-                          <img src={`${job.image_url}`} alt="" />
-                    </CardMedia>
-
-                    <CardText>
-                        <h5> Job Description</h5>
-                        <div>
-                            {job.jobDescription}
-                        </div>
-                    </CardText>
-                </Card>
+            <div></div>
         )
     }
 }
