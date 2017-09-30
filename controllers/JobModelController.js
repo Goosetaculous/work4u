@@ -226,6 +226,7 @@ var JobModelController = {
                         {$pull: { applicants: applicantId} }
                     )
                     .then(()=>{
+                        console.log()
                         callback(data);
                     })
 

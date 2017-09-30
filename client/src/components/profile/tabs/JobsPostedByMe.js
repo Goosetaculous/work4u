@@ -22,13 +22,18 @@ class JobsPostedByMe extends Component {
         super()
     }
 
-    componentWillMount() {
+    componentDidMount() {
         //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        this.getJobs()
+    }
+
+    getJobs(){
         API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
             console.log("Data from findJobsByPoesterId: ");
             console.log(res);
             this.setState({jobs: res.data});
         });
+
     }
 
     removeJobByIdAndRemoveApplicationById = (event, jobId, applicanttId) => {
@@ -62,10 +67,8 @@ class JobsPostedByMe extends Component {
         console.log("declining a job.");
         console.log(applicantId);
         API.declineApplicantById(jobId, applicantId).then((res) => {
-            window.location.reload();
-
+            this.getJobs()
         });
-        //window.location.reload();
     }
 
     render(){

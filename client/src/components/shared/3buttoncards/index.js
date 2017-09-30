@@ -30,7 +30,7 @@ class PopulateCards extends Component {
         }
     }
 
-   
+
     createCard(job){
         return(
             <Card>
@@ -42,7 +42,7 @@ class PopulateCards extends Component {
                 <CardActions>
                     <FlatButton label="Stop Posting" secondary={true} />
                     <FlatButton label="Confirm" primary={true} />
-                    <FlatButton label="Decline" primary={true} />
+                    <FlatButton label="Decline" primary={true} onClick={(event)=>this.props.declineApplicantById(event, job._id, localStorage.getItem("db_id"))} />
                 </CardActions>
             </Card>
         )
