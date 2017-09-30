@@ -13,10 +13,24 @@ class S3Uploader extends React.Component {
   }
  
   render() {
+
+    const server; 
+      if (process.env.NODE_ENV === "production"){
+          server = 'https://work4u.herokuapp.com/'
+      }else if(process.env.NODE_ENV === "development"){
+        server = 'https://work4u-dev .herokuapp.com/'
+      }else{
+        server ='http://localhost:3001'
+      };
+
+
+
+
+
     const uploadOptions = {
-      server: 'http://localhost:3000',
+      server: server,
       signingUrlQueryParams: {uploadType: 'avatar'},
-    }
+    };
     const s3Url = 'https://work4u.s3.amazonaws.com'
  
     return (
