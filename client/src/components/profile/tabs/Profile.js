@@ -10,11 +10,14 @@ const styles = {
     block: {
         fontWeight: "bold",
         width: "100%",
+        textAlign: "center",
 
     },
     checkbox: {
         marginBottom: 16,
         color: '#616161',
+        position: "relative"
+
     },
     FlatButton: {
         backgroundColor: '#E0E0E0',
@@ -74,7 +77,7 @@ class Profile extends Component {
 
     render(){
         return(
-            <div className="container" style={{width:"100%"}}>
+            <div className="container" style={{width:"33%"}}>
                 <div style={styles.block}>
                     <h5 style={{fontWeight:"bolder"}}>Select the job types you are interested in :</h5>
                     {

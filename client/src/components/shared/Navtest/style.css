@@ -1,6 +1,7 @@
 .white-app-bar {
     height: 75px;
     border-bottom: 1 solid #FF9100;
+    margin-bottom: 10px;
     position: fixed;
     left: 0;
     top: 0;

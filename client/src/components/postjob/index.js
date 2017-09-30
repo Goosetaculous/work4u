@@ -122,7 +122,7 @@ class PostJob extends Component {
 		{console.log(this.state.image)}
 			<SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
 			<Wrapper>
-				<h5>Post A Job</h5>
+				<h5 style={{fontFamily: 'serif', fontWeight: 'bold'}}>Post A Job</h5>
 				<div style={{width: "50%", float: "left"}}>
 
 					<TextField
@@ -187,7 +187,7 @@ class PostJob extends Component {
 						/>
 					</div>
 					
-					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>
+					<RaisedButton label="Submit" style={{backgroundColor: '#E0E0E0',color: '#616161'}}primary={true}  onClick={(event) => this.handleClick(event)}/>
 				</div>
 
 			</Wrapper>
