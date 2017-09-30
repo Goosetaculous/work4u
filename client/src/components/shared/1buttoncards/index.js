@@ -56,7 +56,7 @@ class PopulateCards extends Component {
                 </CardMedia>
 
                 <CardText>
-                    som job description
+                    {`${job.jobDescription}`}
                 </CardText>
                 <CardActions>
                     <FlatButton label="Apply" onClick={()=>this.applyJob(job._id)} />

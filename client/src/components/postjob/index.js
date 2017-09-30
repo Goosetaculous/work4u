@@ -45,7 +45,8 @@ class PostJob extends Component {
 			'jobLocation': this.state.jobLocation,
 			'jobDate': this.state.jobDate,
 			'jobPrice': this.state.jobPrice,
-			'image_url': this.state.image_url
+			'image_url': this.state.image_url,
+			'jobDescription': this.state.jobDescription
 		  };
 		  console.log(newJob);
 		  API.addAJob(newJob).then((res) => {
@@ -145,6 +146,14 @@ class PostJob extends Component {
 						name='jobLocation'
 						hintText="Your location"
 						floatingLabelText="You location"
+						errorText={!this.state.jobLocation? "Required": null}
+						onChange={this.handleInputChange}
+					/>
+
+					<TextField
+						name='jobDescription'
+						hintText="Job Description"
+						floatingLabelText="Job Description"
 						errorText={!this.state.jobLocation? "Required": null}
 						onChange={this.handleInputChange}
 					/>
