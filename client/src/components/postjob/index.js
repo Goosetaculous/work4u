@@ -28,7 +28,7 @@ class PostJob extends Component {
 		super(props);
 		this.state ={
 			jobType: "none",
-			image_url: "not changed"
+			image_url: ""
 
 		}
 
