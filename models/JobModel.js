@@ -17,6 +17,9 @@ var JobSchema = new Schema({
     applicants: {
       type: [String]
     },
+    declined :{
+      type: [String]
+    },
     status: {
         type: String
     },

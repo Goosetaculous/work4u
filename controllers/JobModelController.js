@@ -26,7 +26,8 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            applicants: {$nin: [req.params.id]}
+            status:"initiated"
+            //applicants: {$nin: [req.params.id]}
         },(err,data)=>{
             res.json(data)
         }).catch((err)=>{
@@ -41,21 +42,22 @@ var JobModelController = {
      */
 
     findJobsBySearch: (req,res)=>{
-        console.log("TEST",req.body)
         let term = new RegExp(req.body.term, 'i')
         console.log(term)
         JobModel.find({
-            $and: [
-                {postedBy : {$ne: req.body.id}},
-                {applicants: {$nin: [req.body.id]}},
-                {$or: [
-                        {jobName:{$regex: term} },
-                        {location:{$regex: term}},
-                        {date:{$regex: term}}
-
-                    ]
-                }
-            ]
+            postedBy : {$ne: req.params.id},
+            status:"initiated"
+            // $and: [
+            //     {postedBy : {$ne: req.body.id}},
+            //     {applicants: {$nin: [req.body.id]}},
+            //     {$or: [
+            //             {jobName:{$regex: term} },
+            //             {location:{$regex: term}},
+            //             {date:{$regex: term}}
+            //
+            //         ]
+            //     }
+            // ]
         },(err,data)=>{
             res.json(data)
         }).catch((err)=>{
@@ -203,7 +205,7 @@ var JobModelController = {
         console.log("remove an applicant and mark job as INITIATED");
         console.log(jobId);
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated"}}, function(err, data) {
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated",$push: {declined: applicantId}}}, function(err, data) {
             if (err) {
                 console.log(err);
             }
