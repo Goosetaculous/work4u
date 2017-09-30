@@ -6,7 +6,7 @@ import Jobs from './components/jobs/'
 import Applicant from './components/applicant';
 import PostJob from './components/postjob';
 
-
+import Navtest from './components/shared/Navtest'
 import Footer from './components/shared/footer'
 //import Navpills from './components/shared/navpills';
 import "./App.css";
@@ -42,7 +42,7 @@ class App extends Component {
                 <MuiThemeProvider>
                     <Router history={history} component={App}>
                         <div>
-
+                            <Navtest />
                             <Route exact path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
                             <Route exact path="/" render={(props) => (

@@ -20,7 +20,17 @@ const styles = {
         paddingTop: 16,
         marginBottom: 12,
         fontWeight: 400,
+        fontFamily: ['Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']      
     },
+    tab:  {
+        border: '1 solid #FF9100',
+        backgroundColor:'#616161', 
+        //color:'#FF9100',
+        fontFamily: ['Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
+    },
+    tabItemContainer: {
+        backgroundColor: '#90A4AE'
+    }
 };
 
 
@@ -87,7 +97,7 @@ class ProfileTabs extends Component {
         return(
             
             <Tabs initialSelectedIndex = {0}>
-                <Tab label="My Skills" >
+                <Tab label="My Skills" style={styles.tab}>
                     <div>
                        <Profile
                            skills={this.props.skills}
@@ -99,7 +109,8 @@ class ProfileTabs extends Component {
                 </Tab>
                 <Tab 
                     onActive={this.getAppliedJobs}
-                    label="Jobs I Applied" 
+                    label="Jobs I Applied"
+                    style={styles.tab} 
                 >
                     <div>
                         <h2 style={styles.headline}>Jobs I Applied</h2>
@@ -112,7 +123,9 @@ class ProfileTabs extends Component {
                 </Tab>
                 <Tab
                     onActive={this.getRecommendedJobs} 
-                    label="Look For A Job" >
+                    label="Look For A Job"
+                    style={styles.tab}
+                     >
                     <div>
                         <div>
                             <h2 style={styles.headline}>Look For A Job</h2>
@@ -126,24 +139,19 @@ class ProfileTabs extends Component {
                         </div>
                     </div>
                 </Tab>
-                <Tab label="Jobs Posted By Me" >
+                <Tab label="Jobs Posted By Me" style={styles.tab} >
                     <div>
                         <h2 style={styles.headline}>Jobs Posted By Me</h2>
                         <JobsPostedByMe />
                     </div>
                 </Tab>
-                <Tab label="Confirmed Jobs" >
+                <Tab label="Confirmed Jobs" style={styles.tab} >
                     <div>
                         <h2 style={styles.headline}>Confirmed Jobs</h2>
                         <ConfirmedJobs />
                     </div>
                 </Tab>
-                <Tab label="Reviews" >
-                    <div>
-                        <h2 style={styles.headline}>Reviews</h2>
-                        <Reviews />
-                    </div>
-                </Tab>
+                
             </Tabs>
         )
     }

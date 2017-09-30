@@ -1,10 +1,18 @@
 .white-app-bar {
-    background-color: transparent !important;
-    height: 0px;
+    height: 75px;
+    border-bottom: 1 solid #FF9100;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 .logo {
-	height: 250px;
-	width: 250px;
+	background-color: none !important;
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	top: -75%;
+	left: 0%;
+	
 
 }

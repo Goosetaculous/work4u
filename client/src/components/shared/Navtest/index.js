@@ -30,10 +30,11 @@ const auth = new Auth();
 
 const style = {
     margin: 12,
+    color: '#616161'
 };
 
 const image = require('./logo.png')
-console.log(image); // '/build/12as7f9asfasgasg.jpg'
+
 
 
 class Login extends Component {
@@ -53,7 +54,7 @@ class Login extends Component {
             {
               !isAuthenticated() && (
                 <RaisedButton
-                  label="log in"
+                  label="Log In"
                   style={style}
                   onClick={this.login.bind(this)}
                 />
@@ -61,24 +62,14 @@ class Login extends Component {
             }
             {
               isAuthenticated() && (
-                <IconMenu
-                 
-                  iconButtonElement = {
-                    <IconButton><MoreVertIcon /></IconButton>
-                  }
-                  targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                  anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                >
-                  <MenuItem primaryText="Jobs I might be interested in" />
-                  <MenuItem primaryText="Jobs I applied" />
-                  <MenuItem primaryText="Jobs I posted" />
-                  <MenuItem primaryText="Jobs completed" />
-                  <MenuItem primaryText="Sign Out" onClick={this.logout.bind(this)} />
-                  
-                </IconMenu>
+                <RaisedButton
+                  label="Log Out"
+                  style={style}
+                  onClick={this.logout.bind(this)}
+                />
               )
             }
-           </div>
+        </div>
         );
     }
 }
@@ -95,9 +86,10 @@ class Navtest extends Component{
         const { isAuthenticated } = auth;
         return(
             <div>
+               
                 <AppBar
                     className="white-app-bar"
-                    style={{backgroundColor: 'transparent'}}
+                    style={{width: "100%", backgroundColor:'grey500'}}
                     iconElementLeft={<img className='logo' src={image} />}
                     iconElementRight={ <Login />}
                 />
