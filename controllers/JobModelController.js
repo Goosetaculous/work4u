@@ -46,6 +46,7 @@ var JobModelController = {
         let term = new RegExp(req.body.term, 'i')
         console.log(term)
         JobModel.find({
+
             // postedBy : {$ne: req.params.id},
             // status:"initiated"
             $and: [
@@ -59,6 +60,7 @@ var JobModelController = {
                     ]
                 }
             ]
+
         },(err,data)=>{
             res.json(data)
         }).catch((err)=>{
