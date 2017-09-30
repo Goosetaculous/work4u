@@ -26,7 +26,8 @@ var JobModelController = {
     findJobsPostedbyOthers: (req,res)=>{
         JobModel.find({
             postedBy : {$ne: req.params.id},
-            status:"initiated"
+            status:"initiated",
+            declined: {$nin: [req.params.id]}
             //applicants: {$nin: [req.params.id]}
         },(err,data)=>{
             res.json(data)
@@ -114,25 +115,31 @@ var JobModelController = {
         //
     },
     applyForAJob: function( jobId,applicantId, callback) {
-        console.log("apply for job controller triggered")
+        console.log("in controller : apply for job controller triggered")
         console.log(jobId);
         console.log(applicantId);
 
-        JobModel.update({_id: jobId}, 
-            { $set: 
-                { 
-                    appliedBy: applicantId,
-                    status: "applied",
-                    $push: {applicants: applicantId}
+        UserModel.find({_id: applicantId}, function(err, data) {
+            let applicantName = data.name;
+            console.log("Applicant NAME: ");
+            console.log(applicantName);
+            JobModel.update({_id: jobId}, 
+                { $set: 
+                    { 
+                        appliedBy: applicantId,
+                        status: "applied",
+                        currentApplicantName: applicantName,
+                        $push: {applicants: applicantId}
+                    }
+                }, 
+                function(err, data) {
+                if (err) {
+                    console.log(err);
                 }
-            }, 
-            function(err, data) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                callback(data);
-            }
+                else {
+                    callback(data);
+                }
+            });
         });
     },
     confirmAJob: function(jobId, callback) {
@@ -205,7 +212,7 @@ var JobModelController = {
         console.log("remove an applicant and mark job as INITIATED");
         console.log(jobId);
 
-        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated",$push: {declined: applicantId}}}, function(err, data) {
+        JobModel.findOneAndUpdate({_id: jobId}, {$set: {appliedBy: "", status: "initiated", currentApplicantName: ""}, $push: {declined: applicantId}}, function(err, data) {
             if (err) {
                 console.log(err);
             }

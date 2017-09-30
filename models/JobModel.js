@@ -14,6 +14,12 @@ var JobSchema = new Schema({
     appliedBy: {
         type: String
     },
+    currentApplicantName: {
+        type: String
+    },
+    currentApplicantEmail: {
+        type: String
+    },
     applicants: {
       type: [String]
     },
