@@ -48,11 +48,12 @@ class RecommededJobs extends Component {
         
         console.log("job id: " + job._id)
         console.log("user id: " + this.props.user_id)
-        API.applyToJob(job._id, this.props.user_id).then(function(res){
+        API.applyToJob(job._id, this.props.user_id).then((res) =>{
             console.log(res)
+          this.props.getRecommendedJobs();
         })
         console.log("=========Apply to Job end=====")
-        this.props.getRecommendedJobs();
+       
     }
 
 
@@ -64,15 +65,16 @@ createCard(job){
 
                 <CardHeader
                     title={`${job.jobName} in ${job.location}`}
-                   
                 />
                 <CardMedia>
-                      
+                       
                       <img src={`${job.image_url}`} alt="" />
                 </CardMedia>
 
                 <CardText>
-                    som job description
+                    <div>
+                        {job.jobDescription}
+                    </div>
                 </CardText>
                 <CardActions>
                     <FlatButton label="Apply" onClick={(event) => this.applyToJob(event, job)} />
@@ -86,7 +88,7 @@ createCard(job){
         return(
             <div style={styles.root}>
                 <GridList
-                    cellHeight={180}
+                    cellHeight={300}
                     style={styles.gridList}
                     cols={4}
                     padding={3}

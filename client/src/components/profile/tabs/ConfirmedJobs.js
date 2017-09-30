@@ -102,7 +102,6 @@ class ConfirmedJobs extends Component {
     render(){
         return(
             <div style={styles.root}>
-                a
                 <GridList
                     cellHeight={60}
                     style={styles.gridList}
