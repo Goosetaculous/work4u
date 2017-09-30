@@ -63,7 +63,7 @@ createCard(job){
                       
                         Job has been confirmed by the poster. 
                         <br/>
-                        Post will contact you shortly.
+                        Poster will contact you shortly.
                         
                     </div>
                 </CardText>
