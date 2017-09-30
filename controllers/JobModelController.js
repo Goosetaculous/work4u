@@ -46,19 +46,21 @@ var JobModelController = {
         let term = new RegExp(req.body.term, 'i')
         console.log(term)
         JobModel.find({
-            postedBy : {$ne: req.params.id},
-            status:"initiated"
-            // $and: [
-            //     {postedBy : {$ne: req.body.id}},
-            //     {applicants: {$nin: [req.body.id]}},
-            //     {$or: [
-            //             {jobName:{$regex: term} },
-            //             {location:{$regex: term}},
-            //             {date:{$regex: term}}
-            //
-            //         ]
-            //     }
-            // ]
+
+            // postedBy : {$ne: req.params.id},
+            // status:"initiated"
+            $and: [
+                {postedBy : {$ne: req.body.id}},
+                {applicants: {$nin: [req.body.id]}},
+                {$or: [
+                        {jobName:{$regex: term} },
+                        {location:{$regex: term}},
+                        {date:{$regex: term}}
+            
+                    ]
+                }
+            ]
+
         },(err,data)=>{
             res.json(data)
         }).catch((err)=>{
@@ -84,9 +86,13 @@ var JobModelController = {
             }
         });
     },
-    add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, callback) {
+    add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, image_url, callback) {
 
         console.log("DB controller add() called.");
+
+        if(image_url == ""){
+            image_url="https://c1.staticflickr.com/9/8060/8157253058_3ff9faf7b5_b.jpg"
+        }
 
         var newJob = new JobModel({
             jobName: jobName,
@@ -97,7 +103,8 @@ var JobModelController = {
             location: jobLocation,
             date: jobDate,
             price: jobPrice,
-            reviewFromJobPoster: ""
+            reviewFromJobPoster: "",
+            image_url: image_url
         });
 
         console.log("Adding below job to DB.");
