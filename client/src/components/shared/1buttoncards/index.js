@@ -13,6 +13,7 @@ const styles = {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        height:'450px'
     },
     gridList: {
         width: 1000,

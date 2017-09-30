@@ -51,7 +51,9 @@ class PostJob extends Component {
 		  console.log(newJob);
 		  API.addAJob(newJob).then((res) => {
 			  this.props.history.push("/profile");
+			  // window.location.reload();
 		  });
+
   	}
 
   	handleImage = (image_url) => {
