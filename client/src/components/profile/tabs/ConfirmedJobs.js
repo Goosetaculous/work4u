@@ -11,6 +11,7 @@ const styles = {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        height:'450px'
     },
     gridList: {
         width: 1000,
@@ -130,43 +131,5 @@ createCard(job){
 }
 
 
-
-
-
-
-//     render(){
-//         return(
-//             <div style={styles.root}>
-//                 <GridList
-//                     cellHeight={60}
-//                     style={styles.gridList}
-//                     cols={1}
-//                     padding={0}
-//                 >
-//                     {this.state.jobs.map((job) => {
-//                         if (job.status == "confirmed" ) {
-//                             return <GridTile
-//                                         title={job.jobName}
-//                                         titlePosition="top"
-//                                         subtitle={job.currentApplicantEmail}
-//                                         actionIcon={
-//                                             <div>
-//                                                 <FlatButton label="Give Good Review" backgroundColor="#30F57B" primary={true} onClick={(event) => this.goodReview(event, job._id)}/>
-//                                                 <FlatButton label="Give Bad Review!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.badReview(event, job._id)}/>
-//                                             </div>
-//                                         }
-//                                     >
-//                                     </GridTile>
-//                         }
-//                         else {
-//                             return <span></span>
-//                         }
-//                     })}
-//                 </GridList>
-//             </div>
-
-//         )
-//     }
-// }
 
 export default ConfirmedJobs;

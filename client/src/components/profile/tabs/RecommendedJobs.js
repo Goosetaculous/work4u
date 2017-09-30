@@ -6,24 +6,13 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 
 import API from '../../../utils/API'
 
-// const styles = {
-//     root: {
-//         display: 'flex',
-//         flexWrap: 'wrap',
-//         justifyContent: 'space-around',
-//     },
-//     gridList: {
-//         width: 1000,
-
-//         overflowY: 'auto',
-//     },
-// };
 
 const styles = {
     root: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        height:'450px'
     },
     gridList: {
         width: 1000,
