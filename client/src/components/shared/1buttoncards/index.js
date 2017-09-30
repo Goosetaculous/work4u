@@ -48,8 +48,12 @@ class PopulateCards extends Component {
 
                 <CardHeader
                     title={`${job.jobName} in ${job.location}`}
-                    // avatar="images/jsa-128.jpg"
+                   
                 />
+                <CardMedia>
+                      
+                      <img src={`${job.image_url}`} alt="" />
+                </CardMedia>
 
                 <CardText>
                     som job description

@@ -35,6 +35,9 @@ var JobSchema = new Schema({
     price:{
         type: Number,
         set: setPrice
+    },
+    image_url:{
+        type: String
     }
 
 },{timestamps: {

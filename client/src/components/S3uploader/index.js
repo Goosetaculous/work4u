@@ -8,6 +8,8 @@ class S3Uploader extends React.Component {
 
     console.log('File uploaded with filename', info.filename)
     console.log('Access it on s3 at', info.fileUrl)
+    console.log(typeof(info.fileUrl))
+    this.props.handleImage(info.fileUrl)
   }
  
   render() {
