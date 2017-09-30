@@ -70,7 +70,7 @@ class PopulateCards extends Component {
         return(
             <div style={styles.root}>
                 <GridList
-                    cellHeight={180}
+                    cellHeight={200}
                     style={styles.gridList}
                     cols={4}
                     padding={3}

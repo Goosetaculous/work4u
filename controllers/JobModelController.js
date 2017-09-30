@@ -55,7 +55,8 @@ var JobModelController = {
                 {$or: [
                         {jobName:{$regex: term} },
                         {location:{$regex: term}},
-                        {date:{$regex: term}}
+                        {date:{$regex: term}},
+                        {jobDescription:{$regex: term}}
             
                     ]
                 }
