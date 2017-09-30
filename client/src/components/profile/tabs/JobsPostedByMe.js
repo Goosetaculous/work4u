@@ -84,8 +84,8 @@ class JobsPostedByMe extends Component {
         console.log(jobId);
         API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
             alert("job with id " + jobId + " was removed");
-            alert("also, applicant ")
         });
+        window.location.reload();
     };
 
     removeOnlyJobById = (event, jobId) => {
@@ -93,8 +93,8 @@ class JobsPostedByMe extends Component {
         console.log(jobId);
         API.removeOnlyJobById(jobId).then((res) => {
             alert("job with id " + jobId + " was removed");
-            alert("also, applicant ")
         });
+        window.location.reload();
     };
 
     confirmJobById = (event, jobId) => {
@@ -103,6 +103,7 @@ class JobsPostedByMe extends Component {
         API.confirmJobById(jobId).then((res) => {
             alert("job with id " + jobId + " was confirmed");
         });
+        window.location.reload();
     };
 
     declineApplicantById = (event, jobId, applicantId) => {
@@ -111,6 +112,7 @@ class JobsPostedByMe extends Component {
         API.declineApplicantById(jobId, applicantId).then((res) => {
             alert("applicant with id " + applicantId + " was declinde");
         });
+        window.location.reload();
     }
 
     render(){
@@ -137,9 +139,6 @@ class JobsPostedByMe extends Component {
                                     >
                                     </GridTile>
                         }
-                        else if (job.status == "confirmed") {
-                            return <div></div>;
-                        }
                         else if (job.status == "initiated") {
                             return <GridTile
                                         title={job.jobName}
@@ -148,6 +147,9 @@ class JobsPostedByMe extends Component {
                                         actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
                                     >
                                     </GridTile>
+                        }
+                        else {
+                            return <div></div>;
                         }
                         
                     })}

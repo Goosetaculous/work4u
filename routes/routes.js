@@ -18,8 +18,8 @@ router.use("/job", jobRoutes);
 router.use('/s3', require('react-dropzone-s3-uploader/s3router')({
   bucket: 'work4u',                           // required
   // region: 'us-east-1',                            // optional
-  // headers: {'Access-Control-Allow-Origin': '*'},  // optional
-  ACL: 'public-read'                                // this is the default - set to `public-read` to let anyone view uploads
+  headers: {'Access-Control-Allow-Origin': '*'},  // optional
+  ACL: 'private'                                // this is the default - set to `public-read` to let anyone view uploads
 }));
 
 
