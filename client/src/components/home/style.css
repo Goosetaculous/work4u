@@ -1,10 +1,4 @@
-/*@import {
-  
-  src: url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico')
-}
 
-https://static.pexels.com/photos/301703/pexels-photo-301703.jpeg(originalpic)
-*/
 .hook-line {
     background: url("https://static.pexels.com/photos/301703/pexels-photo-301703.jpeg") no-repeat center center;
     margin: 0px 0px 0px 0px;
@@ -14,9 +8,9 @@ https://static.pexels.com/photos/301703/pexels-photo-301703.jpeg(originalpic)
     font-size: 75px;
     padding: 300px 0px 0px 0px;
     color: gray;
-    font-family: serif;
+    font-family: 'Lobster', cursive;
     /*font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
-    font-weight: bolder;
+    /*font-weight: bolder;*/
 }
 
 .job-list {

@@ -11,11 +11,12 @@ const style = {
     card: {
         display: 'block',
         width: '100%',
-        backgroundColor: 'purple500',
         height: '100%'
     },
-    CardHeader: {
-        avatar: 50
+    CardHeader:{
+        color: '#616161'
+    },
+    FlatButton: {
 
     }
 }
@@ -29,7 +30,7 @@ class SideBar extends Component{
     render(){
 
         return (
-            <div style={{paddingRight:"10px", marginTop:"15px",width:"30%", height: "550px"}}>
+             <div style={{paddingRight:"10px", marginTop:"15px",width:"30%", minHeight: "550px"}}>
 
                 <Card style={style.card}>
                     <CardHeader
