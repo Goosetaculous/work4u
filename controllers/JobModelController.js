@@ -86,7 +86,7 @@ var JobModelController = {
             }
         });
     },
-    add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, image_url, callback) {
+    add: function(jobName, postedBy, jobType, jobLocation, jobDate, jobPrice, image_url, jobDescription, callback) {
 
         console.log("DB controller add() called.");
 
@@ -104,7 +104,8 @@ var JobModelController = {
             date: jobDate,
             price: jobPrice,
             reviewFromJobPoster: "",
-            image_url: image_url
+            image_url: image_url,
+            jobDescription: jobDescription
         });
 
         console.log("Adding below job to DB.");

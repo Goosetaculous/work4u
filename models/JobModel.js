@@ -47,6 +47,9 @@ var JobSchema = new Schema({
     },
     image_url:{
         type: String
+    },
+    jobDescription: {
+        type: String
     }
 
 },{timestamps: {
