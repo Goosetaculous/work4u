@@ -11,7 +11,6 @@ const styles = {
     },
     gridList: {
         width: 1000,
-
         overflowY: 'auto',
     },
 };
@@ -103,11 +102,12 @@ class ConfirmedJobs extends Component {
     render(){
         return(
             <div style={styles.root}>
+                a
                 <GridList
-                    cellHeight={180}
+                    cellHeight={60}
                     style={styles.gridList}
-                    cols={4}
-                    padding={3}
+                    cols={1}
+                    padding={0}
                 >
                     {this.state.jobs.map((job) => {
                         if (job.status == "confirmed" ) {
@@ -125,7 +125,7 @@ class ConfirmedJobs extends Component {
                                     </GridTile>
                         }
                         else {
-                            return <div></div>
+                            return <span></span>
                         }
                     })}
                 </GridList>

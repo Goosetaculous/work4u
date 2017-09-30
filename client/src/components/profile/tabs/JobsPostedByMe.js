@@ -11,7 +11,6 @@ const styles = {
     },
     gridList: {
         width: 1000,
-
         overflowY: 'auto',
     },
 };
@@ -119,10 +118,10 @@ class JobsPostedByMe extends Component {
         return(
             <div style={styles.root}>
                 <GridList
-                    cellHeight={180}
+                    cellHeight={60}
                     style={styles.gridList}
-                    cols={4}
-                    padding={3}
+                    cols={1}
+                    padding={0}
                 >
                     {this.state.jobs.map((job) => {
                         if (job.status == "applied" ) {
@@ -132,8 +131,8 @@ class JobsPostedByMe extends Component {
                                         subtitle={job.currentApplicantName}
                                         actionIcon={
                                             <div>
-                                                <FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeJobByIdAndRemoveApplicationById(event, job._id, job.appliedBy)}/>
-                                                <FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} onClick={(event) => this.confirmJobById(event, job._id)}/>
+                                                <FlatButton label="Stop Posting" backgroundColor="#F5B030" primary={true} onClick={(event) => this.removeJobByIdAndRemoveApplicationById(event, job._id, job.appliedBy)}/>
+                                                <FlatButton label="Confirm" backgroundColor="#30F57B" primary={true} onClick={(event) => this.confirmJobById(event, job._id)}/>
                                                 <FlatButton label="Decline" backgroundColor="#F53F30" primary={true} onClick={(event) => this.declineApplicantById(event, job._id, job.appliedBy)}/>
                                             </div>}
                                     >
@@ -144,12 +143,12 @@ class JobsPostedByMe extends Component {
                                         title={job.jobName}
                                         titlePosition="top"
                                         subtitle="No applicant"
-                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
+                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F5B030" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
                                     >
                                     </GridTile>
                         }
                         else {
-                            return <div></div>;
+                            return <span></span>;
                         }
                         
                     })}
