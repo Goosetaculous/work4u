@@ -29,7 +29,7 @@ class SideBar extends Component{
     render(){
 
         return (
-            <div style={{paddingRight:"10px", marginTop:"1px",width:"30%", height: "450px"}}>
+            <div style={{paddingRight:"10px", marginTop:"15px",width:"30%", height: "550px"}}>
 
                 <Card style={style.card}>
                     <CardHeader

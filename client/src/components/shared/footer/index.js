@@ -8,10 +8,6 @@ class Bottom extends Component {
             <div>
                 {this.props.children}
                 <div className="footer">
-                    <div>
-                        <span className="footer-link"><a href="https://www.google.com">About Us</a></span>
-                        
-                    </div>
                     <div className="copyright-statement">
                         © 2017 Work4U 
                     </div>

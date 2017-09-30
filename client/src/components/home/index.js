@@ -39,16 +39,12 @@ class Homepage extends Component{
             <div>
                 
                 <div className="hook-line" >
-                    <img className='logo' src={image}/>
-                    <Navtest />
-                    Less Doing, More Saving
-                   
-                <AboutModal /> 
-                    
-                    
+                    Less Doing, More Saving 
+                    <AboutModal />  
                 </div>
-                
 
+                 
+                
             </div>
         )
     }

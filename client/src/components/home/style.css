@@ -9,12 +9,13 @@ https://static.pexels.com/photos/301703/pexels-photo-301703.jpeg(originalpic)
     background: url("https://static.pexels.com/photos/301703/pexels-photo-301703.jpeg") no-repeat center center;
     margin: 0px 0px 0px 0px;
     background-size: 100%;
-    height: 500px;
+    height: 600px;
     text-align: center;
-    font-size: 65px;
+    font-size: 75px;
     padding: 300px 0px 0px 0px;
     color: gray;
-    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: serif;
+    /*font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
     font-weight: bolder;
 }
 

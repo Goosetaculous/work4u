@@ -30,6 +30,7 @@ const auth = new Auth();
 
 const style = {
     margin: 12,
+    color: '#616161'
 };
 
 const image = require('./logo.png')
@@ -89,7 +90,7 @@ class Navtest extends Component{
                 <AppBar
                     className="white-app-bar"
                     style={{width: "100%", backgroundColor:'grey500'}}
-                    //iconElementLeft={<img className='logo' src={image} />}
+                    iconElementLeft={<img className='logo' src={image} />}
                     iconElementRight={ <Login />}
                 />
                 
