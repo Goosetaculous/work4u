@@ -2,7 +2,11 @@ import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
 
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+
 import API from '../../../utils/API'
+
+
 const styles = {
     root: {
         display: 'flex',
@@ -12,6 +16,7 @@ const styles = {
     gridList: {
         width: 1000,
         overflowY: 'auto',
+        padding: '2px'
     },
 };
 
@@ -33,39 +38,77 @@ class AppliedJobs extends Component {
         this.props.getAppliedJobs();
     }
 
+
+
+createCard(job){
+    if(job.status == "confirmed"){
+        return(
+             <Card>
+                <CardHeader
+                    title={`${job.jobName} in ${job.location}`}
+                />
+                <CardMedia>
+                       
+                      <img src={`${job.image_url}`} alt="" />
+                </CardMedia>
+
+                <CardText>
+                    <h5> Job Description</h5>
+                    <div>
+                        {job.jobDescription}
+                    </div>
+                    <div>   
+                    <h5> Next Steps</h5>
+                      
+                        Job has been confirmed by the poster. 
+                        <br/>
+                        Post will contact you shortly.
+                        
+                    </div>
+                </CardText>
+            </Card>
+        )
+    }else{
+        return(
+    
+                <Card>
+
+                    <CardHeader
+                        title={`${job.jobName} in ${job.location}`}
+                    />
+                    <CardMedia>
+                           
+                          <img src={`${job.image_url}`} alt="" />
+                    </CardMedia>
+
+                    <CardText>
+                        <h5> Job Description</h5>
+                        <div>
+                            {job.jobDescription}
+                        </div>
+                    </CardText>
+                    <CardActions>
+                        <FlatButton label="Cancel" onClick={(event) => this.cancel(event, job)} />
+                    </CardActions>
+                </Card>
+        )
+    }
+}
+
     render(){
-        
         return(
             <div style={styles.root}>
                 <GridList
-                    cellHeight={180}
+                    cellHeight={300}
                     style={styles.gridList}
                     cols={4}
                     padding={3}
                 >
-                    {this.props.appliedJobs.map((job) => (
-                        
-                        <GridTile
-                            title={job.jobName}
-                            titlePosition="top"
-                            subtitle={job.postedBy}
-                            actionIcon={ 
-                                <FlatButton 
-                                    label="Cancel Application" 
-                                    backgroundColor="#F53F30" 
-                                    color="#616161" 
-                                    primary={true} 
-                                    onClick={(event) => this.cancel(event, job)}
-                                />}
-                        >
-                        </GridTile>
-                    ))}
+                    {this.props.appliedJobs.length > 0? this.props.appliedJobs.map((job) => this.createCard(job) ):<div>No Jobs found</div> }
                 </GridList>
             </div>
-
         )
     }
-
 }
 
 export default AppliedJobs;
