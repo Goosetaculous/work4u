@@ -114,7 +114,7 @@ class ConfirmedJobs extends Component {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.location}
+                                        subtitle={job.currentApplicantEmail}
                                         actionIcon={
                                             <div>
                                                 <FlatButton label="Give Good Review" backgroundColor="#30F57B" primary={true} onClick={(event) => this.goodReview(event, job._id)}/>

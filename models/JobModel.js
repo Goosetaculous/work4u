@@ -14,6 +14,12 @@ var JobSchema = new Schema({
     appliedBy: {
         type: String
     },
+    currentApplicantName: {
+        type: String
+    },
+    currentApplicantEmail: {
+        type: String
+    },
     applicants: {
       type: [String]
     },
@@ -38,6 +44,9 @@ var JobSchema = new Schema({
     price:{
         type: Number,
         set: setPrice
+    },
+    image_url:{
+        type: String
     }
 
 },{timestamps: {

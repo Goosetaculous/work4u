@@ -74,7 +74,7 @@ class JobsPostedByMe extends Component {
         //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
         API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
             console.log("Data from findJobsByPoesterId: ");
-            console.log(res);
+            console.log(res.data[0]);
             this.setState({jobs: res.data});
         });
     }
@@ -129,7 +129,7 @@ class JobsPostedByMe extends Component {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.location}
+                                        subtitle={job.currentApplicantName}
                                         actionIcon={
                                             <div>
                                                 <FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeJobByIdAndRemoveApplicationById(event, job._id, job.appliedBy)}/>
@@ -143,7 +143,7 @@ class JobsPostedByMe extends Component {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.location}
+                                        subtitle="No applicant"
                                         actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
                                     >
                                     </GridTile>

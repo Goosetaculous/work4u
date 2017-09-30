@@ -27,7 +27,8 @@ class PostJob extends Component {
 		
 		super(props);
 		this.state ={
-			jobType: "none"
+			jobType: "none",
+			image_url: "not changed"
 
 		}
 
@@ -43,14 +44,28 @@ class PostJob extends Component {
 			'jobType': this.state.jobType,
 			'jobLocation': this.state.jobLocation,
 			'jobDate': this.state.jobDate,
-			'jobPrice': this.state.jobPrice
+			'jobPrice': this.state.jobPrice,
+			'image_url': this.state.image_url
 		  };
 		  console.log(newJob);
 		  API.addAJob(newJob).then((res) => {
 			  this.props.history.push("/profile");
 		  });
   	}
-	
+
+  	handleImage = (image_url) => {
+  		console.log("Test " + image_url);
+  		this.setState({
+  			image_url: image_url
+  		});
+  		console.log("===============Image Uploader==========");
+  		
+  		console.log("=======================================")
+  		console.log(this.state.image);
+  	}
+
+
+
 	handleInputChange = (event) => {
 
 	    const target = event.target;
@@ -98,9 +113,12 @@ class PostJob extends Component {
     }
 
 	render() {
+
 	    const { profile } = this.state;
 	    return (
+
 		<div className="container">
+		{console.log(this.state.image)}
 			<SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
 			<Wrapper>
 				<h5>Post A Job</h5>
@@ -155,7 +173,9 @@ class PostJob extends Component {
 						</DropDownMenu>
 					</div>
 					<div>
-						<S3Uploader/>
+						<S3Uploader
+							handleImage={this.handleImage}
+						/>
 					</div>
 					
 					<RaisedButton label="Submit" primary={true}  onClick={(event) => this.handleClick(event)}/>

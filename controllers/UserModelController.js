@@ -182,37 +182,35 @@ var UserModelController = {
         console.log("user id: " + req.body.user_id)
         console.log("job id: " + req.body.job_id)
         let job_id = mongoose.Types.ObjectId(req.body.job_id)
+        let applicantId = req.body.user_id;
         // console.log("\n")
         // console.log("BODY", req.body)
         // console.log("\n")
 
-        JobModel.findByIdAndUpdate(req.body.job_id,{
-            appliedBy: req.body.user_id,
-            status: "applied",
-            $push: {applicants: req.body.user_id}
-        }).then((doc)=>{
-            res.json(doc)
-        })
-
-        // JobModel.update(
-        //     {_id: req.body.job_id},
-        //     {$set: {appliedBy: req.body.user_id, status: "applied",$push: {applicants: req.body.user_id}} },
-        //    // {$push: {applicants: req.body.user_id}},
-        //     req.body)
-        // .then(function(doc){
-        //     res.json(doc)
-        //     console.log(doc)
-        // })
-
-        UserModel.update(
-            {_id: req.body.user_id},
-            {$push: { jobsThisUserApplied: job_id} })
-
-        .then(function(doc){
-            res.json(doc)  
-            console.log(doc)
+        UserModel.findOneAndUpdate({_id: req.body.user_id},  {$push: { jobsThisUserApplied: job_id}}, function(err, data) {
+            let applicantName = data.name;
+            let applicantEmail = data.email;
+            console.log("Applicant NAME: ");
+            console.log(applicantName);
+            JobModel.findOneAndUpdate({_id: job_id}, 
+                { $set: 
+                    { 
+                        appliedBy: applicantId,
+                        status: "applied",
+                        currentApplicantName: applicantName,
+                        currentApplicantEmail: applicantEmail,
+                        $push: {applicants: applicantId}
+                    }
+                }, 
+                function(err, data) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.json(data);
+                    }
+                });
         });
-
     }
 }
 
