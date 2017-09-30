@@ -129,7 +129,7 @@ router.post("/cancel_posting_and_applicant", (req, res)=> {
 	Job.cancelAJob(jobId, (data)=>{
 		res.json(data)
 	});
-	User.getKickedOffFromAJob(applicantId);
+	//User.getKickedOffFromAJob(applicantId);
 });
 
 router.post("/cancel_posting", (req, res)=> {
