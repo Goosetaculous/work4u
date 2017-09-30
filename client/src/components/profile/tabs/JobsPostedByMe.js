@@ -172,6 +172,10 @@ createCard(job){
                 </CardActions>
             </Card>
         )
+    }else{
+        return(
+            <div></div>
+        )
     }
 }
 
