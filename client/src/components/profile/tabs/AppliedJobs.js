@@ -54,7 +54,7 @@ class AppliedJobs extends Component {
                                 <FlatButton 
                                     label="Cancel Application" 
                                     backgroundColor="#F53F30" 
-                                    color="white" 
+                                    color="#616161" 
                                     primary={true} 
                                     onClick={(event) => this.cancel(event, job)}
                                 />}

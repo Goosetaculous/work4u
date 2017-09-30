@@ -7,11 +7,17 @@ import Auth from '../../../Auth/Auth';
 //Auth Constant
 const auth = new Auth();
 
-const cardStyle = {
-    display: 'block',
-    width: '100%',
-    backgroundColor: 'purple500',
-    height: '100%'
+const style = {
+    card: {
+        display: 'block',
+        width: '100%',
+        backgroundColor: 'purple500',
+        height: '100%'
+    },
+    CardHeader: {
+        avatar: 50
+
+    }
 }
 
 
@@ -23,10 +29,11 @@ class SideBar extends Component{
     render(){
 
         return (
-            <div style={{paddingRight:"10px", marginTop:"1px",width:"30%", height: "350px"}}>
+            <div style={{paddingRight:"10px", marginTop:"1px",width:"30%", height: "450px"}}>
 
-                <Card style={cardStyle}>
+                <Card style={style.card}>
                     <CardHeader
+                        style={style.CardHeader}
                         title={this.props.given_name}
                         subtitle={this.props.family_name}
                          avatar={this.props.picture}
@@ -34,7 +41,7 @@ class SideBar extends Component{
                     <CardActions>
                         <Link to="/jobs"><FlatButton label="All Jobs"/></Link>
                         <Link to="/postjob"><FlatButton label="Post A Job"/></Link>
-                        <Link to="/profile"><FlatButton label="Manage Jobs and Skills"/></Link>
+                        <Link to="/profile"><FlatButton label="Manage Jobs"/></Link>
                         <FlatButton label="Log Out" onClick={()=>auth.logout()} />
                     </CardActions>s
                 </Card>

@@ -27,6 +27,7 @@ import Auth from '../../Auth/Auth';
 //Auth Constant
 const auth = new Auth();
 
+const image = require('./logo.png')
 
 
 
@@ -36,9 +37,10 @@ class Homepage extends Component{
         return(
 
             <div>
-                <Navtest />
+                
                 <div className="hook-line" >
-
+                    <img className='logo' src={image}/>
+                    <Navtest />
                     Less Doing, More Saving
                    
                 <AboutModal /> 
