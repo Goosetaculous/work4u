@@ -1,6 +1,7 @@
 import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
+import API from '../../../utils/API.js';
 
 const styles = {
     root: {
@@ -10,7 +11,6 @@ const styles = {
     },
     gridList: {
         width: 1000,
-
         overflowY: 'auto',
     },
 };
@@ -70,36 +70,85 @@ class JobsPostedByMe extends Component {
     }
 
     componentWillMount() {
-        fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
+            console.log("Data from findJobsByPoesterId: ");
+            console.log(res.data[0]);
+            this.setState({jobs: res.data});
+        });
+    }
+
+    removeJobByIdAndRemoveApplicationById = (event, jobId, applicanttId) => {
+        console.log("Trying to stop posting.");
+        console.log(jobId);
+        API.removeJobByIdAndRemoveApplicationById(jobId, applicanttId).then((res) => {
+            alert("job with id " + jobId + " was removed");
+        });
+        window.location.reload();
+    };
+
+    removeOnlyJobById = (event, jobId) => {
+        console.log("Trying to stop posting.");
+        console.log(jobId);
+        API.removeOnlyJobById(jobId).then((res) => {
+            alert("job with id " + jobId + " was removed");
+        });
+        window.location.reload();
+    };
+
+    confirmJobById = (event, jobId) => {
+        console.log("Trying to set below job confirmed.");
+        console.log(jobId);
+        API.confirmJobById(jobId).then((res) => {
+            alert("job with id " + jobId + " was confirmed");
+        });
+        window.location.reload();
+    };
+
+    declineApplicantById = (event, jobId, applicantId) => {
+        console.log("Trying to set below job confirmed.");
+        console.log(applicantId);
+        API.declineApplicantById(jobId, applicantId).then((res) => {
+            alert("applicant with id " + applicantId + " was declinde");
+        });
+        window.location.reload();
     }
 
     render(){
         return(
             <div style={styles.root}>
                 <GridList
-                    cellHeight={180}
+                    cellHeight={60}
                     style={styles.gridList}
-                    cols={4}
-                    padding={3}
+                    cols={1}
+                    padding={0}
                 >
                     {this.state.jobs.map((job) => {
-                        if (job.applied != "applied" ) {
+                        if (job.status == "applied" ) {
                             return <GridTile
                                         title={job.jobName}
                                         titlePosition="top"
-                                        subtitle={job.postedBy}
-                                        actionIcon={<div><FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} /><FlatButton label="Confirm" backgroundColor="#F53F30" primary={true} /><FlatButton label="Decline" backgroundColor="#F53F30" primary={true} /></div>}
+                                        subtitle={job.currentApplicantName}
+                                        actionIcon={
+                                            <div>
+                                                <FlatButton label="Stop Posting" backgroundColor="#F5B030" primary={true} onClick={(event) => this.removeJobByIdAndRemoveApplicationById(event, job._id, job.appliedBy)}/>
+                                                <FlatButton label="Confirm" backgroundColor="#30F57B" primary={true} onClick={(event) => this.confirmJobById(event, job._id)}/>
+                                                <FlatButton label="Decline" backgroundColor="#F53F30" primary={true} onClick={(event) => this.declineApplicantById(event, job._id, job.appliedBy)}/>
+                                            </div>}
+                                    >
+                                    </GridTile>
+                        }
+                        else if (job.status == "initiated") {
+                            return <GridTile
+                                        title={job.jobName}
+                                        titlePosition="top"
+                                        subtitle="No applicant"
+                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F5B030" primary={true} onClick={(event) => this.removeOnlyJobById(event, job._id)}/>}
                                     >
                                     </GridTile>
                         }
                         else {
-                            return <GridTile
-                                        title={job.jobName}
-                                        titlePosition="top"
-                                        subtitle={job.postedBy}
-                                        actionIcon={<FlatButton label="Stop Posting" backgroundColor="#F53F30" primary={true} />}
-                                    >
-                                    </GridTile>
+                            return <span></span>;
                         }
                         
                     })}

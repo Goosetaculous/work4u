@@ -1,3 +1,5 @@
+
+
 body {
     background: white !important;
 }
@@ -14,7 +16,6 @@ body {
 }
 
 .footer {
-    background-color: aqua;
     height:10%;
     position: absolute;
     width: 100%;

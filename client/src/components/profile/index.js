@@ -11,10 +11,9 @@ class Profile extends Component{
     constructor() {
         super();
         this.state = {
-          test: ""
+          skills:[],
         }
     };
-
 
     componentWillMount() {
         this.setState({ profile: {} });
@@ -28,52 +27,39 @@ class Profile extends Component{
         }
     }
 
-    test = (test) => {
-        console.log("hello from test");
-        console.log(test, this)
-        this.setState({test:test});
-
-        return 
+    componentDidMount(){
+        API.getUser(localStorage.getItem('user_id')).then((res)=>{
+            this.setState({
+                skills: res.data[0].skills || [],
+                _id: res.data[0]._id
+            })
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })
     }
 
-    postStateToApplied = (applied) =>{
-        console.log("================================")
-        console.log("Post to Applied function triggered")
-
+    setSkills = (data)=>{
+        this.setState({
+            skills: data
+        })
     }
-
-  
-    getUserId(){
-
-        console.log("===============GET USER INFO ID=================")
-        console.log("Get user ID function triggered")
-        
-        let userObject = API.getUser(localStorage.getItem('user_id')).then((res) => {
-            console.log(res.data[0]);
-               console.log("================GET USER INFO ID END================")
-        });
-
-     
-    }
-
-
-
 
     render(){
         const { profile } = this.state;
-        {this.getUserId()}
         return(
-
             <div className="container">
                 <SideBar picture={profile.picture} given_name={profile.given_name} family_name={profile.family_name}/>
                 <Wrapper>
                     <div>
-                        <ProfileTabs passfunction={this.test}/>
+                        <ProfileTabs
+                            skills={this.state.skills}
+                            _id={this.state._id}
+                            setSkills={this.setSkills}
+                            API={API}
+                        />
                     </div>
-
                 </Wrapper>
             </div>
-
         )
     }
 }

@@ -1,6 +1,7 @@
 import React ,  { Component } from 'react'
 import {GridList, GridTile} from 'material-ui/GridList';
 import FlatButton from 'material-ui/FlatButton';
+import API from '../../../utils/API.js';
 
 const styles = {
     root: {
@@ -10,12 +11,11 @@ const styles = {
     },
     gridList: {
         width: 1000,
-
         overflowY: 'auto',
     },
 };
 
-const tilesData = [
+/*const tilesData = [
     {
         img: 'https://pixy.org/images/placeholder.png',
         title: 'Mow my Law',
@@ -58,34 +58,75 @@ const tilesData = [
         title: 'Water plant',
         author: 'BkrmadtyaKarki',
     },
-];
+];*/
 
 
+class ConfirmedJobs extends Component {
 
+    state = {jobs: []};
 
-class ActiveJobs extends Component {
     constructor(){
         super()
     }
+
+    componentWillMount() {
+        //fetch("/job/all").then(res => res.json()).then(jobs => this.setState({jobs}));
+        /*API.findJobsConfirmedByMe(localStorage.getItem('db_id')).then((res) => {
+            console.log("Data from findJobsConfirmedByMe for user " + localStorage.getItem('db_id'));
+            console.log(res.data);
+            //console.log(res.data[0]);
+            this.setState({jobs: res.data});
+        });*/
+        API.findJobsByPosterId(localStorage.getItem('db_id')).then((res) => {
+            console.log("Data from findJobsByPoesterId: ");
+            console.log(res);
+            this.setState({jobs: res.data});
+        });
+    };
+
+    goodReview = (event, jobId) => {
+        console.log("Giving good review.");
+        console.log(jobId);
+        API.giveGoodReview(jobId).then((res) => {
+            window.location.reload();
+        });
+    };
+    badReview = (event, jobId) => {
+        console.log("Giving bad review.");
+        console.log(jobId);
+        API.giveBadReview(jobId).then((res) => {
+            window.location.reload();
+        });
+    };
 
     render(){
         return(
             <div style={styles.root}>
                 <GridList
-                    cellHeight={180}
+                    cellHeight={60}
                     style={styles.gridList}
-                    cols={4}
-                    padding={3}
+                    cols={1}
+                    padding={0}
                 >
-                    {tilesData.map((tile) => (
-                        <GridTile
-                            title={tile.title}
-                            titlePosition="top"
-                            subtitle={tile.author}
-                            actionIcon={ <div><FlatButton label="I Am Satisfied!" backgroundColor="#F5A730" primary={true} /><FlatButton label="I Am Not Satisfied!" backgroundColor="#F5A730" primary={true} /></div>}
-                        >
-                        </GridTile>
-                    ))}
+                    {this.state.jobs.map((job) => {
+                        if (job.status == "confirmed" ) {
+                            return <GridTile
+                                        title={job.jobName}
+                                        titlePosition="top"
+                                        subtitle={job.currentApplicantEmail}
+                                        actionIcon={
+                                            <div>
+                                                <FlatButton label="Give Good Review" backgroundColor="#30F57B" primary={true} onClick={(event) => this.goodReview(event, job._id)}/>
+                                                <FlatButton label="Give Bad Review!" backgroundColor="#F53F30" primary={true} onClick={(event) => this.badReview(event, job._id)}/>
+                                            </div>
+                                        }
+                                    >
+                                    </GridTile>
+                        }
+                        else {
+                            return <span></span>
+                        }
+                    })}
                 </GridList>
             </div>
 
@@ -94,4 +135,4 @@ class ActiveJobs extends Component {
 
 }
 
-export default ActiveJobs;
+export default ConfirmedJobs;

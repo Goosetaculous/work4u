@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import FlatButton from 'material-ui/FlatButton';
-
-
+// Components
 import Profile from './Profile'
 import AppliedJobs from './AppliedJobs.js';
 import RecommendedJobs from './RecommendedJobs.js';
 import JobsPostedByMe from './JobsPostedByMe.js';
 import ConfirmedJobs from './ConfirmedJobs.js';
 import Reviews from './Reviews.js'
+
+//import API from '../../../utils/API'
+
 
 // import card from shared
 import Cardsv2 from '../../shared/cardsv2'
@@ -19,7 +20,17 @@ const styles = {
         paddingTop: 16,
         marginBottom: 12,
         fontWeight: 400,
+        fontFamily: ['Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']      
     },
+    tab:  {
+        border: '1 solid #FF9100',
+        backgroundColor:'#616161', 
+        //color:'#FF9100',
+        fontFamily: ['Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
+    },
+    tabItemContainer: {
+        backgroundColor: '#90A4AE'
+    }
 };
 
 
@@ -28,7 +39,10 @@ class ProfileTabs extends Component {
     constructor() {
         super();
         this.state = {
-          recommendedCards: {}
+            recommendedCards: {},
+            appliedJobs:[],
+            selectedIndex: -1,
+            recommendedJobs: []
         }
     };
 
@@ -43,60 +57,101 @@ class ProfileTabs extends Component {
         ));
     };
 
-    // test3 = (test3)=>{
-    // {this.props.passfunction("p1")}
-    yo = () => {
-        console.log("FUNCTION CALLED YO")
-        this.props.passfunction("p1")
+    //================================================
+    // Function to call User Applied Data
+    //================================================
+
+    getAppliedJobs = () => {
+        console.log("==================Job Applied Start====================")
+        console.log(this.props._id)
+        this.props.API.getAppliedJobs(this.props._id).then((res)=>{
+            console.log("RES Applied: ",res)
+            console.log("==================Job Applied END====================")
+            this.setState({appliedJobs: res.data})
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })   
     }
+
+
+    //================================================
+    // Function to call User Recommended Data
+    //================================================
+
+   getRecommendedJobs = () => {
+        console.log("==================Recommeneded Job Start====================")
+        console.log(this.props.skills)
+       this.props.API.getRecommendedJobs(this.props._id,this.props.skills).then((res)=>{
+            console.log("RES Recommended: ",res)
+            console.log("==================Recommended JOb END====================")
+            this.setState({recommendedJobs: res.data})
+        }).catch((err)=>{
+            console.log("ERR ",err)
+        })   
+    }
+
 
 
     render(){
         {this.props.jobsdata}
-        
         return(
             
-            <Tabs>
-                <Tab label="My Skills" >
+            <Tabs initialSelectedIndex = {0}>
+                <Tab label="My Skills" style={styles.tab}>
                     <div>
-                       <Profile/>
-                        <FlatButton label="Default" onClick={this.yo} />
+                       <Profile
+                           skills={this.props.skills}
+                           _id ={this.props._id}
+                           setSkills={this.props.setSkills}
+                           API={this.props.API}
+                       />
                     </div>
                 </Tab>
-                <Tab label="Applied Jobs" >
+                <Tab 
+                    onActive={this.getAppliedJobs}
+                    label="Jobs I Applied"
+                    style={styles.tab} 
+                >
                     <div>
-                        <h2 style={styles.headline}>Applied Jobs</h2>
-                        <AppliedJobs />
+                        <h2 style={styles.headline}>Jobs I Applied</h2>
+                        <AppliedJobs  
+                            appliedJobs={this.state.appliedJobs}
+                            getAppliedJobs={this.getAppliedJobs}
+                            user_id={this.props._id}
+                         />
                     </div>
                 </Tab>
-                <Tab label="Recommended Jobs" >
+                <Tab
+                    onActive={this.getRecommendedJobs} 
+                    label="Look For A Job"
+                    style={styles.tab}
+                     >
                     <div>
                         <div>
-                            <h2 style={styles.headline}>Recommended jobs</h2>
+                            <h2 style={styles.headline}>Look For A Job</h2>
                         </div>
                         <div>
-                           <RecommendedJobs />
+                           <RecommendedJobs 
+                                user_id={this.props._id}
+                                recommendedJobs={this.state.recommendedJobs}
+                                getRecommendedJobs={this.getRecommendedJobs}
+                           />
                         </div>
                     </div>
                 </Tab>
-                <Tab label="Jobs Posted By Me" >
+                <Tab label="Jobs Posted By Me" style={styles.tab} >
                     <div>
                         <h2 style={styles.headline}>Jobs Posted By Me</h2>
                         <JobsPostedByMe />
                     </div>
                 </Tab>
-                <Tab label="Confirmed Jobs" >
+                <Tab label="Confirmed Jobs" style={styles.tab} >
                     <div>
                         <h2 style={styles.headline}>Confirmed Jobs</h2>
                         <ConfirmedJobs />
                     </div>
                 </Tab>
-                <Tab label="Reviews" >
-                    <div>
-                        <h2 style={styles.headline}>Reviews</h2>
-                        <Reviews />
-                    </div>
-                </Tab>
+                
             </Tabs>
         )
     }

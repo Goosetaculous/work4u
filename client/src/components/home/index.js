@@ -1,7 +1,7 @@
 // import react
 import React , { Component } from 'react';
 
-
+import FlatButton from 'material-ui/FlatButton';
 import "./style.css"
 
 /*const styles = {
@@ -13,18 +13,21 @@ import "./style.css"
 
 // import private components
 // import TopNavbar from "../shared/topnavbar/";
-import HomePageJobList from "./HomePageJobList.js";
+//import HomePageJobList from "./HomePageJobList.js";
 
 // import NavBar Login TESTING
 import Navtest from "../shared/Navtest/";
-
-
+// import NavBar Login TESTING
+import AboutModal from "../AboutModal/";
 // Import of auth
 import Auth from '../../Auth/Auth';
+
+
 
 //Auth Constant
 const auth = new Auth();
 
+const image = require('./logo.png')
 
 
 
@@ -34,15 +37,14 @@ class Homepage extends Component{
         return(
 
             <div>
-                <Navtest />
-                <div className="hook-line">
-                    More Doing, More Saving!
-                </div>
-                <div className="job-list">
-                    Most Popular Jobs
-                    <HomePageJobList />
+                
+                <div className="hook-line" >
+                    Less Doing, More Saving 
+                    <AboutModal />  
                 </div>
 
+                 
+                
             </div>
         )
     }

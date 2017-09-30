@@ -16,6 +16,8 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 // import RaisedButton from 'material-ui/RaisedButton';
 
+//import logo
+//import "./logo.png"
 // Import of auth
 import Auth from '../../../Auth/Auth';
 
@@ -28,7 +30,12 @@ const auth = new Auth();
 
 const style = {
     margin: 12,
+    color: '#616161'
 };
+
+const image = require('./logo.png')
+
+
 
 class Login extends Component {
     static muiName = 'FlatButton';
@@ -47,7 +54,7 @@ class Login extends Component {
             {
               !isAuthenticated() && (
                 <RaisedButton
-                  label="log in"
+                  label="Log In"
                   style={style}
                   onClick={this.login.bind(this)}
                 />
@@ -55,24 +62,14 @@ class Login extends Component {
             }
             {
               isAuthenticated() && (
-                <IconMenu
-                 
-                  iconButtonElement = {
-                    <IconButton><MoreVertIcon /></IconButton>
-                  }
-                  targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                  anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                >
-                  <MenuItem primaryText="Jobs I might be interested in" />
-                  <MenuItem primaryText="Jobs I applied" />
-                  <MenuItem primaryText="Jobs I posted" />
-                  <MenuItem primaryText="Jobs completed" />
-                  <MenuItem primaryText="Sign Out" onClick={this.logout.bind(this)} />
-                  
-                </IconMenu>
+                <RaisedButton
+                  label="Log Out"
+                  style={style}
+                  onClick={this.logout.bind(this)}
+                />
               )
             }
-           </div>
+        </div>
         );
     }
 }
@@ -89,18 +86,17 @@ class Navtest extends Component{
         const { isAuthenticated } = auth;
         return(
             <div>
-              
+               
                 <AppBar
-                    title="Title"
                     className="white-app-bar"
-                    iconElementLeft={<span><FlatButton label="Explorer Jobs" primary={true} /><FlatButton label="Post a Job" primary={true} /></span>}
+                    style={{width: "100%", backgroundColor:'grey500'}}
+                    iconElementLeft={<img className='logo' src={image} />}
                     iconElementRight={ <Login />}
                 />
+                
             </div>
         )
     }
 }
-
-
 
 export default Navtest
