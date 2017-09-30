@@ -16,8 +16,8 @@ const style = {
     CardHeader:{
         color: '#616161'
     },
-    FlatButton: {
-
+    FlatButton:{
+        display:"block"
     }
 }
 

@@ -11,7 +11,6 @@ const styles = {
     },
     gridList: {
         width: 1000,
-
         overflowY: 'auto',
     },
 };
