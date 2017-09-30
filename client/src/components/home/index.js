@@ -18,7 +18,7 @@ import "./style.css"
 // import NavBar Login TESTING
 import Navtest from "../shared/Navtest/";
 // import NavBar Login TESTING
-import AboutModal from "../AboutModal/";
+//import AboutModal from "../AboutModal/";
 // Import of auth
 import Auth from '../../Auth/Auth';
 
@@ -40,7 +40,7 @@ class Homepage extends Component{
                 
                 <div className="hook-line" >
                     Less Doing, More Saving 
-                    <AboutModal />  
+                     
                 </div>
 
                  
