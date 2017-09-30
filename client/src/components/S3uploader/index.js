@@ -16,7 +16,7 @@ class S3Uploader extends React.Component {
 
 
     const uploadOptions = {
-      server: 'https://work4u-dev.herokuapp.com/',
+      server: 'https://work4u-dev.herokuapp.com',
       signingUrlQueryParams: {uploadType: 'avatar'},
     };
     const s3Url = 'https://work4u.s3.amazonaws.com'
