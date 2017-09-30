@@ -15,7 +15,7 @@ const styles = {
     },
 };
 
-const tilesData = [
+/*const tilesData = [
     {
         img: 'https://pixy.org/images/placeholder.png',
         title: 'Mow my Law',
@@ -58,7 +58,7 @@ const tilesData = [
         title: 'Water plant',
         author: 'BkrmadtyaKarki',
     },
-];
+];*/
 
 
 
@@ -68,25 +68,30 @@ class Reviews extends Component {
         super()
     }
 
+    componentDidMount(){
+        this.props.API.getReviews(localStorage.getItem("db_id"))
+    }
+
     render(){
         return(
             <div style={styles.root}>
-                <GridList
-                    cellHeight={180}
-                    style={styles.gridList}
-                    cols={4}
-                    padding={3}
-                >
-                    {tilesData.map((tile) => (
-                        <GridTile
-                            title={tile.title}
-                            titlePosition="top"
-                            subtitle={tile.author}
-                            actionIcon={ <FlatButton label="Apply" backgroundColor="#a4c639" primary={true} />}
-                        >
-                        </GridTile>
-                    ))}
-                </GridList>
+                {console.log(localStorage.getItem("db_id"))}
+                {/*<GridList*/}
+                    {/*cellHeight={180}*/}
+                    {/*style={styles.gridList}*/}
+                    {/*cols={4}*/}
+                    {/*padding={3}*/}
+                {/*>*/}
+                    {/*{tilesData.map((tile) => (*/}
+                        {/*<GridTile*/}
+                            {/*title={tile.title}*/}
+                            {/*titlePosition="top"*/}
+                            {/*subtitle={tile.author}*/}
+                            {/*actionIcon={ <FlatButton label="Apply" backgroundColor="#a4c639" primary={true} />}*/}
+                        {/*>*/}
+                        {/*</GridTile>*/}
+                    {/*))}*/}
+                {/*</GridList>*/}
             </div>
 
         )

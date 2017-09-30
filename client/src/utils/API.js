@@ -99,6 +99,11 @@ const API = {
   },
   giveBadReview: (jobId) => {
     return axios.post("/job/badReview", {jobId});
+  },
+
+  getReviews: (userId)=>{
+    console.log("getReviews: ", userId)
+    return axios.get(`/job/getreviews/${userId}`)
   }
 }
 export default API;

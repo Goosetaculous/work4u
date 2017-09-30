@@ -141,7 +141,7 @@ class ProfileTabs extends Component {
                 <Tab label="Reviews" >
                     <div>
                         <h2 style={styles.headline}>Reviews</h2>
-                        <Reviews />
+                        <Reviews API={this.props.API} />
                     </div>
                 </Tab>
             </Tabs>

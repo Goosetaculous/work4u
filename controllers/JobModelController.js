@@ -246,6 +246,23 @@ var JobModelController = {
             }
         });
     },
+    getReviews: (req,res)=>{
+        console.log("\n")
+        console.log("\n")
+        console.log("\n")
+        console.log(req.params)
+        console.log("\n")
+        console.log("\n")
+        JobModel.find({
+            $ne: {status: null}
+
+        },(err,data)=>{
+            if(!err){
+                res.json(data)
+            }
+        })
+
+    }
 }
 
 module.exports = JobModelController;

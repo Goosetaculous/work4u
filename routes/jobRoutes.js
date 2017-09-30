@@ -120,6 +120,8 @@ router.post("/withdraw_offer", (req, res)=> {
 
 router.post("/recommended", Job.recommended);
 
+router.get("/getreviews/:id", Job.getReviews);
+
 
 // (job poster) cancel a job
 router.post("/cancel_posting_and_applicant", (req, res)=> {
@@ -166,6 +168,7 @@ router.post("/goodReview", (req, res) => {
 		res.json(data);
 	});
 });
+
 router.post("/badReview", (req, res) => {
 	console.log("API route badReview hit.");
 	console.log(req.body.jobId);
